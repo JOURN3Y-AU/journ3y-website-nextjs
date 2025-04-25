@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Adding custom colors for Journey AI
 				journey: {
 					purple: '#9b87f5',
 					'dark-purple': '#6E59A5',
@@ -76,7 +74,7 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				heading: ['Poppins', 'sans-serif'],
+				heading: ['Manrope', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
