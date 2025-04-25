@@ -29,7 +29,7 @@ const Index = () => {
               Is your business?
             </h1>
             <p className="text-xl text-gray-700 mb-8 md:pr-12">
-              Journey AI provides custom AI consulting and solutions to help businesses leverage the power of artificial intelligence for growth and efficiency.
+              JOURN3Y provides consulting and solutions to take your business from AI ambition to reality
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild className="bg-gradient-to-r from-journey-purple to-journey-blue text-white py-6 px-8 text-lg">
