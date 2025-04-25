@@ -29,7 +29,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center space-x-2">
             <Square className="h-10 w-10 text-journey-purple" />
             <span className="text-2xl font-bold bg-gradient-to-r from-journey-purple to-journey-blue bg-clip-text text-transparent">
-              Journey AI
+              JOURN3Y
             </span>
           </Link>
 
