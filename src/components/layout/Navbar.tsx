@@ -42,10 +42,10 @@ const Navbar = () => {
               Blueprint
             </Link>
             <Link to="/products/catalyst" className="text-gray-700 hover:text-journey-purple transition-colors">
-              Catalyst
+              Accelerate
             </Link>
             <Link to="/products/synapse" className="text-gray-700 hover:text-journey-purple transition-colors">
-              Synapse
+              Services
             </Link>
             <Link to="/blog" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blog
