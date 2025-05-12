@@ -189,7 +189,7 @@ successful delivery​
                 <p className="text-gray-600 mb-4">
                   "Journey AI's Blueprint process helped us identify multiple high-impact AI opportunities we hadn't considered. Their structured approach and clear implementation roadmap gave our leadership team confidence to move forward with our AI initiatives."
                 </p>
-                <p className="font-medium">Sarah Chen, CTO at TechFusion Global</p>
+                <p className="font-medium">CEO at Logistics Company</p>
               </div>
             </div>
           </div>
@@ -201,7 +201,7 @@ successful delivery​
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Create Your AI Blueprint?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Schedule a consultation with our AI strategy experts to begin your journey.
+            Schedule a consultation with our team to begin your JOURN3Y.
           </p>
           <Button asChild variant="secondary" size="lg" className="bg-white text-journey-purple hover:bg-gray-100">
             <Link to="/contact">Contact Us</Link>
