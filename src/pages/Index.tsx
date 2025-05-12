@@ -126,16 +126,16 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            {/* Knowledge */}
+            {/* Accelerators */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90 flex items-center justify-center">
                 <Database className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <h3 className="text-2xl font-semibold mb-2 tracking-tight">Knowledge</h3>
+                  <h3 className="text-2xl font-semibold mb-2 tracking-tight">Accelerators</h3>
                   <p className="text-gray-600 mb-4">
-                    Unified AI Intelligence platforms that combine your businesses data and expertise
+                    We deliver key best-in-class platforms that enable your AI vision
                   </p>
                 </div>
                 <Button asChild variant="outline" className="w-full justify-center mt-auto border-journey-blue text-journey-blue hover:bg-journey-blue/10">
