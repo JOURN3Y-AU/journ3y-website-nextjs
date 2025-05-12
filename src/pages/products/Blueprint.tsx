@@ -161,9 +161,9 @@ successful delivery​
                   <div className="absolute left-0 mt-1 w-8 h-8 rounded-full bg-journey-blue flex items-center justify-center">
                     <span className="text-white font-bold">4</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Blueprint Presentation</h3>
+                  <h3 className="text-xl font-semibold mb-3">Finalised Bluepriny</h3>
                   <p className="text-gray-600">
-                    We present the complete Blueprint to your team, including strategic recommendations and implementation plan.
+                    With the agreed plan in hand, we complete a platform and technology assessment allowing your business to make better decisions about how AI can be brought into your business.
                   </p>
                 </div>
               </div>
