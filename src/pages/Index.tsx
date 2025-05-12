@@ -24,7 +24,7 @@ const Index = () => {
         </div>
         <div className="container mx-auto px-4 z-10">
           <div ref={heroRef} className="max-w-3xl reveal transition-all duration-700 ease-out">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-journey-purple to-journey-blue">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-journey-purple to-journey-blue tracking-tight">
               The future is AI powered<br />
               Is your business?
             </h1>
@@ -51,8 +51,8 @@ const Index = () => {
       {/* Features Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">We've been in your chair</h2>
-          <h3 className="text-4xl font-bold text-center mb-16">We understand the AI challenges you are facing</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">We've been in your chair</h2>
+          <h3 className="text-4xl font-bold text-center mb-16 tracking-tight">We understand the AI challenges you are facing</h3>
           
           <div className="grid md:grid-cols-3 gap-10">
             {/* Feature 1 */}
@@ -63,7 +63,7 @@ const Index = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Expert Consultation</h3>
+                <h3 className="text-xl font-semibold mb-3 tracking-tight">Expert Consultation</h3>
                 <p className="text-gray-600">
                   Our team of AI specialists will analyze your business needs and develop a strategic roadmap for AI implementation.
                 </p>
@@ -78,7 +78,7 @@ const Index = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Custom Solutions</h3>
+                <h3 className="text-xl font-semibold mb-3 tracking-tight">Custom Solutions</h3>
                 <p className="text-gray-600">
                   We build tailored AI solutions that integrate seamlessly with your existing systems and workflows.
                 </p>
@@ -93,7 +93,7 @@ const Index = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Ongoing Support</h3>
+                <h3 className="text-xl font-semibold mb-3 tracking-tight">Ongoing Support</h3>
                 <p className="text-gray-600">
                   We provide continuous maintenance, updates, and training to ensure your AI solutions deliver maximum value.
                 </p>
@@ -107,7 +107,7 @@ const Index = () => {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div ref={productSectionRef} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-4xl font-bold mb-4">Our AI Solutions</h2>
+            <h2 className="text-4xl font-bold mb-4 tracking-tight">Our AI Solutions</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Discover our range of specialized AI products designed to meet your business needs.
             </p>
@@ -122,7 +122,7 @@ const Index = () => {
                 </svg>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2">Blueprint</h3>
+                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Blueprint</h3>
                 <p className="text-gray-600 mb-4">
                   Strategic AI roadmapping and business transformation planning.
                 </p>
@@ -140,7 +140,7 @@ const Index = () => {
                 </svg>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2">Catalyst</h3>
+                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Catalyst</h3>
                 <p className="text-gray-600 mb-4">
                   AI-powered analytics and decision-making acceleration platform.
                 </p>
@@ -158,7 +158,7 @@ const Index = () => {
                 </svg>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2">Synapse</h3>
+                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Synapse</h3>
                 <p className="text-gray-600 mb-4">
                   Neural network-based automation for enterprise workflows.
                 </p>
@@ -175,7 +175,7 @@ const Index = () => {
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div ref={blogSectionRef} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-4xl font-bold mb-4">Latest Insights</h2>
+            <h2 className="text-4xl font-bold mb-4 tracking-tight">Latest Insights</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Stay updated with the latest AI trends, white papers, and industry insights.
             </p>
@@ -191,7 +191,7 @@ const Index = () => {
               />
               <CardContent className="p-6">
                 <div className="text-sm text-gray-500 mb-2">May 15, 2023</div>
-                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors">
+                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
                   <Link to="/blog/understanding-ai">Understanding AI Integration In Modern Businesses</Link>
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -212,7 +212,7 @@ const Index = () => {
               />
               <CardContent className="p-6">
                 <div className="text-sm text-gray-500 mb-2">April 28, 2023</div>
-                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors">
+                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
                   <Link to="/blog/ai-strategy">Building an Effective AI Strategy For Your Business</Link>
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -228,7 +228,7 @@ const Index = () => {
             <Card className="overflow-hidden hover:shadow-md transition-shadow bg-gradient-to-br from-journey-purple/10 to-journey-blue/10">
               <div className="p-6">
                 <div className="text-sm font-medium text-journey-purple mb-2">FEATURED WHITE PAPER</div>
-                <h3 className="text-xl font-semibold mb-3">The Future of AI in Business: Trends and Predictions</h3>
+                <h3 className="text-xl font-semibold mb-3 tracking-tight">The Future of AI in Business: Trends and Predictions</h3>
                 <p className="text-gray-600 mb-6">
                   This comprehensive white paper examines emerging AI trends and how they will shape business operations in the coming years.
                 </p>
@@ -250,7 +250,7 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-journey-purple to-journey-blue text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Business with AI?</h2>
+          <h2 className="text-4xl font-bold mb-6 tracking-tight">Ready to Transform Your Business with AI?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Contact us today to schedule a consultation and discover how our AI solutions can drive growth for your business.
           </p>
