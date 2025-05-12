@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
-const Catalyst = () => {
+const Accelerators = () => {
   const section1Ref = useScrollReveal();
   const section2Ref = useScrollReveal();
   const section3Ref = useScrollReveal();
@@ -14,7 +14,7 @@ const Catalyst = () => {
       <section className="pt-32 pb-20 bg-gradient-to-r from-journey-blue/10 to-journey-dark-blue/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Catalyst</h1>
+            <h1 className="text-5xl font-bold mb-6">Accelerators</h1>
             <p className="text-xl text-gray-700 mb-8">
               AI-powered analytics and decision-making acceleration platform that transforms your data into actionable insights.
             </p>
@@ -40,12 +40,12 @@ const Catalyst = () => {
               </div>
             </div>
             <div ref={section1Ref} className="reveal transition-all duration-500 ease-out">
-              <h2 className="text-3xl font-bold mb-6">What is Catalyst?</h2>
+              <h2 className="text-3xl font-bold mb-6">What are Accelerators?</h2>
               <p className="text-gray-700 mb-4">
-                Catalyst is our AI-powered analytics platform that uses machine learning to transform your business data into actionable insights and predictions.
+                Accelerators are our AI-powered analytics platforms that use machine learning to transform your business data into actionable insights and predictions.
               </p>
               <p className="text-gray-700">
-                By analyzing patterns across your organization's data, Catalyst identifies opportunities, predicts outcomes, and recommends optimizations to accelerate your decision-making process.
+                By analyzing patterns across your organization's data, our Accelerators identify opportunities, predict outcomes, and recommend optimizations to accelerate your decision-making process.
               </p>
             </div>
           </div>
@@ -56,7 +56,7 @@ const Catalyst = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div ref={section2Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-4">Catalyst Features</h2>
+            <h2 className="text-3xl font-bold mb-4">Accelerator Features</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Unlock the full potential of your data with our advanced analytics platform.
             </p>
@@ -118,7 +118,7 @@ const Catalyst = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div ref={section3Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
-            <h2 className="text-3xl font-bold mb-4">The Catalyst Dashboard</h2>
+            <h2 className="text-3xl font-bold mb-4">The Accelerators Dashboard</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               An intuitive interface that makes complex data accessible and actionable.
             </p>
@@ -128,7 +128,7 @@ const Catalyst = () => {
             <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-journey-blue to-journey-dark-blue opacity-30 blur-sm"></div>
             <img 
               src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80" 
-              alt="Catalyst Dashboard" 
+              alt="Accelerators Dashboard" 
               className="relative w-full h-auto rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
@@ -186,7 +186,7 @@ const Catalyst = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Accelerate Your Decision-Making?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Schedule a live demo of Catalyst and see how our AI-powered analytics can transform your business.
+            Schedule a live demo of our Accelerators and see how our AI-powered analytics can transform your business.
           </p>
           <Button asChild variant="secondary" size="lg" className="bg-white text-journey-blue hover:bg-gray-100">
             <Link to="/contact">Request a Demo</Link>
@@ -197,4 +197,4 @@ const Catalyst = () => {
   );
 };
 
-export default Catalyst;
+export default Accelerators;

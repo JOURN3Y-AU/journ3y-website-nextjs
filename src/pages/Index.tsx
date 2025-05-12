@@ -140,25 +140,25 @@ const Index = () => {
                   </p>
                 </div>
                 <Button asChild variant="outline" className="w-full justify-center mt-auto border-journey-blue text-journey-blue hover:bg-journey-blue/10">
-                  <Link to="/products/catalyst">Learn More</Link>
+                  <Link to="/products/accelerators">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>
             
-            {/* Professional-services */}
+            {/* Services */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-dark-purple/90 to-journey-purple/90 flex items-center justify-center">
                 <Users className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
-                  <h3 className="text-2xl font-semibold mb-2 tracking-tight">Professional Services</h3>
+                  <h3 className="text-2xl font-semibold mb-2 tracking-tight">Services</h3>
                   <p className="text-gray-600 mb-4">
                     The people, expertise and platforms to delivery AI into your organisation
                   </p>
                 </div>
                 <Button asChild variant="outline" className="w-full justify-center mt-auto border-journey-dark-purple text-journey-dark-purple hover:bg-journey-dark-purple/10">
-                  <Link to="/products/synapse">Learn More</Link>
+                  <Link to="/products/services">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>

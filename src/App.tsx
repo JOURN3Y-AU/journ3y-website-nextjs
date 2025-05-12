@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Blueprint from "./pages/products/Blueprint";
-import Catalyst from "./pages/products/Catalyst";
-import Synapse from "./pages/products/Synapse";
+import Accelerators from "./pages/products/Accelerators";
+import Services from "./pages/products/Services";
 import Blog from "./pages/Blog";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
@@ -72,8 +72,8 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/products/blueprint" element={<Blueprint />} />
-                <Route path="/products/catalyst" element={<Catalyst />} />
-                <Route path="/products/synapse" element={<Synapse />} />
+                <Route path="/products/accelerators" element={<Accelerators />} />
+                <Route path="/products/services" element={<Services />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/contact" element={<Contact />} />

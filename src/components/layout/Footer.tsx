@@ -26,13 +26,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/products/catalyst" className="text-gray-600 hover:text-journey-purple transition-colors">
-                  Catalyst
+                <Link to="/products/accelerators" className="text-gray-600 hover:text-journey-purple transition-colors">
+                  Accelerators
                 </Link>
               </li>
               <li>
-                <Link to="/products/synapse" className="text-gray-600 hover:text-journey-purple transition-colors">
-                  Synapse
+                <Link to="/products/services" className="text-gray-600 hover:text-journey-purple transition-colors">
+                  Services
                 </Link>
               </li>
             </ul>
