@@ -1,10 +1,10 @@
-
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import AINetwork from '@/components/animations/AINetwork';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import { Lightbulb, Rocket, Target } from 'lucide-react';
 
 const Index = () => {
   // Animation refs
@@ -59,9 +59,7 @@ const Index = () => {
             <div ref={featureRef1} className="reveal transition-all duration-500 ease-out">
               <div className="bg-white rounded-lg p-8 shadow-sm h-full border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-journey-purple/20 to-journey-blue/20 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-journey-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                  </svg>
+                  <Lightbulb className="w-8 h-8 text-journey-purple" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 tracking-tight">Planning & Prioritisation</h3>
                 <p className="text-gray-600">
@@ -74,9 +72,7 @@ const Index = () => {
             <div ref={featureRef2} className="reveal transition-all duration-500 ease-out reveal-delay-200">
               <div className="bg-white rounded-lg p-8 shadow-sm h-full border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-journey-purple/20 to-journey-blue/20 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-journey-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                  </svg>
+                  <Rocket className="w-8 h-8 text-journey-blue" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 tracking-tight">Thinking big... starting small</h3>
                 <p className="text-gray-600">
@@ -89,9 +85,7 @@ const Index = () => {
             <div ref={featureRef3} className="reveal transition-all duration-500 ease-out reveal-delay-400">
               <div className="bg-white rounded-lg p-8 shadow-sm h-full border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-journey-purple/20 to-journey-blue/20 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-journey-dark-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                  </svg>
+                  <Target className="w-8 h-8 text-journey-dark-purple" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3 tracking-tight">Focus on relavance</h3>
                 <p className="text-gray-600">
