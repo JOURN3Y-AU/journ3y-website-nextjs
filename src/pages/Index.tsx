@@ -103,7 +103,7 @@ const Index = () => {
           <div ref={productSectionRef} className="text-center mb-16 reveal transition-all duration-500 ease-out">
             <h2 className="text-4xl font-bold mb-4 tracking-tight">Accelerate your AI JOURN3Y</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-             OURN3Y has the people, products and services to get you moving towards confidently taking advantage of AI in your business
+              JOURN3Y has the people, products and services to get you moving towards confidently taking advantage of AI in your business
             </p>
           </div>
           
@@ -118,15 +118,14 @@ const Index = () => {
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-2 tracking-tight">Blueprint</h3>
                 <p className="text-gray-600 mb-4">
-                  Strategic AI roadmapping and business transformation planning.
-                </p>
+                  Transforms business strategy into AI-powered action
                 <Button asChild variant="outline" className="w-full justify-center border-journey-purple text-journey-purple hover:bg-journey-purple/10">
                   <Link to="/products/blueprint">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>
             
-            {/* Catalyst */}
+            {/* Knowledge */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow">
               <div className="h-48 bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90 flex items-center justify-center">
                 <svg className="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -134,9 +133,9 @@ const Index = () => {
                 </svg>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Catalyst</h3>
+                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Knowledge</h3>
                 <p className="text-gray-600 mb-4">
-                  AI-powered analytics and decision-making acceleration platform.
+                  Unified AI Intelligence platforms that combine your businesses data and expertise
                 </p>
                 <Button asChild variant="outline" className="w-full justify-center border-journey-blue text-journey-blue hover:bg-journey-blue/10">
                   <Link to="/products/catalyst">Learn More</Link>
@@ -144,7 +143,7 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            {/* Synapse */}
+            {/* Proffesional-services */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow">
               <div className="h-48 bg-gradient-to-br from-journey-dark-purple/90 to-journey-purple/90 flex items-center justify-center">
                 <svg className="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -152,9 +151,9 @@ const Index = () => {
                 </svg>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Synapse</h3>
+                <h3 className="text-2xl font-semibold mb-2 tracking-tight">Professional Services</h3>
                 <p className="text-gray-600 mb-4">
-                  Neural network-based automation for enterprise workflows.
+                  The people, expertise and platforms to delivery AI into your organisation
                 </p>
                 <Button asChild variant="outline" className="w-full justify-center border-journey-dark-purple text-journey-dark-purple hover:bg-journey-dark-purple/10">
                   <Link to="/products/synapse">Learn More</Link>
