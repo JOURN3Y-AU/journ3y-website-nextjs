@@ -1,11 +1,10 @@
-
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import AINetwork from '@/components/animations/AINetwork';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Lightbulb, Rocket, Target } from 'lucide-react';
+import { Lightbulb, Rocket, Target, FileText, Database, Users } from 'lucide-react';
 
 const Index = () => {
   // Animation refs
@@ -112,9 +111,7 @@ const Index = () => {
             {/* Blueprint */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-purple/90 to-journey-blue/90 flex items-center justify-center">
-                <svg className="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                </svg>
+                <FileText className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
@@ -132,9 +129,7 @@ const Index = () => {
             {/* Knowledge */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90 flex items-center justify-center">
-                <svg className="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
+                <Database className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
@@ -149,12 +144,10 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            {/* Proffesional-services */}
+            {/* Professional-services */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-dark-purple/90 to-journey-purple/90 flex items-center justify-center">
-                <svg className="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
+                <Users className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
