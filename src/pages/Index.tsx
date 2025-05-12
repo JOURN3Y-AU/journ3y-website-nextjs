@@ -1,10 +1,11 @@
+
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import AINetwork from '@/components/animations/AINetwork';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Lightbulb, Rocket, Target, FileText, Database, Users } from 'lucide-react';
+import { Lightbulb, Rocket, Target, FileText, Database, Users, Zap } from 'lucide-react';
 
 const Index = () => {
   // Animation refs
@@ -129,7 +130,7 @@ const Index = () => {
             {/* Accelerators */}
             <Card className="overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
               <div className="h-48 bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90 flex items-center justify-center">
-                <Database className="w-20 h-20 text-white" strokeWidth={1.5} />
+                <Zap className="w-20 h-20 text-white" strokeWidth={1.5} />
               </div>
               <CardContent className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
