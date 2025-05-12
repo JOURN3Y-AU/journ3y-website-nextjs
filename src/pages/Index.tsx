@@ -51,7 +51,7 @@ const Index = () => {
       {/* Features Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">Why Choose Journey AI</h2>
+          <h2 className="text-4xl font-bold text-center mb-16">We've been in your chair</h2>
           
           <div className="grid md:grid-cols-3 gap-10">
             {/* Feature 1 */}
