@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -31,7 +32,7 @@ const Navbar = () => {
               alt="JOURN3Y Logo" 
               className="h-10 w-10"
             />
-            <span className="text-2xl font-bold bg-gradient-to-r from-journey-purple to-journey-blue bg-clip-text text-transparent">
+            <span className="text-2xl font-bold font-heading tracking-tight text-[#333333]">
               JOURN3Y
             </span>
           </Link>
