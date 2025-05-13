@@ -33,7 +33,7 @@ const Blueprint = () => {
             <div ref={section1Ref} className="reveal transition-all duration-500 ease-out">
               <h2 className="text-3xl font-bold mb-6">What is Blueprint?</h2>
               <p className="text-gray-700 mb-4">
-                Blueprint is our strategic AI planning approach designed to help businesses map out their AI journey. We work with your leadership team to identify opportunities, challenges, and the ideal path to AI integration.
+                Blueprint is our strategic AI planning process designed to help businesses map out their AI journey. We work with your leadership team to identify opportunities, challenges, and the practical path to AI integration.
               </p>
               <p className="text-gray-700">
                 Through a series of workshops, assessments, and planning sessions, we create a comprehensive roadmap that aligns with your business goals and provides a clear implementation strategy.
@@ -96,14 +96,12 @@ const Blueprint = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Executable Plan</h3>
               <p className="text-gray-600">
-                Move beyond planning into action
-with our iterative, value-focused
-executable plan. We guide you
+                Move beyond planning into action with our iterative, value-focused executable plan. We guide you
 through vendor negotiations, partner
 engagements. We can hand over to
 you or continue to serve as your
 ongoing champion to ensure
-successful delivery​
+successful delivery
               </p>
             </div>
           </div>
@@ -116,7 +114,7 @@ successful delivery​
           <div ref={section3Ref} className="max-w-3xl mx-auto text-center mb-16 reveal transition-all duration-500 ease-out">
             <h2 className="text-3xl font-bold mb-4">Our Blueprint Process</h2>
             <p className="text-xl text-gray-600">
-              A structured approach to developing your AI strategy.
+              A structured approach to quickly develop your AI strategy
             </p>
           </div>
 
