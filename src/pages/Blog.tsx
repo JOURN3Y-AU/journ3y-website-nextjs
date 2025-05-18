@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -43,6 +42,7 @@ const Blog = () => {
   useEffect(() => {
     async function fetchCategories() {
       try {
+        // Explicitly type the query result
         const { data, error } = await supabase
           .from('blog_categories')
           .select('name')
@@ -51,7 +51,8 @@ const Blog = () => {
         if (error) throw error;
         
         if (data) {
-          const categoryNames = data.map(cat => cat.name as string);
+          // Type assertion to ensure data is treated as an array with name property
+          const categoryNames = data.map(cat => cat.name);
           setCategories(['All', ...categoryNames]);
         }
       } catch (error) {
