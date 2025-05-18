@@ -69,11 +69,8 @@ const handler = async (req: Request): Promise<Response> => {
     
     // Try to send notification email to business owners
     try {
-      // IMPORTANT: For this to work in production, you need to:
-      // 1. Verify your domain at resend.com/domains
-      // 2. Change the "from" email to use your verified domain
       const notificationResponse = await resend.emails.send({
-        from: "Journ3y <onboarding@resend.dev>", // Change this to your verified domain
+        from: "Journ3y <no-reply@journ3y.com.au>", // Updated to use your domain
         to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"],
         subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
         html: emailHtml,
@@ -89,7 +86,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to user (this likely works as it's going to the submitter)
     const userConfirmation = await resend.emails.send({
-      from: "Journ3y <onboarding@resend.dev>",
+      from: "Journ3y <no-reply@journ3y.com.au>", // Updated to use your domain
       to: email, // User's email from the form
       subject: "We've received your inquiry - Journ3y",
       html: `
