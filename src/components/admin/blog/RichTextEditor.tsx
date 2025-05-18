@@ -33,6 +33,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
   const addLink = () => {
     if (linkUrl) {
+      // Fix: Use setLink({ href: linkUrl }) instead of setLink(linkUrl)
       editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run();
       setLinkUrl('');
       setShowLinkInput(false);
