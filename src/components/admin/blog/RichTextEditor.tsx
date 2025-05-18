@@ -147,7 +147,14 @@ interface RichTextEditorProps {
 export default function RichTextEditor({ content, onChange, className }: RichTextEditorProps) {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        // Ensure bullet list and ordered list are enabled
+        bulletList: true,
+        orderedList: true,
+        heading: {
+          levels: [1, 2]
+        }
+      }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
