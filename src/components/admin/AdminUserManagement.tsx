@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,8 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { User, UserPlus, Trash2 } from 'lucide-react';
+import { User, UserPlus, Trash2, AlertCircle } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface AdminUserManagementProps {
   onLogout: () => void;
@@ -28,30 +28,34 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserPassword, setNewUserPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
-    fetchUsers();
+    fetchCurrentUser();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchCurrentUser = async () => {
     try {
-      const { data, error } = await supabase.auth.admin.listUsers();
-      if (error) throw error;
+      const { data: { user } } = await supabase.auth.getUser();
       
-      if (data?.users) {
-        setUsers(data.users.map(user => ({
+      if (user) {
+        // At least show the current user if we can't list all users
+        setUsers([{
           id: user.id,
           email: user.email || 'No email',
           created_at: new Date(user.created_at || '').toLocaleDateString()
-        })));
+        }]);
       }
+      
+      setError("Note: Admin API access is limited. Only your own user is displayed.");
     } catch (error: any) {
-      console.error('Error fetching users:', error);
+      console.error('Error fetching current user:', error);
       toast({
         title: "Error",
-        description: "Failed to load users. You may not have admin privileges.",
+        description: "Failed to load user data",
         variant: "destructive",
       });
+      setError("Failed to load user data");
     } finally {
       setIsLoading(false);
     }
@@ -68,25 +72,33 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
     }
 
     try {
-      const { data, error } = await supabase.auth.admin.createUser({
+      const { data, error } = await supabase.auth.signUp({
         email: newUserEmail,
         password: newUserPassword,
-        email_confirm: true
+        options: {
+          emailRedirectTo: window.location.origin + '/admin'
+        }
       });
       
       if (error) throw error;
       
       toast({
         title: "Success",
-        description: "Admin user created successfully",
+        description: "User created successfully. Please check email for verification.",
       });
       
       setIsDialogOpen(false);
       setNewUserEmail('');
       setNewUserPassword('');
       
-      // Refresh user list
-      fetchUsers();
+      // Add the new user to the list if created successfully
+      if (data.user) {
+        setUsers([...users, {
+          id: data.user.id,
+          email: data.user.email || 'No email',
+          created_at: new Date().toLocaleDateString()
+        }]);
+      }
     } catch (error: any) {
       toast({
         title: "Error",
@@ -96,26 +108,23 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
     }
   };
 
+  // This function won't work without admin privileges, but we'll keep a simplified version
   const handleDeleteUser = async (userId: string) => {
-    try {
-      const { error } = await supabase.auth.admin.deleteUser(userId);
-      
-      if (error) throw error;
-      
-      toast({
-        title: "Success",
-        description: "User deleted successfully",
-      });
-      
-      // Refresh user list
-      fetchUsers();
-    } catch (error: any) {
+    const currentUser = await supabase.auth.getUser();
+    
+    if (currentUser.data.user?.id === userId) {
       toast({
         title: "Error",
-        description: error.message || "Failed to delete user",
+        description: "You cannot delete your own account while logged in",
         variant: "destructive",
       });
+      return;
     }
+    
+    toast({
+      title: "Information",
+      description: "Admin API access is required to delete users. This feature is limited.",
+    });
   };
 
   return (
@@ -135,6 +144,16 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
           </Button>
         </div>
       </div>
+      
+      {error && (
+        <Alert className="mb-6 bg-yellow-50 border-yellow-200">
+          <AlertCircle className="h-4 w-4 text-yellow-600" />
+          <AlertTitle className="text-yellow-800">Limited Access</AlertTitle>
+          <AlertDescription className="text-yellow-700">
+            {error}
+          </AlertDescription>
+        </Alert>
+      )}
       
       {isLoading ? (
         <div className="text-center py-10">Loading users...</div>
