@@ -1,37 +1,31 @@
-
+import { v4 as uuidv4 } from 'uuid';
 import { supabase } from '@/integrations/supabase/client';
 
 export const uploadImage = async (file: File): Promise<string> => {
-  if (!file) {
-    throw new Error('No file provided');
-  }
+  try {
+    if (!file) {
+      throw new Error("No file provided");
+    }
 
-  // Generate unique filename
-  const fileExt = file.name.split('.').pop();
-  const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
-  const filePath = `blog-images/${fileName}`;
-  
-  // Check if the bucket exists, if not create it
-  const { data: buckets } = await supabase.storage.listBuckets();
-  if (!buckets?.find(bucket => bucket.name === 'blog-images')) {
-    await supabase.storage.createBucket('blog-images', {
-      public: true,
-    });
-  }
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${uuidv4()}.${fileExt}`;
+    const filePath = `team_member_images/${fileName}`;
 
-  // Upload the file
-  const { error } = await supabase.storage
-    .from('blog-images')
-    .upload(filePath, file);
-    
-  if (error) {
+    const { data, error } = await supabase.storage
+      .from('images')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false
+      });
+
+    if (error) {
+      throw error;
+    }
+
+    const imageUrl = `https://ghtqdgkfbfdlnowrowpw.supabase.co/storage/v1/object/public/${data.path}`;
+    return imageUrl;
+  } catch (error: any) {
+    console.error("Error uploading image:", error);
     throw error;
   }
-  
-  // Get public URL
-  const { data } = supabase.storage
-    .from('blog-images')
-    .getPublicUrl(filePath);
-  
-  return data.publicUrl;
 };
