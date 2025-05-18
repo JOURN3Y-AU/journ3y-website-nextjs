@@ -34,8 +34,8 @@ export default function Team() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {teamMembers.map((member) => (
             <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto">
-                <Avatar className="h-full w-full rounded-none">
+              <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto pt-2">
+                <Avatar className="h-[90%] w-[90%] rounded-none mx-auto">
                   <AvatarImage 
                     src={member.image_url} 
                     alt={member.name} 
@@ -46,10 +46,10 @@ export default function Team() {
                   </AvatarFallback>
                 </Avatar>
               </div>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold">{member.name}</h3>
+              <CardContent className="p-4 pt-3">
+                <h3 className="text-base font-semibold">{member.name}</h3>
                 <p className="text-sm text-journey-purple font-medium mb-1">{member.position}</p>
-                <p className="text-xs text-gray-600">{member.bio}</p>
+                <p className="text-xs text-gray-600 line-clamp-3">{member.bio}</p>
               </CardContent>
             </Card>
           ))}
