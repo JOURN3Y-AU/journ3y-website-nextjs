@@ -103,10 +103,10 @@ const Services = () => {
         </div>
       </section>
 
-      <!-- commenting out use cases for now
-
-      {/* Use Cases */}
-      <section className="py-20">
+      {/* Commenting out use cases for now 
+      
+      Use Cases */}
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <div ref={section3Ref} className="text-center mb-16 reveal transition-all duration-500 ease-out">
             <h2 className="text-3xl font-bold mb-4">Our Services in Action</h2>
@@ -126,7 +126,7 @@ const Services = () => {
                 <h3 className="text-xl font-semibold">Retirement Provider</h3>
               </div>
               <p className="text-gray-600 mb-4">
-                A leading retirement provider .
+                A leading retirement provider.
               </p>
               <ul className="text-gray-600 space-y-2">
                 <li className="flex items-start">
@@ -185,8 +185,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </section>
-        -->
+      </section> */}
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-journey-dark-purple/90 to-journey-purple/90 text-white">
