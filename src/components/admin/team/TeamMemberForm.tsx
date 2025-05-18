@@ -1,7 +1,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { useTeamMemberForm, TeamMember } from '@/hooks/useTeamMemberForm';
+import { useTeamMemberForm } from '@/hooks/useTeamMemberForm';
+import { TeamMember } from '@/types/teamMember';
 import TeamMemberFields from './TeamMemberFields';
 import ImageUploadField from './ImageUploadField';
 

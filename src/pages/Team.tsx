@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { useTeamMembers } from '@/hooks/useTeamMembers';
-import { TeamMember } from '@/hooks/useTeamMemberForm';
+import { TeamMember } from '@/types/teamMember';
 
 export default function Team() {
   const { teamMembers, loading } = useTeamMembers();

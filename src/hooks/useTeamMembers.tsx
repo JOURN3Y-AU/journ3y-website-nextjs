@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { TeamMember } from './useTeamMemberForm';
+import { TeamMember } from '@/types/teamMember';
 
 export function useTeamMembers() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
