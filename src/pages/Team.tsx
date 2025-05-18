@@ -1,6 +1,5 @@
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { useTeamMembers } from '@/hooks/useTeamMembers';
 import { TeamMember } from '@/types/teamMember';
 
@@ -35,11 +34,11 @@ export default function Team() {
           {teamMembers.map((member) => (
             <Card key={member.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-square overflow-hidden bg-gray-100 w-full max-w-[200px] mx-auto pt-2">
-                <div className="h-[90%] w-[90%] mx-auto overflow-hidden">
+                <div className="h-[90%] w-[90%] mx-auto overflow-hidden group relative">
                   <img 
                     src={member.image_url} 
                     alt={member.name}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full filter grayscale transition-all duration-300 group-hover:grayscale-0"
                   />
                 </div>
               </div>
