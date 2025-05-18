@@ -16,7 +16,7 @@ const Services = () => {
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Services</h1>
             <p className="text-xl text-gray-700 mb-8">
-              Professional AI services that provide the expertise and implementation support to deliver on your AI vision.
+              PProfessional AI services that provide the expertise and implementation support to turn your AI vision into measurable business outcomes. Our team brings executive-level experience from leading organizations to bridge the gap between strategic ambition and practical execution.
             </p>
             <Button className="bg-gradient-to-r from-journey-dark-purple to-journey-purple text-white">
               <Link to="/contact">Explore Services</Link>
@@ -32,10 +32,10 @@ const Services = () => {
             <div ref={section1Ref} className="reveal transition-all duration-500 ease-out">
               <h2 className="text-3xl font-bold mb-6">What are our Services?</h2>
               <p className="text-gray-700 mb-4">
-                Our professional services offer the expertise, implementation support, and ongoing optimization needed to successfully deliver AI solutions in your organization.
+                Our professional services offer the expertise, implementation support, and ongoing optimization needed to successfully deliver AI solutions in your organization. We've been in your chair and understand the challenges of translating bold visions into practical results.
               </p>
               <p className="text-gray-700">
-                We provide the people, knowledge and platforms to help you implement AI solutions, overcome challenges, and achieve your business objectives.
+                We provide the people, knowledge and platforms to help you implement AI solutions, overcome challenges, and achieve your business objectives. Our approach is commercial and outcome-led, focusing on delivering tangible business value rather than technical complexity.
               </p>
             </div>
             <div className="order-first md:order-last">
