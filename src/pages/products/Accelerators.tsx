@@ -80,7 +80,7 @@ const Accelerators = () => {
               </CardHeader>
               <CardContent className="pt-6">
                 <p className="text-gray-700">
-                  Powerful AI-driven enterprise search that connects all your company's knowledge, making information instantly accessible across your organization.
+                  Powerful "Work AI" platform that connects all your company's knowledge, enabling your employees to find, create, and automate anything.
                 </p>
               </CardContent>
               <CardFooter>
@@ -104,7 +104,7 @@ const Accelerators = () => {
               </CardHeader>
               <CardContent className="pt-6">
                 <p className="text-gray-700">
-                  A unified analytics platform designed to help data teams solve their most challenging problems, from ETL and BI to machine learning and AI.
+                  A unified analytics & AI platform designed to help data teams solve their most challenging problems, from ETL and BI to machine learning and AI.
                 </p>
               </CardContent>
               <CardFooter>
