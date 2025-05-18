@@ -46,10 +46,10 @@ const Accelerators = () => {
             <div ref={section1Ref} className="reveal transition-all duration-500 ease-out">
               <h2 className="text-3xl font-bold mb-6">What are Accelerators?</h2>
               <p className="text-gray-700 mb-4">
-                Accelerators are our AI-powered analytics platforms that use machine learning to transform your business data into actionable insights and predictions.
+                Many of our clients want to start their AI journey fast. Rather than developing their own solutions, our Accelerator platforms allow our clients to start reaping the benefits of AI without the long startup
               </p>
               <p className="text-gray-700">
-                By analyzing patterns across your organization's data, our Accelerators identify opportunities, predict outcomes, and recommend optimizations to accelerate your decision-making process.
+                With a focus on value, adoption, security and governance, Glean and Databricks have a proven track record of enabling a genuine AI shift in organisations
               </p>
             </div>
           </div>
