@@ -7,21 +7,29 @@ import { TeamMember } from '@/types/teamMember';
 export function useTeamMembers() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const { toast } = useToast();
 
   const fetchTeamMembers = async () => {
     setLoading(true);
+    setError(null);
     try {
+      console.log('Fetching team members...');
       const { data, error } = await supabase
         .from('team_members')
         .select('*')
         .order('order', { ascending: true }) as { data: TeamMember[], error: any };
         
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error fetching team members:', error);
+        throw new Error(`Failed to fetch team members: ${error.message}`);
+      }
       
+      console.log(`Fetched ${data?.length || 0} team members`);
       setTeamMembers(data || []);
-    } catch (error) {
-      console.error('Error fetching team members:', error);
+    } catch (err: any) {
+      console.error('Error in fetchTeamMembers:', err);
+      setError(err instanceof Error ? err : new Error(String(err)));
       toast({
         title: "Error",
         description: "Failed to load team members",
@@ -39,6 +47,7 @@ export function useTeamMembers() {
   return {
     teamMembers,
     loading,
+    error,
     refetchTeamMembers: fetchTeamMembers
   };
 }
