@@ -148,8 +148,14 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        bulletList: {},
-        orderedList: {},
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: true, 
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: true,
+        },
         heading: {
           levels: [1, 2]
         }
@@ -167,7 +173,7 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
     },
     editorProps: {
       attributes: {
-        class: 'prose focus:outline-none min-w-full'
+        class: 'prose prose-ul:list-disc prose-ol:list-decimal focus:outline-none min-w-full'
       }
     }
   });
@@ -177,7 +183,7 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
       <MenuBar editor={editor} />
       <EditorContent 
         editor={editor} 
-        className="px-3 py-2 min-h-[400px] prose max-w-none"
+        className="px-3 py-2 min-h-[400px] prose prose-ul:list-disc prose-ol:list-decimal max-w-none"
       />
     </div>
   );
