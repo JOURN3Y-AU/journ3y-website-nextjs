@@ -115,6 +115,13 @@ export function useBlogPostEditor(slug?: string, isNew = false) {
       }));
     }
   };
+
+  const handleContentChange = (html: string) => {
+    setBlogPost(prev => ({
+      ...prev,
+      content: html
+    }));
+  };
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -199,6 +206,7 @@ export function useBlogPostEditor(slug?: string, isNew = false) {
     isSaving,
     imagePreview,
     handleInputChange,
+    handleContentChange,
     handleImageChange,
     handleImageRemove,
     handleSubmit

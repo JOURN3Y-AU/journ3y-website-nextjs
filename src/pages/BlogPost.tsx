@@ -134,10 +134,8 @@ const BlogPost = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
           <div className="prose prose-lg max-w-none">
-            {/* Convert plain text into paragraphs */}
-            {post.content.split('\n\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            {/* Render HTML content safely */}
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
 
           {/* Related Tags */}

@@ -20,6 +20,7 @@ export default function AdminBlogEdit({ onLogout, isNew = false }: AdminBlogEdit
     isSaving,
     imagePreview,
     handleInputChange,
+    handleContentChange,
     handleImageChange,
     handleImageRemove,
     handleSubmit
@@ -48,6 +49,7 @@ export default function AdminBlogEdit({ onLogout, isNew = false }: AdminBlogEdit
       <BlogPostForm
         blogPost={blogPost}
         handleInputChange={handleInputChange}
+        handleContentChange={handleContentChange}
         handleImageChange={handleImageChange}
         imagePreview={imagePreview}
         categories={categories}

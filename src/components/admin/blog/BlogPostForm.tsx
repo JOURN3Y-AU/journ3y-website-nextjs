@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Save } from 'lucide-react';
 import { Category } from '@/types/blog';
 import ImageUpload from './ImageUpload';
+import RichTextEditor from './RichTextEditor';
 
 interface BlogPostFormProps {
   blogPost: {
@@ -17,6 +18,7 @@ interface BlogPostFormProps {
     category_id: string;
   };
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  handleContentChange: (html: string) => void;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   imagePreview: string | null;
   categories: Category[];
@@ -29,6 +31,7 @@ interface BlogPostFormProps {
 export default function BlogPostForm({
   blogPost,
   handleInputChange,
+  handleContentChange,
   handleImageChange,
   imagePreview,
   categories,
@@ -106,13 +109,10 @@ export default function BlogPostForm({
         
         <div className="space-y-2">
           <Label htmlFor="content">Content</Label>
-          <Textarea
-            id="content"
-            name="content"
-            value={blogPost.content}
-            onChange={handleInputChange}
+          <RichTextEditor
+            content={blogPost.content}
+            onChange={handleContentChange}
             className="min-h-[400px]"
-            required
           />
         </div>
       </div>
