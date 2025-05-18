@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -20,15 +19,14 @@ export default function Team() {
   useEffect(() => {
     async function fetchTeamMembers() {
       try {
-        // Use type assertion to work around the TypeScript limitation
-        const { data, error } = await (supabase
-          .from('team_members') as any)
+        const { data, error } = await supabase
+          .from('team_members')
           .select('*')
-          .order('order', { ascending: true });
+          .order('order', { ascending: true }) as { data: TeamMember[], error: any };
           
         if (error) throw error;
         
-        setTeamMembers(data as TeamMember[] || []);
+        setTeamMembers(data || []);
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {

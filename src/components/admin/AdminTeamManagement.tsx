@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -18,6 +17,11 @@ interface TeamMember {
   bio: string;
   image_url: string;
   order: number;
+}
+
+interface SiteSetting {
+  key: string;
+  value: string;
 }
 
 interface AdminTeamManagementProps {
@@ -43,16 +47,14 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
   const fetchTeamMembers = async () => {
     setLoading(true);
     try {
-      // Use type assertion to work around the TypeScript limitation
-      const { data, error } = await (supabase
-        .from('team_members') as any)
+      const { data, error } = await supabase
+        .from('team_members')
         .select('*')
-        .order('order', { ascending: true });
+        .order('order', { ascending: true }) as { data: TeamMember[], error: any };
         
       if (error) throw error;
       
-      // Assert the correct type
-      setTeamMembers(data as TeamMember[] || []);
+      setTeamMembers(data || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
       toast({
@@ -67,18 +69,16 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
 
   const fetchSiteSettings = async () => {
     try {
-      // Use type assertion to work around the TypeScript limitation
-      const { data, error } = await (supabase
-        .from('site_settings') as any)
+      const { data, error } = await supabase
+        .from('site_settings')
         .select('*')
         .eq('key', 'show_team_page')
-        .single();
+        .single() as { data: SiteSetting, error: any };
         
       if (error && error.code !== 'PGRST116') {
         console.error('Error fetching site settings:', error);
       } else if (data) {
-        // Access the value property safely with type assertion
-        setShowTeamPage((data as any).value === 'true');
+        setShowTeamPage(data.value === 'true');
       }
     } catch (error) {
       console.error('Error in fetchSiteSettings:', error);
@@ -97,11 +97,10 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
     if (!confirm('Are you sure you want to delete this team member?')) return;
     
     try {
-      // Use type assertion to work around the TypeScript limitation
-      const { error } = await (supabase
-        .from('team_members') as any)
+      const { error } = await supabase
+        .from('team_members')
         .delete()
-        .eq('id', id);
+        .eq('id', id) as { error: any };
       
       if (error) throw error;
       
@@ -155,11 +154,10 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
       
       // Update each member with their new order
       for (const update of updates) {
-        // Use type assertion to work around the TypeScript limitation
-        const { error } = await (supabase
-          .from('team_members') as any)
+        const { error } = await supabase
+          .from('team_members')
           .update({ order: update.order })
-          .eq('id', update.id);
+          .eq('id', update.id) as { error: any };
           
         if (error) throw error;
       }
@@ -179,29 +177,26 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
     setIsSaving(true);
     try {
       // Check if the setting exists
-      // Use type assertion to work around the TypeScript limitation
-      const { data, error } = await (supabase
-        .from('site_settings') as any)
+      const { data, error } = await supabase
+        .from('site_settings')
         .select('*')
-        .eq('key', 'show_team_page');
+        .eq('key', 'show_team_page') as { data: SiteSetting[], error: any };
         
       if (error) throw error;
       
       if (data && data.length > 0) {
         // Update existing setting
-        // Use type assertion to work around the TypeScript limitation
-        await (supabase
-          .from('site_settings') as any)
+        await supabase
+          .from('site_settings')
           .update({ value: value ? 'true' : 'false' })
-          .eq('key', 'show_team_page');
+          .eq('key', 'show_team_page') as { error: any };
       } else {
         // Insert new setting
-        // Use type assertion to work around the TypeScript limitation
-        await (supabase
-          .from('site_settings') as any)
+        await supabase
+          .from('site_settings')
           .insert([
             { key: 'show_team_page', value: value ? 'true' : 'false' }
-          ]);
+          ]) as { error: any };
       }
       
       setShowTeamPage(value);

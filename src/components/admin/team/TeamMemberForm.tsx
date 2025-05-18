@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -77,12 +78,13 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
       // Get the highest order value for new member
       let orderValue = formData.order || 0;
       if (!formData.order) {
-        // Use type assertion to work around the TypeScript limitation
-        const { data: existingMembers } = await (supabase
-          .from('team_members') as any)
+        const { data: existingMembers, error: fetchError } = await supabase
+          .from('team_members')
           .select('order')
           .order('order', { ascending: false })
-          .limit(1);
+          .limit(1) as { data: any[], error: any };
+        
+        if (fetchError) throw fetchError;
         
         orderValue = existingMembers && existingMembers.length > 0 
           ? (existingMembers[0].order + 1) 
@@ -97,18 +99,17 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
 
       if (member?.id) {
         // Update existing member
-        // Use type assertion to work around the TypeScript limitation
-        const { error } = await (supabase
-          .from('team_members') as any)
+        const { error: updateError } = await supabase
+          .from('team_members')
           .update({
             name: updatedMember.name,
             position: updatedMember.position,
             bio: updatedMember.bio,
             image_url: updatedMember.image_url,
           })
-          .eq('id', member.id);
+          .eq('id', member.id) as { error: any };
           
-        if (error) throw error;
+        if (updateError) throw updateError;
         
         toast({
           title: "Success",
@@ -116,18 +117,17 @@ export default function TeamMemberForm({ member, onSave, onCancel }: TeamMemberF
         });
       } else {
         // Create new member
-        // Use type assertion to work around the TypeScript limitation
-        const { error } = await (supabase
-          .from('team_members') as any)
+        const { error: insertError } = await supabase
+          .from('team_members')
           .insert([{
             name: updatedMember.name,
             position: updatedMember.position,
             bio: updatedMember.bio,
             image_url: updatedMember.image_url,
             order: orderValue
-          }]);
+          }]) as { error: any };
           
-        if (error) throw error;
+        if (insertError) throw insertError;
         
         toast({
           title: "Success",
