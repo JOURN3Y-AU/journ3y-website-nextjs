@@ -5,6 +5,7 @@ import AdminLogin from '@/components/admin/AdminLogin';
 import AdminDashboard from '@/components/admin/AdminDashboard';
 import AdminBlogEdit from '@/components/admin/AdminBlogEdit';
 import AdminUserManagement from '@/components/admin/AdminUserManagement';
+import AdminTeamManagement from '@/components/admin/AdminTeamManagement';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -89,6 +90,7 @@ export default function Admin() {
       <Route path="/edit/:slug" element={<AdminBlogEdit onLogout={handleLogout} />} />
       <Route path="/new" element={<AdminBlogEdit onLogout={handleLogout} isNew />} />
       <Route path="/users" element={<AdminUserManagement onLogout={handleLogout} />} />
+      <Route path="/team" element={<AdminTeamManagement onLogout={handleLogout} />} />
       <Route path="*" element={<Navigate to="/admin" replace />} />
     </Routes>
   );

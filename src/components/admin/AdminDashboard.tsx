@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import BlogPostsTable from './blog/BlogPostsTable';
 import { supabase } from '@/integrations/supabase/client';
-import { User, Edit } from 'lucide-react';
+import { User, Edit, Users } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { BlogPost } from '@/types/blog';
 
@@ -140,6 +140,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           <Button onClick={() => navigate('/admin/users')} variant="outline" className="flex items-center">
             <User className="mr-2 h-4 w-4" />
             Manage Users
+          </Button>
+          <Button onClick={() => navigate('/admin/team')} variant="outline" className="flex items-center">
+            <Users className="mr-2 h-4 w-4" />
+            Manage Team
           </Button>
           <Button onClick={() => navigate('/admin/new')} variant="default" className="flex items-center">
             <Edit className="mr-2 h-4 w-4" />

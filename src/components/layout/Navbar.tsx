@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { supabase } from '@/integrations/supabase/client';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showTeamPage, setShowTeamPage] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +18,27 @@ const Navbar = () => {
       }
     };
 
+    const fetchSiteSettings = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('site_settings')
+          .select('*')
+          .eq('key', 'show_team_page')
+          .single();
+          
+        if (error && error.code !== 'PGRST116') {
+          console.error('Error fetching site settings:', error);
+        }
+        
+        setShowTeamPage(data?.value === 'true');
+      } catch (error) {
+        console.error('Error in fetchSiteSettings:', error);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
+    fetchSiteSettings();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -54,6 +76,11 @@ const Navbar = () => {
             <Link to="/blog" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blog
             </Link>
+            {showTeamPage && (
+              <Link to="/team" className="text-gray-700 hover:text-journey-purple transition-colors">
+                Team
+              </Link>
+            )}
             <Link to="/contact" className="text-gray-700 hover:text-journey-purple transition-colors">
               Contact
             </Link>
@@ -134,6 +161,15 @@ const Navbar = () => {
             >
               Blog
             </Link>
+            {showTeamPage && (
+              <Link 
+                to="/team" 
+                className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Team
+              </Link>
+            )}
             <Link 
               to="/contact" 
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
