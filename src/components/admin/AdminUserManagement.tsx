@@ -7,8 +7,9 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { User, UserPlus, Trash2, AlertCircle } from 'lucide-react';
+import { User, UserPlus, Trash2, AlertCircle, InfoIcon } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface AdminUserManagementProps {
   onLogout: () => void;
@@ -72,6 +73,7 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
     }
 
     try {
+      setIsLoading(true);
       const { data, error } = await supabase.auth.signUp({
         email: newUserEmail,
         password: newUserPassword,
@@ -84,7 +86,7 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
       
       toast({
         title: "Success",
-        description: "User created successfully. Please check email for verification.",
+        description: "Admin user created successfully. Please ask them to check their email for verification.",
       });
       
       setIsDialogOpen(false);
@@ -105,6 +107,8 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
         description: error.message || "Failed to create user",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -132,10 +136,19 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Admin User Management</h1>
         <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
-            <UserPlus className="mr-2 h-4 w-4" />
-            New Admin
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="default" onClick={() => setIsDialogOpen(true)}>
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Add Admin User
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Create a new admin user with full access</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Button variant="outline" onClick={() => navigate('/admin')}>
             Back
           </Button>
@@ -144,6 +157,15 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
           </Button>
         </div>
       </div>
+      
+      <Alert className="mb-6 bg-blue-50 border-blue-200">
+        <InfoIcon className="h-4 w-4 text-blue-600" />
+        <AlertTitle className="text-blue-800">Adding Admin Users</AlertTitle>
+        <AlertDescription className="text-blue-700">
+          You can add new admin users by clicking the "Add Admin User" button. New users will need to verify their email
+          before they can log in. All admins have full access to the blog management system.
+        </AlertDescription>
+      </Alert>
       
       {error && (
         <Alert className="mb-6 bg-yellow-50 border-yellow-200">
@@ -204,7 +226,7 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create New Admin User</DialogTitle>
+            <DialogTitle>Add New Admin User</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
@@ -215,6 +237,7 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
                 value={newUserEmail}
                 onChange={(e) => setNewUserEmail(e.target.value)}
                 placeholder="admin@example.com"
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -225,15 +248,19 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
                 value={newUserPassword}
                 onChange={(e) => setNewUserPassword(e.target.value)}
                 placeholder="Secure password"
+                disabled={isLoading}
               />
+              <p className="text-xs text-gray-500">
+                Password should be at least 6 characters long
+              </p>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)} disabled={isLoading}>
               Cancel
             </Button>
-            <Button onClick={handleCreateUser}>
-              Create User
+            <Button onClick={handleCreateUser} disabled={isLoading}>
+              {isLoading ? "Creating..." : "Create Admin User"}
             </Button>
           </DialogFooter>
         </DialogContent>
