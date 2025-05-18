@@ -6,7 +6,7 @@ import { Plus } from 'lucide-react';
 import TeamMembersTable from './TeamMembersTable';
 import TeamMemberForm from './TeamMemberForm';
 import { supabase } from '@/integrations/supabase/client';
-import { TeamMember } from '@/hooks/useTeamMemberForm';
+import { TeamMember } from '@/types/teamMember';
 
 interface TeamMembersListProps {
   initialMembers: TeamMember[];

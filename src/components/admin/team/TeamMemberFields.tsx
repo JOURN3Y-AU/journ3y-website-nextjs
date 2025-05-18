@@ -2,7 +2,7 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { TeamMemberFormData } from '@/hooks/useTeamMemberForm';
+import { TeamMemberFormData } from '@/types/teamMember';
 
 interface TeamMemberFieldsProps {
   formData: TeamMemberFormData;
