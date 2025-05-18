@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -15,7 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Linkedin } from 'lucide-react';
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
@@ -51,11 +52,13 @@ const Contact = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Call the Supabase Edge Function
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: data,
+      });
       
-      console.log('Form submitted:', data);
+      if (error) throw new Error(error.message);
       
       setIsSuccess(true);
       toast({
@@ -65,6 +68,7 @@ const Contact = () => {
       
       form.reset();
     } catch (error) {
+      console.error('Error submitting contact form:', error);
       toast({
         title: 'Something went wrong',
         description: 'Failed to send your message. Please try again.',
