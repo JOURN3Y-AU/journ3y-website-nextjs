@@ -1,11 +1,6 @@
 
 import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import Bold from '@tiptap/extension-bold';
-import Italic from '@tiptap/extension-italic';
-import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list';
-import Heading from '@tiptap/extension-heading';
 import Link from '@tiptap/extension-link';
 import { Button } from '@/components/ui/button';
 import { 
@@ -33,7 +28,6 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
   const addLink = () => {
     if (linkUrl) {
-      // Fix: Use setLink({ href: linkUrl }) instead of setLink(linkUrl)
       editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run();
       setLinkUrl('');
       setShowLinkInput(false);
@@ -154,13 +148,6 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Bold,
-      Italic,
-      BulletList,
-      OrderedList,
-      Heading.configure({
-        levels: [1, 2]
-      }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
