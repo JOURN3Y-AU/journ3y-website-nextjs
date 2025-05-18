@@ -1,13 +1,27 @@
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import AINetwork from '@/components/animations/AINetwork';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { Lightbulb, Rocket, Target, FileText, ChevronsUp, Users } from 'lucide-react';
 
+interface FeaturedPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  published_at: string;
+  image_url: string;
+  category: string;
+}
+
 const Index = () => {
+  const [featuredPosts, setFeaturedPosts] = useState<FeaturedPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
   // Animation refs
   const heroRef = useScrollReveal();
   const featureRef1 = useScrollReveal();
@@ -15,6 +29,46 @@ const Index = () => {
   const featureRef3 = useScrollReveal();
   const productSectionRef = useScrollReveal();
   const blogSectionRef = useScrollReveal();
+
+  // Fetch featured blog posts
+  useEffect(() => {
+    async function fetchFeaturedPosts() {
+      try {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*, blog_categories(name)')
+          .eq('featured_on_homepage', true)
+          .order('published_at', { ascending: false })
+          .limit(3);
+          
+        if (error) throw error;
+        
+        if (data) {
+          const formattedPosts = data.map(post => ({
+            id: post.id,
+            slug: post.slug,
+            title: post.title,
+            excerpt: post.excerpt,
+            published_at: new Date(post.published_at).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }),
+            image_url: post.image_url,
+            category: post.blog_categories?.name || ''
+          }));
+          
+          setFeaturedPosts(formattedPosts);
+        }
+      } catch (error) {
+        console.error('Error fetching featured posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchFeaturedPosts();
+  }, []);
 
   return (
     <>
@@ -172,66 +226,45 @@ const Index = () => {
           <div ref={blogSectionRef} className="text-center mb-16 reveal transition-all duration-500 ease-out">
             <h2 className="text-4xl font-bold mb-4 tracking-tight">Latest Insights</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Stay updated with the latest AI trends, white papers, and industry insights.
+              Stay updated with the latest AI trends and industry insights.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Blog Post 1 */}
-            <Card className="overflow-hidden hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80" 
-                alt="AI Technology" 
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <div className="text-sm text-gray-500 mb-2">May 15, 2023</div>
-                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
-                  <Link to="/blog/understanding-ai">Understanding AI Integration In Modern Businesses</Link>
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Explore how businesses are leveraging AI to transform operations and improve customer experiences.
-                </p>
-                <Link to="/blog/understanding-ai" className="text-journey-purple font-medium hover:underline">
-                  Read More →
-                </Link>
-              </CardContent>
-            </Card>
-            
-            {/* Blog Post 2 */}
-            <Card className="overflow-hidden hover:shadow-md transition-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" 
-                alt="AI Business Strategy" 
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <div className="text-sm text-gray-500 mb-2">April 28, 2023</div>
-                <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
-                  <Link to="/blog/ai-strategy">Building an Effective AI Strategy For Your Business</Link>
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Learn how to develop a comprehensive AI strategy that aligns with your business goals.
-                </p>
-                <Link to="/blog/ai-strategy" className="text-journey-purple font-medium hover:underline">
-                  Read More →
-                </Link>
-              </CardContent>
-            </Card>
-            
-            {/* White Paper */}
-            <Card className="overflow-hidden hover:shadow-md transition-shadow bg-gradient-to-br from-journey-purple/10 to-journey-blue/10">
-              <div className="p-6">
-                <div className="text-sm font-medium text-journey-purple mb-2">FEATURED WHITE PAPER</div>
-                <h3 className="text-xl font-semibold mb-3 tracking-tight">The Future of AI in Business: Trends and Predictions</h3>
-                <p className="text-gray-600 mb-6">
-                  This comprehensive white paper examines emerging AI trends and how they will shape business operations in the coming years.
-                </p>
-                <Button asChild className="w-full justify-center bg-gradient-to-r from-journey-purple to-journey-blue text-white">
-                  <Link to="/resources/future-ai-whitepaper">Download White Paper</Link>
+          <div className="grid md:grid-cols-3 gap-8">
+            {loading ? (
+              <div className="flex justify-center items-center col-span-3 h-64">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-journey-purple"></div>
+              </div>
+            ) : featuredPosts.length === 0 ? (
+              <div className="col-span-3 text-center py-10">
+                <p className="text-lg text-gray-600">No featured blog posts available.</p>
+                <Button asChild className="mt-4">
+                  <Link to="/blog">Browse All Articles</Link>
                 </Button>
               </div>
-            </Card>
+            ) : (
+              featuredPosts.map((post) => (
+                <Card key={post.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                  <img 
+                    src={post.image_url} 
+                    alt={post.title} 
+                    className="w-full h-48 object-cover"
+                  />
+                  <CardContent className="p-6">
+                    <div className="text-sm text-gray-500 mb-2">{post.published_at}</div>
+                    <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
+                      <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {post.excerpt}
+                    </p>
+                    <Link to={`/blog/${post.slug}`} className="text-journey-purple font-medium hover:underline">
+                      Read More →
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
           
           <div className="text-center mt-12">
