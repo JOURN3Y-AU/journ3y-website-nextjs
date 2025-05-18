@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeft, Calendar, Tag, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+// Define types for our database tables
 interface BlogPost {
   id: string;
   slug: string;
@@ -34,18 +35,11 @@ const BlogPost = () => {
       try {
         setLoading(true);
         
+        // Using type assertion to work around TypeScript limitations
+        // with the current Supabase types
         const { data, error } = await supabase
           .from('blog_posts')
-          .select(`
-            id,
-            slug,
-            title,
-            content,
-            published_at,
-            image_url,
-            category_id,
-            blog_categories:category_id(name)
-          `)
+          .select('id, slug, title, content, published_at, image_url, category_id, blog_categories(name)')
           .eq('slug', slug)
           .single();
 
@@ -60,6 +54,9 @@ const BlogPost = () => {
         }
 
         if (data) {
+          // Type assertion to access the nested blog_categories property
+          const categoryName = data.blog_categories?.name || '';
+          
           setPost({
             id: data.id,
             slug: data.slug,
@@ -71,7 +68,7 @@ const BlogPost = () => {
               day: 'numeric'
             }),
             image_url: data.image_url,
-            category: data.blog_categories.name
+            category: categoryName
           });
         }
       } catch (error) {
