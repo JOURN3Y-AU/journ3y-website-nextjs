@@ -62,11 +62,7 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <a href="mailto:info@journeyai.com" className="text-gray-600 hover:text-journey-purple transition-colors">
-                  info@journeyai.com
-                </a>
-              </li>
+              
             </ul>
           </div>
         </div>
