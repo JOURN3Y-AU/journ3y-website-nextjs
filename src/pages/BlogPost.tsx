@@ -123,7 +123,12 @@ const BlogPost = () => {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-            <Button asChild variant="outline" size="sm" className="border-white text-white hover:bg-white/20">
+            <Button 
+              asChild 
+              variant="outline" 
+              size="sm" 
+              className="border-white text-white hover:bg-white/20 bg-black/20"
+            >
               <Link to="/blog"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog</Link>
             </Button>
           </div>
@@ -158,7 +163,7 @@ const BlogPost = () => {
 
           {/* Navigation */}
           <div className="mt-8">
-            <Button asChild>
+            <Button asChild className="bg-journey-purple hover:bg-journey-dark-purple">
               <Link to="/blog"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog</Link>
             </Button>
           </div>
