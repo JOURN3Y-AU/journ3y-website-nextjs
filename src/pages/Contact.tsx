@@ -253,7 +253,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-medium mb-1">Email Us</h3>
-                      <p className="text-gray-600">contact@journ3y.com.au</p>
+                      <p className="text-gray-600">info@journ3y.com.au</p>
                     </div>
                   </div>
                   
