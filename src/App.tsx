@@ -10,6 +10,7 @@ import Services from '@/pages/products/Services';
 import Blog from '@/pages/Blog';
 import Resources from '@/pages/Resources';
 import Contact from '@/pages/Contact';
+import Privacy from '@/pages/Privacy';
 import NotFound from '@/pages/NotFound';
 import BlogPost from '@/pages/BlogPost';
 import Admin from '@/pages/Admin';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/team" element={<Team />} />
         <Route path="/admin/*" element={<Admin />} />
         {/* Important: This catches all other routes and prevents redirects */}
