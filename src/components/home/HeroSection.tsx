@@ -19,7 +19,10 @@ const HeroSection = () => {
             Is your business?
           </h1>
           <p className="text-xl text-gray-700 mb-8 md:pr-12">
-            JOURN3Y provides consulting and solutions to take your business from AI ambition to reality
+            JOURN3Y delivers bold business visions with AI that drives real impact.
+          </p>
+          <p className="text-lg text-gray-600 mb-8 font-medium tracking-wide">
+            Advisory | Accelerators | Delivery
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild className="bg-gradient-to-r from-journey-purple to-journey-blue text-white py-6 px-8 text-lg">
