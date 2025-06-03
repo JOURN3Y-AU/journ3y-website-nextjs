@@ -16,7 +16,9 @@ interface ContactFormData {
   company?: string;
   phone?: string;
   message: string;
-  service: 'general' | 'blueprint' | 'glean' | 'databricks' | 'ai-resources';
+  service: 'general' | 'blueprint' | 'glean' | 'databricks' | 'ai-resources' | 'linkedin-consultation';
+  campaign_source?: string;
+  utm_params?: Record<string, string>;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -27,7 +29,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const formData: ContactFormData = await req.json();
-    const { name, email, company, phone, message, service } = formData;
+    const { name, email, company, phone, message, service, campaign_source, utm_params } = formData;
 
     // Validate required fields
     if (!name || !email || !message || !service) {
@@ -46,19 +48,31 @@ const handler = async (req: Request): Promise<Response> => {
       blueprint: "Blueprint - AI Strategy",
       glean: "Accelerators - Glean",
       databricks: "Accelerators - Databricks",
-      'ai-resources': "Services - AI Resources"
+      'ai-resources': "Services - AI Resources",
+      'linkedin-consultation': "LinkedIn Campaign - Free Consultation"
     };
+
+    // Determine if this is a LinkedIn campaign lead
+    const isLinkedInLead = campaign_source === 'linkedin' || service === 'linkedin-consultation';
+    const leadSource = isLinkedInLead ? '[LINKEDIN CAMPAIGN LEAD]' : '';
 
     // Prepare email content
     const emailHtml = `
-      <h2>New Contact Form Submission</h2>
+      <h2>${leadSource} New Contact Form Submission</h2>
       <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+      ${leadSource ? '<p><strong>🚨 LEAD SOURCE:</strong> LinkedIn Campaign</p>' : ''}
       <hr />
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
       ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
       <p><strong>Service Requested:</strong> ${serviceNames[service]}</p>
+      ${utm_params && Object.keys(utm_params).length > 0 ? `
+        <h3>Campaign Tracking Data:</h3>
+        <ul>
+          ${Object.entries(utm_params).map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`).join('')}
+        </ul>
+      ` : ''}
       <h3>Message:</h3>
       <p>${message.replace(/\n/g, "<br />")}</p>
     `;
@@ -69,10 +83,11 @@ const handler = async (req: Request): Promise<Response> => {
     
     // Try to send notification email to business owners
     try {
+      const subjectPrefix = isLinkedInLead ? '[LinkedIn Campaign] ' : '';
       const notificationResponse = await resend.emails.send({
         from: "Journ3y <contact@journ3y.com.au>",
         to: ["adam.king@journ3y.com.au", "kevin.morrell@journ3y.com.au"],
-        subject: `[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
+        subject: `${subjectPrefix}[Journ3y] New ${serviceNames[service]} Inquiry from ${name}`,
         html: emailHtml,
       });
       
@@ -84,12 +99,32 @@ const handler = async (req: Request): Promise<Response> => {
       notificationError = error;
     }
 
-    // Send confirmation email to user (this likely works as it's going to the submitter)
-    const userConfirmation = await resend.emails.send({
-      from: "Journ3y <contact@journ3y.com.au>",
-      to: email, // User's email from the form
-      subject: "We've received your inquiry - Journ3y",
-      html: `
+    // Send confirmation email to user
+    const confirmationContent = service === 'linkedin-consultation' 
+      ? `
+        <h2>Thank you for requesting your free AI consultation!</h2>
+        <p>Hello ${name},</p>
+        <p>We've received your request for a free 1-hour AI strategy consultation. Our team will review your information and contact you within 24 hours to schedule your session.</p>
+        
+        <h3>What happens next?</h3>
+        <ul>
+          <li>Our AI specialist will call you within 24 hours</li>
+          <li>We'll schedule a convenient time for your consultation</li>
+          <li>You'll receive a calendar invitation with meeting details</li>
+          <li>Come prepared with your business challenges and goals</li>
+        </ul>
+        
+        <p>Here's a summary of your request:</p>
+        <blockquote style="border-left: 4px solid #9b87f5; padding-left: 16px; margin: 16px 0; background: #f9f9f9; padding: 16px;">
+          <strong>Company:</strong> ${company || 'Not provided'}<br>
+          <strong>Phone:</strong> ${phone || 'Not provided'}<br>
+          <strong>Challenges/Goals:</strong> ${message || 'Will discuss during consultation'}
+        </blockquote>
+        
+        <p>We're excited to help you discover how AI can transform your business!</p>
+        <p>Best regards,<br />The Journ3y Team</p>
+      `
+      : `
         <h2>Thank you for contacting us!</h2>
         <p>Hello ${name},</p>
         <p>We've received your inquiry about ${serviceNames[service]}. Our team will review your message and get back to you shortly.</p>
@@ -98,7 +133,15 @@ const handler = async (req: Request): Promise<Response> => {
           ${message.replace(/\n/g, "<br />")}
         </blockquote>
         <p>Best regards,<br />The Journ3y Team</p>
-      `,
+      `;
+
+    const userConfirmation = await resend.emails.send({
+      from: "Journ3y <contact@journ3y.com.au>",
+      to: email,
+      subject: service === 'linkedin-consultation' 
+        ? "Your Free AI Consultation Request - We'll Contact You Soon!"
+        : "We've received your inquiry - Journ3y",
+      html: confirmationContent,
     });
 
     console.log("User confirmation email response:", userConfirmation);
@@ -109,6 +152,7 @@ const handler = async (req: Request): Promise<Response> => {
         notificationSent,
         notificationError: notificationError ? notificationError.message : null,
         userConfirmationSent: !userConfirmation.error,
+        isLinkedInLead
       }),
       {
         status: 200,

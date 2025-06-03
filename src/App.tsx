@@ -15,27 +15,27 @@ import NotFound from '@/pages/NotFound';
 import BlogPost from '@/pages/BlogPost';
 import Admin from '@/pages/Admin';
 import Team from '@/pages/Team';
+import LinkedInCampaign from '@/pages/LinkedInCampaign';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/products/blueprint" element={<Blueprint />} />
-        <Route path="/products/accelerators" element={<Accelerators />} />
-        <Route path="/products/services" element={<Services />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/team" element={<Team />} />
+        <Route path="/" element={<><Navbar /><Index /><Footer /></>} />
+        <Route path="/products/blueprint" element={<><Navbar /><Blueprint /><Footer /></>} />
+        <Route path="/products/accelerators" element={<><Navbar /><Accelerators /><Footer /></>} />
+        <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
+        <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
+        <Route path="/blog/:slug" element={<><Navbar /><BlogPost /><Footer /></>} />
+        <Route path="/resources" element={<><Navbar /><Resources /><Footer /></>} />
+        <Route path="/contact" element={<><Navbar /><Contact /><Footer /></>} />
+        <Route path="/privacy" element={<><Navbar /><Privacy /><Footer /></>} />
+        <Route path="/team" element={<><Navbar /><Team /><Footer /></>} />
         <Route path="/admin/*" element={<Admin />} />
-        {/* Important: This catches all other routes and prevents redirects */}
-        <Route path="*" element={<NotFound />} />
+        {/* LinkedIn Campaign Landing Page - No nav/footer for conversion optimization */}
+        <Route path="/linkedin-campaign" element={<LinkedInCampaign />} />
+        <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
       </Routes>
-      <Footer />
       <Toaster />
     </BrowserRouter>
   );
