@@ -40,9 +40,6 @@
     b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
     s.parentNode.insertBefore(b, s);})(window.lintrk);
     </script>
-    <noscript>
-    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=7309420&fmt=gif" />
-    </noscript>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YG1ZE7T3V"></script>
@@ -56,6 +53,11 @@
   </head>
 
   <body>
+    <!-- LinkedIn Insight Tag noscript fallback -->
+    <noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=7309420&fmt=gif" />
+    </noscript>
+    
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
