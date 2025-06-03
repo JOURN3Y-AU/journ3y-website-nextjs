@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -75,8 +74,15 @@ const LinkedInCampaign = () => {
         window.lintrk('track', { conversion_id: 'linkedin_consultation_request' });
       }
       
-      // Navigate to home page and show thank you dialog
-      navigate('/');
+      // Create conversion tracking parameters
+      const conversionParams = new URLSearchParams({
+        ...utmParams, // Preserve original UTM parameters
+        conversion: 'linkedin_consultation',
+        status: 'success'
+      });
+      
+      // Navigate to home page with conversion tracking parameters
+      navigate(`/?${conversionParams.toString()}`);
       setShowThankYou(true);
       
       toast({
