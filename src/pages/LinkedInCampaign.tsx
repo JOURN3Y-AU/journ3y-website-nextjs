@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { CheckCircle, Clock, Users, TrendingUp } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const LinkedInCampaign = () => {
   const [formData, setFormData] = useState({
@@ -53,28 +54,29 @@ const LinkedInCampaign = () => {
         message: `${formData.message}\n\n--- Campaign Data ---\nSource: LinkedIn Campaign\nUTM Parameters: ${JSON.stringify(utmParams, null, 2)}`
       };
 
-      const response = await fetch('/api/send-contact-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submissionData),
+      console.log('Submitting data:', submissionData);
+
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: submissionData
       });
 
-      if (response.ok) {
-        // Fire LinkedIn conversion event
-        if (window.lintrk) {
-          window.lintrk('track', { conversion_id: 'linkedin_consultation_request' });
-        }
-        
-        setIsSubmitted(true);
-        toast({
-          title: "Request Submitted!",
-          description: "We'll contact you within 24 hours to schedule your consultation.",
-        });
-      } else {
-        throw new Error('Failed to submit form');
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
       }
+
+      console.log('Success response:', data);
+
+      // Fire LinkedIn conversion event
+      if (window.lintrk) {
+        window.lintrk('track', { conversion_id: 'linkedin_consultation_request' });
+      }
+      
+      setIsSubmitted(true);
+      toast({
+        title: "Request Submitted!",
+        description: "We'll contact you within 24 hours to schedule your consultation.",
+      });
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
