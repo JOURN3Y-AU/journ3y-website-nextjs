@@ -1,8 +1,15 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+// Initialize Supabase client for database operations
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL') ?? '',
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -42,6 +49,54 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log("Processing lead submission:", { name, email, service, campaign_source });
+
+    // Store lead in database
+    let leadStoredSuccessfully = false;
+    let leadId = null;
+    
+    try {
+      const leadData = {
+        name,
+        email,
+        company: company || null,
+        phone: phone || null,
+        message: message || null,
+        service_type: service,
+        campaign_source: campaign_source || 'direct',
+        utm_source: utm_params?.utm_source || null,
+        utm_medium: utm_params?.utm_medium || null,
+        utm_campaign: utm_params?.utm_campaign || null,
+        utm_content: utm_params?.utm_content || null,
+        utm_term: utm_params?.utm_term || null,
+        utm_params: utm_params || null,
+        additional_data: {
+          submitted_at: new Date().toISOString(),
+          user_agent: req.headers.get('user-agent'),
+          ip_address: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip')
+        },
+        status: 'new'
+      };
+
+      const { data: leadResult, error: leadError } = await supabase
+        .from('campaign_leads')
+        .insert(leadData)
+        .select('id')
+        .single();
+
+      if (leadError) {
+        console.error("Error storing lead in database:", leadError);
+        // Continue with email sending even if database storage fails
+      } else {
+        leadStoredSuccessfully = true;
+        leadId = leadResult?.id;
+        console.log("Lead stored successfully in database with ID:", leadId);
+      }
+    } catch (dbError) {
+      console.error("Database operation failed:", dbError);
+      // Continue with email sending even if database storage fails
+    }
+
     // Map service codes to readable names
     const serviceNames = {
       general: "General Inquiry",
@@ -61,6 +116,7 @@ const handler = async (req: Request): Promise<Response> => {
       <h2>${leadSource} New Contact Form Submission</h2>
       <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
       ${leadSource ? '<p><strong>🚨 LEAD SOURCE:</strong> LinkedIn Campaign</p>' : ''}
+      ${leadId ? `<p><strong>Lead ID:</strong> ${leadId}</p>` : ''}
       <hr />
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
@@ -75,6 +131,7 @@ const handler = async (req: Request): Promise<Response> => {
       ` : ''}
       <h3>Message:</h3>
       <p>${message.replace(/\n/g, "<br />")}</p>
+      ${leadStoredSuccessfully ? '<p><em>✅ Lead data stored in CRM system</em></p>' : '<p><em>⚠️ Lead data could not be stored in CRM - please save manually</em></p>'}
     `;
     
     // Store notification email result
@@ -123,6 +180,7 @@ const handler = async (req: Request): Promise<Response> => {
         
         <p>We're excited to help you discover how AI can transform your business!</p>
         <p>Best regards,<br />The Journ3y Team</p>
+        ${leadId ? `<p style="font-size: 12px; color: #666;">Reference ID: ${leadId}</p>` : ''}
       `
       : `
         <h2>Thank you for contacting us!</h2>
@@ -133,6 +191,7 @@ const handler = async (req: Request): Promise<Response> => {
           ${message.replace(/\n/g, "<br />")}
         </blockquote>
         <p>Best regards,<br />The Journ3y Team</p>
+        ${leadId ? `<p style="font-size: 12px; color: #666;">Reference ID: ${leadId}</p>` : ''}
       `;
 
     const userConfirmation = await resend.emails.send({
@@ -146,9 +205,26 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("User confirmation email response:", userConfirmation);
 
+    // Update lead record with email status
+    if (leadStoredSuccessfully && leadId) {
+      try {
+        await supabase
+          .from('campaign_leads')
+          .update({
+            notification_sent: notificationSent,
+            confirmation_sent: !userConfirmation.error
+          })
+          .eq('id', leadId);
+      } catch (updateError) {
+        console.error("Error updating lead email status:", updateError);
+      }
+    }
+
     return new Response(
       JSON.stringify({ 
         success: true, 
+        leadId,
+        leadStored: leadStoredSuccessfully,
         notificationSent,
         notificationError: notificationError ? notificationError.message : null,
         userConfirmationSent: !userConfirmation.error,

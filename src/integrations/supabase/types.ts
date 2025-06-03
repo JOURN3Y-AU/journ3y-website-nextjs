@@ -77,6 +77,75 @@ export type Database = {
           },
         ]
       }
+      campaign_leads: {
+        Row: {
+          additional_data: Json | null
+          campaign_source: string
+          company: string | null
+          confirmation_sent: boolean | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          notification_sent: boolean | null
+          phone: string | null
+          service_type: string
+          status: string | null
+          updated_at: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_params: Json | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          additional_data?: Json | null
+          campaign_source: string
+          company?: string | null
+          confirmation_sent?: boolean | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          notification_sent?: boolean | null
+          phone?: string | null
+          service_type: string
+          status?: string | null
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_params?: Json | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          additional_data?: Json | null
+          campaign_source?: string
+          company?: string | null
+          confirmation_sent?: boolean | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          notification_sent?: boolean | null
+          phone?: string | null
+          service_type?: string
+          status?: string | null
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_params?: Json | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           created_at: string | null
