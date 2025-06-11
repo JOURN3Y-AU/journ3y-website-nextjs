@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Clock, Users, TrendingUp, X, Search, Zap, Shield, square-pen } from 'lucide-react';
+import { CheckCircle, Clock, Users, TrendingUp, X, Search, Zap, Shield, SquarePen } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -134,7 +134,7 @@ const LinkedInGlean = () => {
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                  Transform Your Business with
+                  Transform Your Business
                   <span className="block text-blue-600">with Glean's Enterprise AI platform</span>
                 </h1>
                 
@@ -153,7 +153,7 @@ const LinkedInGlean = () => {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <square-pen className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                    <SquarePen className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold">Your Enterprise AI tool</h3>
                       <p className="text-gray-600">Enable your employees to safely leverage generative AI - report writing, emails, marketing copy, research  </p>
