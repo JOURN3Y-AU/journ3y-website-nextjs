@@ -190,7 +190,7 @@ const LinkedInGlean = () => {
 
               {/* Right Column - Lead Capture Form */}
               <div className="bg-white rounded-lg shadow-xl p-8 border border-blue-100">
-                <h2 className="text-2xl font-bold mb-2">Book your no-obligation Glean introduction</h2>
+                <h2 className="text-2xl font-bold mb-2">Learn more about Glean</h2>
                 <p className="text-gray-600 mb-6">Speak with a Glean specialist about your enterprise search needs</p>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
