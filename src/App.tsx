@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/layout/Navbar';
@@ -16,6 +15,7 @@ import BlogPost from '@/pages/BlogPost';
 import Admin from '@/pages/Admin';
 import Team from '@/pages/Team';
 import LinkedInCampaign from '@/pages/LinkedInCampaign';
+import LinkedInGlean from '@/pages/LinkedInGlean';
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
         <Route path="/admin/*" element={<Admin />} />
         {/* LinkedIn Campaign Landing Page - No nav/footer for conversion optimization */}
         <Route path="/linkedin-campaign" element={<LinkedInCampaign />} />
+        <Route path="/linkedin-glean" element={<LinkedInGlean />} />
         <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
       </Routes>
       <Toaster />
