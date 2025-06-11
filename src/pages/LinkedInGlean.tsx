@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -108,9 +108,9 @@ const LinkedInGlean = () => {
         <header className="py-4 px-4">
           <div className="container mx-auto">
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold bg-gradient-to-r from-journey-purple to-journey-blue bg-clip-text text-transparent">
+              <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-journey-purple to-journey-blue bg-clip-text text-transparent">
                 JOURN3Y
-              </span>
+              </Link>
               <div className="flex items-center space-x-2 text-sm text-gray-600">
                 <span>Authorized Glean Partner</span>
                 <Shield className="w-4 h-4 text-blue-600" />
