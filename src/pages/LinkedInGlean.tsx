@@ -134,12 +134,12 @@ const LinkedInGlean = () => {
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                  Transform Your Workplace Search
-                  <span className="block text-blue-600">with Glean's AI-Powered Platform</span>
+                  Transform Your Business with
+                  <span className="block text-blue-600">with Glean's Enterprise AI platform</span>
                 </h1>
                 
                 <p className="text-xl text-gray-700 mb-8">
-                  As an authorized Glean partner, we help enterprises unlock the power of their knowledge with AI-driven search and discovery. Get personalized recommendations for your Glean implementation.
+                  As an authorized Glean partner, we help enterprises securely unlock the power of AI.
                 </p>
 
                 {/* Benefits */}
@@ -148,15 +148,23 @@ const LinkedInGlean = () => {
                     <Search className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold">Unified Knowledge Discovery</h3>
-                      <p className="text-gray-600">Search across all your apps, documents, and data sources with AI-powered results</p>
+                      <p className="text-gray-600">Access data and insights across all your apps, documents, and data sources with AI-powered results</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-3">
                     <TrendingUp className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold">Boost Employee Productivity</h3>
-                      <p className="text-gray-600">Reduce time spent searching for information by up to 50%</p>
+                      <h3 className="font-semibold">Evolve from prompts to Agents</h3>
+                      <p className="text-gray-600">Automate the tasks that prevent your teams doing real work with Glean's Low-code agent builder</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <TrendingUp className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold">Evolve from prompts to Agents</h3>
+                      <p className="text-gray-600">Automate the tasks that prevent your teams doing real work with Glean's Low-code agent builder</p>
                     </div>
                   </div>
                   
