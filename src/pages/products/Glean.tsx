@@ -120,8 +120,8 @@ const Glean = () => {
 
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80"
-                alt="Glean AI Platform Interface"
+                src="/Marketecture-diagram.png"
+                alt="Glean AI Platform Architecture"
                 className="rounded-lg shadow-xl w-full h-auto"
               />
             </div>
