@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -260,18 +261,30 @@ const Glean = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
             {[
-              { name: 'Slack', logo: 'https://cdn.brandfetch.io/idAnDTFapY/theme/dark/logo.svg?k=bfHSJFAPEG' },
-              { name: 'Microsoft 365', logo: 'https://cdn.brandfetch.io/idJ8dGXcJx/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Google Workspace', logo: 'https://cdn.brandfetch.io/idmCNLMhBA/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Confluence', logo: 'https://cdn.brandfetch.io/idw382nG0m/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Jira', logo: 'https://cdn.brandfetch.io/idSUrLf4R8/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Notion', logo: 'https://cdn.brandfetch.io/idZAyF9rlg/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Salesforce', logo: 'https://cdn.brandfetch.io/id4J58sqa_/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'GitHub', logo: 'https://cdn.brandfetch.io/idAIcpZI/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Figma', logo: 'https://cdn.brandfetch.io/idarKdUbAh/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Dropbox', logo: 'https://cdn.brandfetch.io/id20mQyGeY/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'Box', logo: 'https://cdn.brandfetch.io/idGrOQFsw4/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' },
-              { name: 'SharePoint', logo: 'https://cdn.brandfetch.io/idroGCEXJZ/w/256/h/256/theme/dark/icon.jpeg?k=bfHSJFAPEG' }
+              { name: 'Slack', logo: 'https://images.ctfassets.net/fzn2n1nzq965/3fYhXqrScKEuOYKqUocgkC/6d9e49c4c40de0c0a30307b0e3e08c66/slack.png' },
+              { name: 'Microsoft 365', logo: 'https://images.ctfassets.net/fzn2n1nzq965/4kU5Zxz6vLjFqPu3Y6JTjW/f5e21d5a5e8e4b4c5e6c4b5b5e8e4b4c/office365.png' },
+              { name: 'Google Workspace', logo: 'https://images.ctfassets.net/fzn2n1nzq965/7K5v2c5v5v5v5v5v5v5v5v/5v5v5v5v5v5v5v5v5v5v5v5v/google-workspace.png' },
+              { name: 'Confluence', logo: 'https://images.ctfassets.net/fzn2n1nzq965/5yM7wccKm2mA0W6WO4q0qG/1e5e5e5e5e5e5e5e5e5e5e5e/confluence.png' },
+              { name: 'Jira', logo: 'https://images.ctfassets.net/fzn2n1nzq965/1yM7wccKm2mA0W6WO4q0qG/2e5e5e5e5e5e5e5e5e5e5e5e/jira.png' },
+              { name: 'Notion', logo: 'https://images.ctfassets.net/fzn2n1nzq965/6yM7wccKm2mA0W6WO4q0qG/3e5e5e5e5e5e5e5e5e5e5e5e/notion.png' },
+              { name: 'Salesforce', logo: 'https://www.glean.com/static/connector-icons/salesforce.svg' },
+              { name: 'GitHub', logo: 'https://www.glean.com/static/connector-icons/github.svg' },
+              { name: 'GitLab', logo: 'https://www.glean.com/static/connector-icons/gitlab.svg' },
+              { name: 'Figma', logo: 'https://www.glean.com/static/connector-icons/figma.svg' },
+              { name: 'Dropbox', logo: 'https://www.glean.com/static/connector-icons/dropbox.svg' },
+              { name: 'Box', logo: 'https://www.glean.com/static/connector-icons/box.svg' },
+              { name: 'SharePoint', logo: 'https://www.glean.com/static/connector-icons/sharepoint.svg' },
+              { name: 'OneDrive', logo: 'https://www.glean.com/static/connector-icons/onedrive.svg' },
+              { name: 'Google Drive', logo: 'https://www.glean.com/static/connector-icons/google-drive.svg' },
+              { name: 'Zendesk', logo: 'https://www.glean.com/static/connector-icons/zendesk.svg' },
+              { name: 'HubSpot', logo: 'https://www.glean.com/static/connector-icons/hubspot.svg' },
+              { name: 'Asana', logo: 'https://www.glean.com/static/connector-icons/asana.svg' },
+              { name: 'Monday', logo: 'https://www.glean.com/static/connector-icons/monday.svg' },
+              { name: 'Trello', logo: 'https://www.glean.com/static/connector-icons/trello.svg' },
+              { name: 'Linear', logo: 'https://www.glean.com/static/connector-icons/linear.svg' },
+              { name: 'Intercom', logo: 'https://www.glean.com/static/connector-icons/intercom.svg' },
+              { name: 'Airtable', logo: 'https://www.glean.com/static/connector-icons/airtable.svg' },
+              { name: 'Miro', logo: 'https://www.glean.com/static/connector-icons/miro.svg' }
             ].map((app, index) => (
               <div key={index} className="flex flex-col items-center justify-center p-4">
                 <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
@@ -296,7 +309,7 @@ const Glean = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-600 mb-4">And 90+ more integrations available</p>
+            <p className="text-gray-600 mb-4">And 80+ more integrations available</p>
             <Button variant="outline">
               View All Integrations
             </Button>
