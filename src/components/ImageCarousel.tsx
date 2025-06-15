@@ -1,3 +1,4 @@
+
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useEffect } from 'react';
 import type { CarouselApi } from '@/components/ui/carousel';
@@ -9,8 +10,6 @@ interface ImageCarouselProps {
 }
 
 const ImageCarousel = ({ images, alt, className = "" }: ImageCarouselProps) => {
-  console.log('ImageCarousel images:', images); // Debug log to see if all images are passed
-  
   return (
     <div className="relative">
       <Carousel 
@@ -22,42 +21,15 @@ const ImageCarousel = ({ images, alt, className = "" }: ImageCarouselProps) => {
           startIndex: 0,
           skipSnaps: false
         }}
-        setApi={(api: CarouselApi) => {
-          if (api) {
-            console.log('Embla API initialized:', api);
-            console.log('Total slides:', api.slideNodes().length);
-            console.log('Initial slide index:', api.selectedScrollSnap());
-            console.log('Can scroll prev:', api.canScrollPrev());
-            console.log('Can scroll next:', api.canScrollNext());
-            console.log('Scroll snap list:', api.scrollSnapList());
-            
-            api.on('select', () => {
-              console.log('=== SLIDE CHANGED ===');
-              console.log('New slide index:', api.selectedScrollSnap());
-              console.log('Previous slide index:', api.previousScrollSnap());
-              console.log('Can scroll prev:', api.canScrollPrev());
-              console.log('Can scroll next:', api.canScrollNext());
-              console.log('Scroll progress:', api.scrollProgress());
-            });
-            
-            api.on('pointerDown', () => {
-              console.log('Pointer down event - slide:', api.selectedScrollSnap());
-            });
-            
-            api.on('pointerUp', () => {
-              console.log('Pointer up event - slide:', api.selectedScrollSnap());
-            });
-          }
-        }}
       >
         <CarouselContent className="-ml-1">
           {images.map((image, index) => (
             <CarouselItem key={index} className="pl-1 basis-full">
-              <div className="relative aspect-video w-full">
+              <div className="relative aspect-video w-full bg-gray-50 rounded-lg overflow-hidden">
                 <img 
                   src={image}
                   alt={`${alt} - Image ${index + 1}`}
-                  className="rounded-lg shadow-lg w-full h-full object-cover"
+                  className="rounded-lg shadow-lg w-full h-full object-contain"
                   onError={(e) => console.log('Image failed to load:', image)}
                   onLoad={() => console.log('Image loaded successfully:', image)}
                 />
