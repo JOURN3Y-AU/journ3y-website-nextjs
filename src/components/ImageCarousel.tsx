@@ -23,8 +23,8 @@ const ImageCarousel = ({ images, alt, className = "" }: ImageCarouselProps) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-4" />
-      <CarouselNext className="right-4" />
+      <CarouselPrevious className="left-2" />
+      <CarouselNext className="right-2" />
     </Carousel>
   );
 };
