@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import AnnouncementOverlay from '@/components/AnnouncementOverlay';
+import { useAnnouncement } from '@/hooks/useAnnouncement';
 import Index from '@/pages/Index';
 import Blueprint from '@/pages/products/Blueprint';
 import Glean from '@/pages/products/Glean';
@@ -19,6 +21,8 @@ import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
 
 function App() {
+  const { showAnnouncement, dismissAnnouncement } = useAnnouncement();
+
   return (
     <BrowserRouter>
       <Routes>
@@ -38,6 +42,12 @@ function App() {
         <Route path="/linkedin-glean" element={<LinkedInGlean />} />
         <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
       </Routes>
+      
+      <AnnouncementOverlay 
+        isOpen={showAnnouncement}
+        onClose={dismissAnnouncement}
+      />
+      
       <Toaster />
     </BrowserRouter>
   );
