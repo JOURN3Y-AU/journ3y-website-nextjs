@@ -29,7 +29,7 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
   };
 
   const benefits = [
-    "Unified AI-powered search across all your business applications",
+    "Unified AI-powered search, Generative AI and Agents using your organisations data",
     "Enterprise-grade security and compliance built-in", 
     "Seamless integration with 100+ popular business tools",
     "Expert implementation and ongoing support from JOURN3Y",
@@ -72,7 +72,7 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
               />
             </div>
             <p className="text-xl text-gray-600">
-              Bringing Enterprise AI Search to Your Organization
+              Bringing Enterprise AI to Your Organization
             </p>
           </div>
 
