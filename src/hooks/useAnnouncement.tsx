@@ -79,6 +79,7 @@ export function useAnnouncement() {
 
       if (error) {
         console.error('Error fetching announcement settings:', error);
+        setLoading(false);
         return;
       }
 
