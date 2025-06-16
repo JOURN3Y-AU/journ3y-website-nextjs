@@ -68,9 +68,9 @@ const Navbar = () => {
             <Link to="/products/blueprint" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blueprint
             </Link>
-            <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors flex items-center gap-1">
+            <Link to="/products/glean" className="text-gray-700 hover:text-journey-purple transition-colors relative">
               Glean
-              <Sparkles className="w-4 h-4 text-journey-purple animate-pulse" />
+              <Sparkles className="w-2 h-2 text-journey-purple animate-pulse absolute -top-1 -right-3" />
             </Link>
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
               Services
@@ -144,11 +144,11 @@ const Navbar = () => {
             </Link>
             <Link 
               to="/products/glean" 
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md flex items-center gap-1"
+              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md relative"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Glean
-              <Sparkles className="w-4 h-4 text-journey-purple animate-pulse" />
+              <Sparkles className="w-2 h-2 text-journey-purple animate-pulse absolute top-2 left-16" />
             </Link>
             <Link 
               to="/products/services" 
