@@ -62,18 +62,12 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
           {/* Header */}
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Announcing Our Partnership
+              Announcing our new Partner
             </h2>
-            <div className="flex items-center justify-center space-x-8 mb-4">
+            <div className="flex items-center justify-center mb-4">
               <img 
                 src="/Glean-logo.png" 
                 alt="Glean" 
-                className="h-12 object-contain"
-              />
-              <div className="text-2xl text-gray-400">×</div>
-              <img 
-                src="/JOURN3Y-logo.svg"
-                alt="JOURN3Y" 
                 className="h-12 object-contain"
               />
             </div>
