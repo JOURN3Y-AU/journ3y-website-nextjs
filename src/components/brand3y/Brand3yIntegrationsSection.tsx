@@ -20,7 +20,7 @@ const Brand3yIntegrationsSection = () => {
       <div className="container mx-auto px-4">
         <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
           <h2 className="text-4xl font-bold mb-8 text-gray-900">
-            Connects Where Your Brand Data Lives
+            Connect to Where Your Brand's Data Lives
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Brand3y seamlessly integrates with all major marketing and social media platforms, 
