@@ -1,3 +1,4 @@
+
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { Building2, Users, TrendingUp } from 'lucide-react';
 
@@ -26,10 +27,10 @@ const Brand3ySocialProofSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900">
+          <h2 className="text-4xl font-bold mb-8 text-gray-900">
             Trusted by Marketing Leaders
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -37,7 +38,7 @@ const Brand3ySocialProofSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
           {metrics.map((metric, index) => (
             <div key={index} className={`reveal reveal-delay-${(index + 1) * 100} transition-all duration-500 ease-out`}>
               <div className="bg-white rounded-lg p-8 shadow-lg border border-green-100 text-center">

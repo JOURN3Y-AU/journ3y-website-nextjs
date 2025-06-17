@@ -1,76 +1,50 @@
 
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { Facebook, Instagram, Youtube, Twitter, Search, TrendingUp } from 'lucide-react';
 
 const Brand3yIntegrationsSection = () => {
   const sectionRef = useScrollReveal();
 
   const integrations = [
-    {
-      icon: Facebook,
-      name: "Facebook",
-      description: "Ad spend, engagement metrics, and audience insights"
-    },
-    {
-      icon: Instagram,
-      name: "Instagram", 
-      description: "Stories, posts, influencer partnerships, and reach data"
-    },
-    {
-      icon: Youtube,
-      name: "YouTube",
-      description: "Video performance, advertising campaigns, and channel analytics"
-    },
-    {
-      icon: Twitter,
-      name: "Twitter/X",
-      description: "Mentions, hashtag performance, and sentiment tracking"
-    },
-    {
-      icon: Search,
-      name: "Google Ads",
-      description: "Search campaigns, display ads, and keyword performance"
-    },
-    {
-      icon: TrendingUp,
-      name: "TikTok",
-      description: "Viral content tracking, ad campaigns, and trend analysis"
-    }
+    { name: 'Facebook', logo: '/logos/facebook.svg' },
+    { name: 'Instagram', logo: '/logos/instagram.svg' },
+    { name: 'Google Ads', logo: '/logos/google.svg' },
+    { name: 'YouTube', logo: '/logos/youtube.svg' },
+    { name: 'Twitter', logo: '/logos/twitter.svg' },
+    { name: 'TikTok', logo: '/logos/tiktok.svg' },
+    { name: 'LinkedIn', logo: '/logos/linkedin.svg' },
+    { name: 'Pinterest', logo: '/logos/pinterest.svg' },
   ];
 
   return (
-    <section className="py-20 bg-green-50">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900">
-            Connect to Where Your Brand Data Lives
+          <h2 className="text-4xl font-bold mb-8 text-gray-900">
+            Connects Where Your Brand Data Lives
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Brand3y seamlessly integrates with all the platforms where your marketing data exists, 
-            giving you a unified view of your brand's performance across every channel.
+            Brand3y seamlessly integrates with all major marketing and social media platforms, 
+            giving you a unified view of your brand's performance across every channel where your audience engages.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
           {integrations.map((integration, index) => (
-            <div key={index} className={`reveal reveal-delay-${(index + 1) * 100} transition-all duration-500 ease-out`}>
-              <div className="bg-white rounded-lg p-6 shadow-lg border border-green-200 hover:shadow-xl transition-shadow duration-300">
-                <integration.icon className="w-12 h-12 text-green-600 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{integration.name}</h3>
-                <p className="text-gray-600">{integration.description}</p>
+            <div key={index} className={`reveal reveal-delay-${(index + 1) * 50} transition-all duration-500 ease-out`}>
+              <div className="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-200">
+                <div className="w-12 h-12 bg-gray-300 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600">{integration.name.slice(0, 2)}</span>
+                </div>
+                <p className="text-sm font-medium text-gray-700">{integration.name}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="bg-white rounded-lg p-8 shadow-lg border border-green-200 max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            One Dashboard. All Your Data.
-          </h3>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            No more jumping between platforms or manually compiling reports. Brand3y automatically 
-            pulls data from every source, analyzes it with AI, and presents actionable insights 
-            in a single, comprehensive dashboard.
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600">
+            <span className="font-semibold text-green-600">One dashboard.</span> All your brand data. 
+            Real-time insights from every platform your customers use.
           </p>
         </div>
       </div>

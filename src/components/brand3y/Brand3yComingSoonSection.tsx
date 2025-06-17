@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,10 +49,10 @@ const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSect
   };
 
   return (
-    <section id="waitlist" className="py-20 bg-gray-50">
+    <section id="waitlist" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-12">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900">
+        <div ref={sectionRef} className="reveal transition-all duration-500 ease-out text-center mb-16">
+          <h2 className="text-4xl font-bold mb-8 text-gray-900">
             Revolutionary Brand Intelligence is Coming
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -61,7 +62,7 @@ const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSect
         </div>
 
         <div className="max-w-md mx-auto">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <Label htmlFor="firstName">First Name</Label>
               <Controller
@@ -127,7 +128,7 @@ const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSect
             </Button>
           </form>
 
-          <p className="text-sm text-gray-500 text-center mt-4">
+          <p className="text-sm text-gray-500 text-center mt-6">
             We'll only email you about Brand3y updates. No spam, ever.
           </p>
         </div>
