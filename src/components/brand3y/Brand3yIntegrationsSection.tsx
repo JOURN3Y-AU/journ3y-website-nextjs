@@ -30,17 +30,15 @@ const Brand3yIntegrationsSection = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
           {integrations.map((integration, index) => (
-            <div key={index} className={`reveal reveal-delay-${(index + 1) * 50} transition-all duration-500 ease-out`}>
-              <div className="flex flex-col items-center justify-center p-4">
-                <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
-                  <img 
-                    src={integration.logo} 
-                    alt={`${integration.name} logo`}
-                    className="max-w-12 max-h-12 object-contain"
-                  />
-                </div>
-                <p className="text-sm font-medium text-gray-700 text-center">{integration.name}</p>
+            <div key={index} className="flex flex-col items-center justify-center p-4">
+              <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                <img 
+                  src={integration.logo} 
+                  alt={`${integration.name} logo`}
+                  className="max-w-12 max-h-12 object-contain"
+                />
               </div>
+              <p className="text-sm font-medium text-gray-700 text-center">{integration.name}</p>
             </div>
           ))}
         </div>
