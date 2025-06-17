@@ -24,8 +24,8 @@ const Brand3yIntegrationsSection = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             What if you could see everything happening with your brand across every platform—from social media to advertising to customer conversations—in one unified view? 
-            <p>We're building that platform. </p>
-            <p>Track your performance, analyze competitor moves, and understand customer sentiment without jumping between a dozen different tools</p>
+            <br/>We're building that platform.
+            <br/>Track your performance, analyze competitor moves, and understand customer sentiment without jumping between a dozen different tools</p>
              </p>
         </div>
 
