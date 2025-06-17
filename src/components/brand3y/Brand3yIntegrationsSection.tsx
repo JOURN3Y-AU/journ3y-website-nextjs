@@ -31,11 +31,15 @@ const Brand3yIntegrationsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-12">
           {integrations.map((integration, index) => (
             <div key={index} className={`reveal reveal-delay-${(index + 1) * 50} transition-all duration-500 ease-out`}>
-              <div className="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300 border border-gray-200">
-                <div className="w-12 h-12 bg-gray-300 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                  <span className="text-xs font-medium text-gray-600">{integration.name.slice(0, 2)}</span>
+              <div className="flex flex-col items-center justify-center p-4">
+                <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                  <img 
+                    src={integration.logo} 
+                    alt={`${integration.name} logo`}
+                    className="max-w-12 max-h-12 object-contain"
+                  />
                 </div>
-                <p className="text-sm font-medium text-gray-700">{integration.name}</p>
+                <p className="text-sm font-medium text-gray-700 text-center">{integration.name}</p>
               </div>
             </div>
           ))}
@@ -43,7 +47,7 @@ const Brand3yIntegrationsSection = () => {
 
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-lg text-gray-600">
-            <span className="font-semibold text-green-600">One dashboard.</span> All your brand data. 
+            <span className="font-semibold text-blue-600">One platform.</span> All your brand data. 
             Real-time insights from every platform your customers use.
           </p>
         </div>
