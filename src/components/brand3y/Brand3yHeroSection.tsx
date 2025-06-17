@@ -45,7 +45,7 @@ const Brand3yHeroSection = () => {
             </div>
 
             {/* Right Column - Video */}
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center mt-16 lg:mt-0">
               <div className="bg-white rounded-lg shadow-2xl p-4 border border-blue-100">
                 <video 
                   autoPlay 
