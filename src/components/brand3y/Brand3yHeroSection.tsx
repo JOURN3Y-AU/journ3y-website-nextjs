@@ -45,24 +45,18 @@ const Brand3yHeroSection = () => {
             </div>
 
             {/* Right Column - Video */}
-            <div className="relative">
+            <div className="relative flex justify-center">
               <div className="bg-white rounded-lg shadow-2xl p-8 border border-green-100">
                 <video 
                   autoPlay 
                   muted 
                   loop 
                   playsInline
-                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  className="w-80 h-80 object-cover rounded-lg"
                 >
                   <source src="/Portrait_Video_Generation_Complete.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className="text-center">
-                  <p className="text-gray-600 italic">
-                    "Finally, I can confidently answer any brand question in real-time"
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">- Marketing Director, Fortune 500</p>
-                </div>
               </div>
             </div>
           </div>
