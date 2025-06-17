@@ -122,7 +122,7 @@ const Brand3yComingSoonSection = ({ onFormSubmitSuccess }: Brand3yComingSoonSect
             <Button 
               type="submit" 
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white py-3"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3"
             >
               {isLoading ? 'Joining...' : 'Join the Waitlist'}
             </Button>

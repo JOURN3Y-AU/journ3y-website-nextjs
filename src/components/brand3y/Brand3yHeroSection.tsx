@@ -5,7 +5,7 @@ const Brand3yHeroSection = () => {
   const heroRef = useScrollReveal();
 
   return (
-    <section className="pt-32 pb-20 bg-gradient-to-br from-green-50 to-emerald-50 min-h-screen flex items-center">
+    <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <div ref={heroRef} className="reveal transition-all duration-500 ease-out">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -13,14 +13,14 @@ const Brand3yHeroSection = () => {
             {/* Left Column - Content */}
             <div className="text-center lg:text-left">
               <div className="mb-8">
-                <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+                <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
                   <span>🚀 Coming Soon</span>
                 </div>
               </div>
 
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-8">
                 Stop saying{' '}
-                <span className="text-green-600">"I'll get back to you on that"</span>{' '}
+                <span className="text-blue-600">"I'll get back to you on that"</span>{' '}
                 in brand strategy meetings
               </h1>
               
@@ -31,13 +31,13 @@ const Brand3yHeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a 
                   href="#waitlist" 
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-center"
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-center"
                 >
                   Join the Waitlist
                 </a>
                 <a 
                   href="#learn-more" 
-                  className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300 text-center"
+                  className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 text-center"
                 >
                   Learn More
                 </a>
@@ -46,7 +46,7 @@ const Brand3yHeroSection = () => {
 
             {/* Right Column - Video */}
             <div className="relative flex justify-center">
-              <div className="bg-white rounded-lg shadow-2xl p-8 border border-green-100">
+              <div className="bg-white rounded-lg shadow-2xl p-4 border border-blue-100">
                 <video 
                   autoPlay 
                   muted 

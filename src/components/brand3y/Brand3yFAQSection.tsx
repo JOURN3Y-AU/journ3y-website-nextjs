@@ -37,8 +37,8 @@ const Brand3yFAQSection = () => {
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border border-green-100 rounded-lg px-6">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-green-600">
+              <AccordionItem key={index} value={`item-${index}`} className="border border-blue-100 rounded-lg px-6">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 pt-2 pb-4">
