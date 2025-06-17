@@ -8,7 +8,7 @@ const Brand3yHeroSection = () => {
     <section className="pt-32 pb-20 bg-gradient-to-br from-green-50 to-emerald-50 min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <div ref={heroRef} className="reveal transition-all duration-500 ease-out">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
             
             {/* Left Column - Content */}
             <div className="text-center lg:text-left">
@@ -52,7 +52,7 @@ const Brand3yHeroSection = () => {
                   muted 
                   loop 
                   playsInline
-                  className="w-80 h-80 object-cover rounded-lg"
+                  className="w-96 h-96 object-cover rounded-lg"
                 >
                   <source src="/Portrait_Video_Generation_Complete.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
