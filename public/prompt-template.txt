@@ -54,3 +54,4 @@ Structure as: "[FIRST_NAME], here's a quick 10-minute test you can try this week
 - Suggest only 10-minute actions that senior executives can do themselves
 - Position the JOURN3Y Discovery Session as the logical next step
 - End with clear value proposition for a 1-hour meeting
+- Sign off the response with "Reagrds - The JOURN3Y team"
