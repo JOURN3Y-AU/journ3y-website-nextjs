@@ -1,4 +1,3 @@
-
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4'
@@ -17,11 +16,21 @@ serve(async (req) => {
     const { responseId, answers, contactInfo } = await req.json();
     
     console.log('Processing AI assessment for:', contactInfo.email);
+    console.log('Response ID:', responseId);
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Check if RESEND_API_KEY is available
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    console.log('RESEND_API_KEY available:', !!resendApiKey);
+    if (resendApiKey) {
+      console.log('RESEND_API_KEY length:', resendApiKey.length);
+    } else {
+      console.error('RESEND_API_KEY is missing from environment variables');
+    }
 
     // Get the prompt template from the public directory
     let promptTemplate = `You are an AI business consultant analyzing a company's readiness for AI transformation. Based on the assessment responses below, provide a personalized, professional analysis that positions the business for AI success.
@@ -76,8 +85,11 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
 
     // Try to generate AI assessment with Anthropic
     const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY');
+    console.log('ANTHROPIC_API_KEY available:', !!anthropicApiKey);
+    
     if (anthropicApiKey) {
       try {
+        console.log('Attempting to call Anthropic API...');
         const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
           headers: {
@@ -97,11 +109,16 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
           })
         });
 
+        console.log('Anthropic API response status:', anthropicResponse.status);
+
         if (anthropicResponse.ok) {
           const data = await anthropicResponse.json();
           rawResponse = JSON.stringify(data);
           aiAssessment = data.content[0].text;
+          console.log('AI assessment generated successfully');
         } else {
+          const errorText = await anthropicResponse.text();
+          console.error('Anthropic API error response:', errorText);
           throw new Error(`Anthropic API error: ${anthropicResponse.status}`);
         }
       } catch (error) {
@@ -111,11 +128,14 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
         rawResponse = 'Fallback assessment used due to API error';
       }
     } else {
+      console.log('No Anthropic API key, using fallback assessment');
       // No API key, use fallback
       aiAssessment = generateFallbackAssessment(answers, contactInfo);
       rawResponse = 'No API key configured - fallback assessment used';
     }
 
+    console.log('Updating assessment response in database...');
+    
     // Update the assessment response with the result, prompt, and raw response
     const { error: updateError } = await supabase
       .from('assessment_responses')
@@ -132,9 +152,10 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
       throw updateError;
     }
 
-    console.log('AI assessment generated successfully');
+    console.log('Assessment updated successfully in database');
 
     // Create campaign lead
+    console.log('Creating campaign lead...');
     const { data: leadData, error: leadError } = await supabase.rpc(
       'create_campaign_lead_from_assessment',
       { assessment_response_id: responseId }
@@ -143,11 +164,15 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
     if (leadError) {
       console.error('Error creating campaign lead:', leadError);
     } else {
-      console.log('Campaign lead created:', leadData);
+      console.log('Campaign lead created successfully:', leadData);
     }
 
     // Send confirmation emails
+    console.log('Starting email sending process...');
+    let emailsSentSuccessfully = false;
+    
     try {
+      console.log('Invoking send-contact-email function for user...');
       const { data: userEmailData, error: userEmailError } = await supabase.functions.invoke(
         'send-contact-email',
         {
@@ -169,9 +194,16 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
         }
       );
 
-      console.log('User email sent:', { data: userEmailData, error: userEmailError });
+      console.log('User email function response:', { data: userEmailData, error: userEmailError });
+
+      if (!userEmailError) {
+        console.log('User email sent successfully');
+      } else {
+        console.error('User email failed:', userEmailError);
+      }
 
       // Send admin notification
+      console.log('Invoking send-contact-email function for admin...');
       const { data: adminEmailData, error: adminEmailError } = await supabase.functions.invoke(
         'send-contact-email',
         {
@@ -202,11 +234,38 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
         }
       );
 
-      console.log('Admin notification sent:', { data: adminEmailData, error: adminEmailError });
+      console.log('Admin email function response:', { data: adminEmailData, error: adminEmailError });
+
+      if (!adminEmailError) {
+        console.log('Admin email sent successfully');
+      } else {
+        console.error('Admin email failed:', adminEmailError);
+      }
+
+      // Check if at least one email was sent successfully
+      emailsSentSuccessfully = !userEmailError || !adminEmailError;
 
     } catch (emailError) {
-      console.error('Error sending emails:', emailError);
+      console.error('Error in email sending process:', emailError);
+      emailsSentSuccessfully = false;
     }
+
+    // Update the email_sent status in the database
+    console.log('Updating email_sent status to:', emailsSentSuccessfully);
+    const { error: emailUpdateError } = await supabase
+      .from('assessment_responses')
+      .update({
+        email_sent: emailsSentSuccessfully
+      })
+      .eq('id', responseId);
+
+    if (emailUpdateError) {
+      console.error('Error updating email_sent status:', emailUpdateError);
+    } else {
+      console.log('Email_sent status updated successfully');
+    }
+
+    console.log('Assessment process completed successfully');
 
     return new Response(JSON.stringify({ assessment: aiAssessment }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
