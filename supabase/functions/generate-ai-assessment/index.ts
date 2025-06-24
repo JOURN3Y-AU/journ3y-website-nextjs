@@ -54,8 +54,10 @@ Keep the tone professional, insightful, and consultative. Limit response to 250 
       console.log('Using fallback prompt template');
     }
 
-    // Replace placeholders with actual answers
+    // Replace placeholders with actual answers and contact info
     const finalPrompt = promptTemplate
+      .replace('[FIRST_NAME]', contactInfo.first_name)
+      .replace('[COMPANY_NAME]', contactInfo.company_name)
       .replace('[Q1_ANSWER]', answers.q1_business_challenge)
       .replace('[Q2_ANSWER]', answers.q2_time_waste)
       .replace('[Q3_ANSWER]', answers.q3_revenue)
