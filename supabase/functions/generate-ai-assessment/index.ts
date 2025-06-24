@@ -23,7 +23,7 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Get the prompt template (fallback to default if not found)
+    // Get the prompt template from the public directory
     let promptTemplate = `You are an AI business consultant analyzing a company's readiness for AI transformation. Based on the assessment responses below, provide a personalized, professional analysis that positions the business for AI success.
 
 Assessment Responses:
@@ -44,26 +44,32 @@ Provide a response that:
 Keep the tone professional, insightful, and consultative. Limit response to 250 words maximum.`;
 
     try {
-      const response = await fetch('/prompt-template.txt');
+      // Get the origin from the request headers to construct the full URL
+      const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://journ3y.com.au';
+      const promptUrl = `${origin}/prompt-template.txt`;
+      console.log('Fetching prompt from:', promptUrl);
+      
+      const response = await fetch(promptUrl);
       if (response.ok) {
         promptTemplate = await response.text();
+        console.log('Successfully loaded prompt template from public directory');
       } else {
-        console.log('Using fallback prompt template');
+        console.log('Failed to fetch prompt template, using fallback. Status:', response.status);
       }
     } catch (error) {
-      console.log('Using fallback prompt template');
+      console.log('Error fetching prompt template, using fallback:', error);
     }
 
     // Replace placeholders with actual answers and contact info
     const finalPrompt = promptTemplate
-      .replace('[FIRST_NAME]', contactInfo.first_name)
-      .replace('[COMPANY_NAME]', contactInfo.company_name)
-      .replace('[Q1_ANSWER]', answers.q1_business_challenge)
-      .replace('[Q2_ANSWER]', answers.q2_time_waste)
-      .replace('[Q3_ANSWER]', answers.q3_revenue)
-      .replace('[Q4_ANSWER]', answers.q4_timeline)
-      .replace('[Q5_ANSWER]', answers.q5_investment_priority)
-      .replace('[Q6_ANSWER]', answers.q6_leadership_readiness);
+      .replace(/\[FIRST_NAME\]/g, contactInfo.first_name)
+      .replace(/\[COMPANY_NAME\]/g, contactInfo.company_name)
+      .replace(/\[Q1_ANSWER\]/g, answers.q1_business_challenge)
+      .replace(/\[Q2_ANSWER\]/g, answers.q2_time_waste)
+      .replace(/\[Q3_ANSWER\]/g, answers.q3_revenue)
+      .replace(/\[Q4_ANSWER\]/g, answers.q4_timeline)
+      .replace(/\[Q5_ANSWER\]/g, answers.q5_investment_priority)
+      .replace(/\[Q6_ANSWER\]/g, answers.q6_leadership_readiness);
 
     let aiAssessment = '';
     let rawResponse = '';
