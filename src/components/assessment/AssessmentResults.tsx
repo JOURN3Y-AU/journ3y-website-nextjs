@@ -28,6 +28,8 @@ const AssessmentResults = ({
   useEffect(() => {
     if (assessmentResult && !isGenerating) {
       setCompletionTime(Math.round((Date.now() - startTime) / 1000));
+      // Scroll to top when results are displayed
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [assessmentResult, isGenerating, startTime]);
 
@@ -179,7 +181,7 @@ I'm interested in discussing how AI can help my business based on the assessment
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-white text-white bg-transparent hover:bg-white hover:text-blue-600"
+                      className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-blue-600 transition-colors"
                       onClick={onComplete}
                     >
                       Continue to JOURN3Y
