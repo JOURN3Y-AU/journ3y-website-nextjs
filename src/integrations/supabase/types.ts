@@ -89,6 +89,138 @@ export type Database = {
           },
         ]
       }
+      assessment_responses_long: {
+        Row: {
+          ai_dashboard_data: Json | null
+          ai_generation_status: string | null
+          ai_prompt_used: string | null
+          ai_raw_response: string | null
+          ai_written_assessment: string | null
+          company_name: string
+          created_at: string
+          email: string
+          email_sent: boolean | null
+          first_name: string
+          id: string
+          last_name: string
+          notification_sent: boolean | null
+          phone_number: string | null
+          q1_company_size: string
+          q10_change_appetite: string
+          q11_success_metrics: string
+          q12_information_challenges: string
+          q13_knowledge_systems: string
+          q14_search_efficiency: string
+          q15_expertise_capture: string
+          q16_collaboration_tools: string
+          q17_data_quality: string
+          q18_analytics_maturity: string
+          q19_automation_level: string
+          q2_industry_sector: string
+          q20_technology_stack: string
+          q21_ai_experience: string
+          q22_implementation_timeline: string
+          q23_role_specific: string
+          q24_role_specific: string
+          q3_annual_revenue: string
+          q4_primary_business_model: string
+          q5_geographic_footprint: string
+          q6_business_priorities: string
+          q7_competitive_differentiation: string
+          q8_growth_challenges: string
+          q9_technology_investment: string
+          selected_role: string
+          session_id: string
+          updated_at: string
+        }
+        Insert: {
+          ai_dashboard_data?: Json | null
+          ai_generation_status?: string | null
+          ai_prompt_used?: string | null
+          ai_raw_response?: string | null
+          ai_written_assessment?: string | null
+          company_name: string
+          created_at?: string
+          email: string
+          email_sent?: boolean | null
+          first_name: string
+          id?: string
+          last_name: string
+          notification_sent?: boolean | null
+          phone_number?: string | null
+          q1_company_size: string
+          q10_change_appetite: string
+          q11_success_metrics: string
+          q12_information_challenges: string
+          q13_knowledge_systems: string
+          q14_search_efficiency: string
+          q15_expertise_capture: string
+          q16_collaboration_tools: string
+          q17_data_quality: string
+          q18_analytics_maturity: string
+          q19_automation_level: string
+          q2_industry_sector: string
+          q20_technology_stack: string
+          q21_ai_experience: string
+          q22_implementation_timeline: string
+          q23_role_specific: string
+          q24_role_specific: string
+          q3_annual_revenue: string
+          q4_primary_business_model: string
+          q5_geographic_footprint: string
+          q6_business_priorities: string
+          q7_competitive_differentiation: string
+          q8_growth_challenges: string
+          q9_technology_investment: string
+          selected_role: string
+          session_id: string
+          updated_at?: string
+        }
+        Update: {
+          ai_dashboard_data?: Json | null
+          ai_generation_status?: string | null
+          ai_prompt_used?: string | null
+          ai_raw_response?: string | null
+          ai_written_assessment?: string | null
+          company_name?: string
+          created_at?: string
+          email?: string
+          email_sent?: boolean | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          notification_sent?: boolean | null
+          phone_number?: string | null
+          q1_company_size?: string
+          q10_change_appetite?: string
+          q11_success_metrics?: string
+          q12_information_challenges?: string
+          q13_knowledge_systems?: string
+          q14_search_efficiency?: string
+          q15_expertise_capture?: string
+          q16_collaboration_tools?: string
+          q17_data_quality?: string
+          q18_analytics_maturity?: string
+          q19_automation_level?: string
+          q2_industry_sector?: string
+          q20_technology_stack?: string
+          q21_ai_experience?: string
+          q22_implementation_timeline?: string
+          q23_role_specific?: string
+          q24_role_specific?: string
+          q3_annual_revenue?: string
+          q4_primary_business_model?: string
+          q5_geographic_footprint?: string
+          q6_business_priorities?: string
+          q7_competitive_differentiation?: string
+          q8_growth_challenges?: string
+          q9_technology_investment?: string
+          selected_role?: string
+          session_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       assessment_sessions: {
         Row: {
           completed_at: string | null

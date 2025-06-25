@@ -1,0 +1,78 @@
+
+You are an AI business transformation consultant generating dashboard data for a comprehensive AI readiness assessment. Based on the assessment responses below, generate a JSON object with scoring and benchmarking data.
+
+Assessment Data:
+- Contact: [FIRST_NAME] from [COMPANY_NAME]
+- Role: [SELECTED_ROLE]
+- Company Size: [Q1_COMPANY_SIZE]
+- Industry: [Q2_INDUSTRY_SECTOR]
+- Annual Revenue: [Q3_ANNUAL_REVENUE]
+- Business Model: [Q4_PRIMARY_BUSINESS_MODEL]
+- Geographic Footprint: [Q5_GEOGRAPHIC_FOOTPRINT]
+- Business Priorities: [Q6_BUSINESS_PRIORITIES]
+- Competitive Differentiation: [Q7_COMPETITIVE_DIFFERENTIATION]
+- Growth Challenges: [Q8_GROWTH_CHALLENGES]
+- Technology Investment: [Q9_TECHNOLOGY_INVESTMENT]
+- Change Appetite: [Q10_CHANGE_APPETITE]
+- Success Metrics: [Q11_SUCCESS_METRICS]
+- Information Challenges: [Q12_INFORMATION_CHALLENGES]
+- Knowledge Systems: [Q13_KNOWLEDGE_SYSTEMS]
+- Search Efficiency: [Q14_SEARCH_EFFICIENCY]
+- Expertise Capture: [Q15_EXPERTISE_CAPTURE]
+- Collaboration Tools: [Q16_COLLABORATION_TOOLS]
+- Data Quality: [Q17_DATA_QUALITY]
+- Analytics Maturity: [Q18_ANALYTICS_MATURITY]
+- Automation Level: [Q19_AUTOMATION_LEVEL]
+- Technology Stack: [Q20_TECHNOLOGY_STACK]
+- AI Experience: [Q21_AI_EXPERIENCE]
+- Implementation Timeline: [Q22_IMPLEMENTATION_TIMELINE]
+- Role-Specific Question 1: [Q23_ROLE_SPECIFIC]
+- Role-Specific Question 2: [Q24_ROLE_SPECIFIC]
+
+Generate ONLY a JSON object with this exact structure (no other text):
+
+{
+  "overallScore": [number 0-100],
+  "dimensions": {
+    "strategicReadiness": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation of score]"
+    },
+    "knowledgeManagement": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation of score]"
+    },
+    "dataInfrastructure": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation of score]"
+    },
+    "useCaseIdentification": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation of score]"
+    },
+    "roleSpecificCapability": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation based on role]"
+    },
+    "changeReadiness": {
+      "score": [number 0-100],
+      "industryAverage": [realistic industry average 40-65],
+      "topQuartile": [realistic top quartile 75-90],
+      "explanation": "[1-2 sentence explanation of score]"
+    }
+  },
+  "industryContext": "[Industry] - [Company Size]",
+  "roleContext": "[SELECTED_ROLE]",
+  "keyStrengths": ["[strength 1]", "[strength 2]"],
+  "topOpportunities": ["[opportunity 1]", "[opportunity 2]"]
+}
