@@ -11,6 +11,7 @@ import Glean from '@/pages/products/Glean';
 import Brand3y from '@/pages/products/Brand3y';
 import Services from '@/pages/products/Services';
 import AIAssessment from '@/pages/products/AIAssessment';
+import AIAssessmentLong from '@/pages/products/AIAssessmentLong';
 import Blog from '@/pages/Blog';
 import Resources from '@/pages/Resources';
 import Contact from '@/pages/Contact';
@@ -36,6 +37,7 @@ function App() {
         <Route path="/products/brand3y" element={<><Navbar /><Brand3y /><Footer /></>} />
         <Route path="/products/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/products/ai-assessment" element={<><Navbar /><AIAssessment /><Footer /></>} />
+        <Route path="/products/ai-assessment-long" element={<><Navbar /><AIAssessmentLong /><Footer /></>} />
         <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
         <Route path="/blog/:slug" element={<><Navbar /><BlogPost /><Footer /></>} />
         <Route path="/resources" element={<><Navbar /><Resources /><Footer /></>} />

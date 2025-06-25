@@ -2,8 +2,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ChevronDown } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -79,6 +87,38 @@ const Navbar = () => {
             <Link to="/products/services" className="text-gray-700 hover:text-journey-purple transition-colors">
               Services
             </Link>
+            
+            {/* AI Assessment Dropdown */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-journey-purple transition-colors bg-transparent hover:bg-transparent data-[state=open]:bg-transparent">
+                    AI Assessment
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-white shadow-lg border rounded-md p-2 min-w-[200px]">
+                    <div className="grid gap-1">
+                      <NavigationMenuLink asChild>
+                        <Link 
+                          to="/products/ai-assessment" 
+                          className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                        >
+                          Quick Assessment
+                        </Link>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild>
+                        <Link 
+                          to="/products/ai-assessment-long" 
+                          className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                        >
+                          Comprehensive Assessment
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            
             <Link to="/blog" className="text-gray-700 hover:text-journey-purple transition-colors">
               Blog
             </Link>
@@ -169,6 +209,26 @@ const Navbar = () => {
             >
               Services
             </Link>
+            
+            {/* Mobile AI Assessment Links */}
+            <div className="pl-4">
+              <p className="text-sm font-medium text-gray-500 mb-2">AI Assessment</p>
+              <Link 
+                to="/products/ai-assessment" 
+                className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md text-sm"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Quick Assessment
+              </Link>
+              <Link 
+                to="/products/ai-assessment-long" 
+                className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md text-sm"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Comprehensive Assessment
+              </Link>
+            </div>
+            
             <Link 
               to="/blog" 
               className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
