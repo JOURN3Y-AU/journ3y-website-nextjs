@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -35,6 +34,13 @@ const LongAssessmentForm = ({ onComplete }: LongAssessmentFormProps) => {
   const totalSections = sections.length;
   const progressPercentage = ((currentSection + 1) / totalSections) * 100;
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const handleSectionComplete = (sectionAnswers: any) => {
     if (currentSection === totalSections - 1) {
       // Last section (contact info)
@@ -52,15 +58,18 @@ const LongAssessmentForm = ({ onComplete }: LongAssessmentFormProps) => {
       setContactInfo({ ...contactInfo, ...sectionAnswers });
       setAnswers({ ...answers, ...sectionAnswers });
       setCurrentSection(currentSection + 1);
+      scrollToTop();
     } else {
       setAnswers({ ...answers, ...sectionAnswers });
       setCurrentSection(currentSection + 1);
+      scrollToTop();
     }
   };
 
   const handlePrevious = () => {
     if (currentSection > 0) {
       setCurrentSection(currentSection - 1);
+      scrollToTop();
     }
   };
 
