@@ -63,7 +63,7 @@ const ProductsSection = () => {
           <ProductCard 
             title="Glean"
             description="AI-powered work platform that connects all your company's knowledge"
-            icon={<img src="/Glean-logo.png" alt="Glean Logo" className="w-20 h-20 object-contain" />}
+            icon={<img src="/Glean-logo.png" alt="Glean Logo" className="w-full h-full object-cover" />}
             gradient="bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90"
             link="/products/glean"
             buttonColor="journey-blue"
