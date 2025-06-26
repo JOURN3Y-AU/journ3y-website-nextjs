@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { FileText, ChevronsUp, Users } from 'lucide-react';
+import { FileText, Search, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import useScrollReveal from '@/hooks/useScrollReveal';
@@ -61,11 +61,11 @@ const ProductsSection = () => {
           />
           
           <ProductCard 
-            title="Accelerators"
-            description="We deliver key best-in-class platforms that enable your AI vision"
-            icon={<ChevronsUp className="w-20 h-20 text-white transform rotate-90" strokeWidth={1.5} />}
+            title="Glean"
+            description="AI-powered work platform that connects all your company's knowledge"
+            icon={<Search className="w-20 h-20 text-white" strokeWidth={1.5} />}
             gradient="bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90"
-            link="/products/accelerators"
+            link="/products/glean"
             buttonColor="journey-blue"
           />
           
