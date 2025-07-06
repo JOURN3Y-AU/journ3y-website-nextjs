@@ -36,11 +36,6 @@ export const uploadDocument = async (file: File, description?: string): Promise<
       throw uploadError;
     }
 
-    // Get public URL
-    const { data: urlData } = supabase.storage
-      .from('documents')
-      .getPublicUrl(filePath);
-
     // Insert document record
     const { data: docData, error: docError } = await supabase
       .from('documents')
@@ -60,9 +55,10 @@ export const uploadDocument = async (file: File, description?: string): Promise<
       throw docError;
     }
 
+    // Return document with clean URL
     return {
       ...docData,
-      public_url: urlData.publicUrl
+      public_url: `${window.location.origin}/documents/${fileName}`
     };
   } catch (error) {
     console.error('Error uploading document:', error);
@@ -79,16 +75,10 @@ export const fetchDocuments = async (): Promise<Document[]> => {
 
     if (error) throw error;
 
-    return data.map(doc => {
-      const { data: urlData } = supabase.storage
-        .from('documents')
-        .getPublicUrl(doc.file_path);
-      
-      return {
-        ...doc,
-        public_url: urlData.publicUrl
-      };
-    });
+    return data.map(doc => ({
+      ...doc,
+      public_url: `${window.location.origin}/documents/${doc.filename}`
+    }));
   } catch (error) {
     console.error('Error fetching documents:', error);
     throw error;

@@ -23,6 +23,7 @@ import Admin from '@/pages/Admin';
 import Team from '@/pages/Team';
 import LinkedInCampaign from '@/pages/LinkedInCampaign';
 import LinkedInGlean from '@/pages/LinkedInGlean';
+import DocumentProxy from '@/pages/DocumentProxy';
 
 function AppContent() {
   const { showAnnouncement, dismissAnnouncement, loading } = useAnnouncement();
@@ -49,6 +50,7 @@ function AppContent() {
         <Route path="/privacy" element={<><Navbar /><Privacy /><Footer /></>} />
         <Route path="/team" element={<><Navbar /><Team /><Footer /></>} />
         <Route path="/admin/*" element={<Admin />} />
+        <Route path="/documents/:filename" element={<DocumentProxy />} />
         {/* LinkedIn Campaign Landing Page - No nav/footer for conversion optimization */}
         <Route path="/linkedin-campaign" element={<LinkedInCampaign />} />
         <Route path="/linkedin-glean" element={<LinkedInGlean />} />
