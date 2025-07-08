@@ -159,12 +159,36 @@ const RoleSpecificSectionV2 = ({ data, selectedRole, onComplete }: RoleSpecificS
             'Modern cloud-native architecture',
             'Data lake/warehouse with analytics capabilities',
             'AI-ready platform with ML infrastructure'
-          ]
-        }
-      ]
-    };
+           ]
+         }
+       ],
+       Other: [
+         {
+           id: 'q14_role_specific_1',
+           question: 'What\'s your primary focus area for AI implementation in your role?',
+           options: [
+             'Process automation and efficiency',
+             'Decision support and analytics',
+             'Customer experience improvement',
+             'Innovation and competitive advantage',
+             'Risk management and compliance'
+           ]
+         },
+         {
+           id: 'q15_role_specific_2',
+           question: 'What level of AI experience does your team currently have?',
+           options: [
+             'No AI experience - starting from scratch',
+             'Basic understanding with limited implementation',
+             'Some pilot projects and experimentation',
+             'Regular use of AI tools and platforms',
+             'Advanced AI capabilities and custom solutions'
+           ]
+         }
+       ]
+     };
 
-    return questionSets[role as keyof typeof questionSets] || questionSets.CEO;
+     return questionSets[role as keyof typeof questionSets] || questionSets.Other;
   };
 
   const questions = getRoleSpecificQuestions(selectedRole || 'CEO');

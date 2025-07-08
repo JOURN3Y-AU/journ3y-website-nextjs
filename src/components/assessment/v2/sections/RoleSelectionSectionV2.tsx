@@ -26,6 +26,7 @@ const RoleSelectionSectionV2 = ({ data, onComplete }: RoleSelectionSectionV2Prop
     { value: 'CHRO', label: 'Chief Human Resources Officer', description: 'People and organizational change' },
     { value: 'CPO', label: 'Chief Product Officer', description: 'Product innovation and development' },
     { value: 'CTO', label: 'Chief Technology Officer', description: 'Technical infrastructure and implementation' },
+    { value: 'Other', label: 'Other Executive/Leadership Role', description: 'Senior leadership or specialized role' },
   ];
 
   const companySizes = [

@@ -1,6 +1,6 @@
 export interface AssessmentDataV2 {
   // Core Info
-  selected_role: 'CEO' | 'CFO' | 'CMO' | 'CHRO' | 'CPO' | 'CTO';
+  selected_role: 'CEO' | 'CFO' | 'CMO' | 'CHRO' | 'CPO' | 'CTO' | 'Other';
   company_name: string;
   company_size: string;
   industry: string;
