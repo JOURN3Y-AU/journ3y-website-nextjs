@@ -10,6 +10,7 @@ import { AssessmentDataV2, ContactInfoV2, DashboardDataV2 } from '@/types/assess
 const AIAssessmentLongV2 = () => {
   const [currentStep, setCurrentStep] = useState<'hero' | 'assessment' | 'results'>('hero');
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [assessmentAnswers, setAssessmentAnswers] = useState<AssessmentDataV2 | null>(null);
   const [contactInfo, setContactInfo] = useState<ContactInfoV2 | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardDataV2 | null>(null);
@@ -88,6 +89,8 @@ const AIAssessmentLongV2 = () => {
         .single();
 
       if (responseError) throw responseError;
+      
+      setAssessmentId(responseData.id);
 
       // Generate dashboard and written assessment
       await Promise.all([
@@ -309,6 +312,8 @@ The JOURN3Y Team`;
           dashboardData={dashboardData}
           writtenAssessment={writtenAssessment}
           contactInfo={contactInfo}
+          assessmentData={assessmentAnswers}
+          assessmentId={assessmentId}
           isGenerating={isGenerating}
           onComplete={handleComplete}
         />

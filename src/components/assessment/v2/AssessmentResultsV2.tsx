@@ -1,13 +1,17 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Download, Calendar } from 'lucide-react';
-import { DashboardDataV2, ContactInfoV2 } from '@/types/assessmentV2';
+import { DashboardDataV2, ContactInfoV2, AssessmentDataV2 } from '@/types/assessmentV2';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface AssessmentResultsV2Props {
   dashboardData: DashboardDataV2 | null;
   writtenAssessment: string | null;
   contactInfo: ContactInfoV2 | null;
+  assessmentData: AssessmentDataV2 | null;
+  assessmentId: string | null;
   isGenerating: boolean;
   onComplete: () => void;
 }
@@ -16,9 +20,12 @@ const AssessmentResultsV2 = ({
   dashboardData, 
   writtenAssessment, 
   contactInfo, 
+  assessmentData,
+  assessmentId,
   isGenerating, 
   onComplete 
 }: AssessmentResultsV2Props) => {
+  const { toast } = useToast();
   
   const getRadarData = () => {
     if (!dashboardData) return [];
@@ -109,6 +116,71 @@ ${writtenAssessment}
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  };
+
+  const handleScheduleSession = async () => {
+    if (!contactInfo || !assessmentData || !assessmentId) {
+      toast({
+        title: "Error",
+        description: "Missing required information to schedule session.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      // Update campaign lead to show interest in Discovery Session
+      const { error: updateError } = await supabase
+        .from('campaign_leads')
+        .update({ 
+          message: 'AI Readiness Assessment - Interested in Discovery Session',
+          status: 'discovery_session_requested'
+        })
+        .eq('additional_data->>assessment_response_id', assessmentId);
+
+      if (updateError) {
+        console.error('Error updating campaign lead:', updateError);
+      }
+
+      // Send notification email to team
+      const { error: emailError } = await supabase.functions.invoke(
+        'send-discovery-session-notification',
+        {
+          body: {
+            contactInfo,
+            companyInfo: {
+              company_name: assessmentData.company_name,
+              selected_role: assessmentData.selected_role,
+              industry: assessmentData.industry,
+              company_size: assessmentData.company_size,
+            },
+            assessmentId,
+          },
+        }
+      );
+
+      if (emailError) {
+        console.error('Error sending notification:', emailError);
+        toast({
+          title: "Session Request Noted",
+          description: "Your interest has been recorded. Our team will contact you soon!",
+          variant: "default",
+        });
+      } else {
+        toast({
+          title: "Session Request Sent!",
+          description: "Our team has been notified and will contact you within 24 hours to schedule your Discovery Session.",
+          variant: "default",
+        });
+      }
+    } catch (error) {
+      console.error('Error scheduling session:', error);
+      toast({
+        title: "Request Submitted",
+        description: "Your interest has been noted. Our team will be in touch soon!",
+        variant: "default",
+      });
+    }
   };
 
   if (isGenerating) {
@@ -283,7 +355,7 @@ ${writtenAssessment}
             </Button>
             <Button 
               variant="outline"
-              onClick={onComplete}
+              onClick={handleScheduleSession}
               className="px-8 py-3"
             >
               <Calendar className="w-4 h-4 mr-2" />
