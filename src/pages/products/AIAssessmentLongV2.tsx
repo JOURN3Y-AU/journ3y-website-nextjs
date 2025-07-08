@@ -93,7 +93,7 @@ const AIAssessmentLongV2 = () => {
       setAssessmentId(responseData.id);
 
       // Generate dashboard and written assessment
-      await Promise.all([
+      const [generatedDashboard, generatedAssessment] = await Promise.all([
         generateDashboard(answers, contact, responseData.id),
         generateWrittenAssessment(answers, contact, responseData.id)
       ]);
@@ -110,6 +110,28 @@ const AIAssessmentLongV2 = () => {
         .from('assessment_sessions')
         .update({ completed_at: new Date().toISOString() })
         .eq('id', sessionId);
+
+      // Send results email to user after AI generation is complete
+      if (generatedDashboard && generatedAssessment) {
+        try {
+          await supabase.functions.invoke('send-assessment-results-email', {
+            body: {
+              contactInfo: contact,
+              companyInfo: {
+                company_name: answers.company_name,
+                selected_role: answers.selected_role,
+                industry: answers.industry,
+                company_size: answers.company_size,
+              },
+              dashboardData: generatedDashboard,
+              writtenAssessment: generatedAssessment,
+            },
+          });
+          console.log('Results email sent to user');
+        } catch (emailError) {
+          console.error('Error sending results email:', emailError);
+        }
+      }
 
     } catch (error) {
       console.error('Error processing assessment:', error);
@@ -129,7 +151,7 @@ const AIAssessmentLongV2 = () => {
 
   const generateDashboard = async (answers: AssessmentDataV2, contact: ContactInfoV2, responseId: string) => {
     try {
-      const dashboardTemplate = await fetch('/assessment-long-dashboard-template.txt').then(r => r.text());
+      const dashboardTemplate = await fetch('/assessment-v2-dashboard-template.txt').then(r => r.text());
       const prompt = replacePlaceholders(dashboardTemplate, answers, contact);
 
       const { data: aiData, error: aiError } = await supabase.functions.invoke(
@@ -154,15 +176,19 @@ const AIAssessmentLongV2 = () => {
         .update({ ai_dashboard_data: dashboardData })
         .eq('id', responseId);
 
+      return dashboardData;
+
     } catch (error) {
       console.error('Error generating dashboard:', error);
-      setDashboardData(getFallbackDashboardData(contact, answers));
+      const fallbackData = getFallbackDashboardData(contact, answers);
+      setDashboardData(fallbackData);
+      return fallbackData;
     }
   };
 
   const generateWrittenAssessment = async (answers: AssessmentDataV2, contact: ContactInfoV2, responseId: string) => {
     try {
-      const feedbackTemplate = await fetch('/assessment-long-feedback-template.txt').then(r => r.text());
+      const feedbackTemplate = await fetch('/assessment-v2-feedback-template.txt').then(r => r.text());
       const prompt = replacePlaceholders(feedbackTemplate, answers, contact);
 
       const { data: aiData, error: aiError } = await supabase.functions.invoke(
@@ -189,9 +215,13 @@ const AIAssessmentLongV2 = () => {
         })
         .eq('id', responseId);
 
+      return aiData.assessment;
+
     } catch (error) {
       console.error('Error generating written assessment:', error);
-      setWrittenAssessment(getFallbackWrittenAssessment(contact, answers));
+      const fallbackAssessment = getFallbackWrittenAssessment(contact, answers);
+      setWrittenAssessment(fallbackAssessment);
+      return fallbackAssessment;
     }
   };
 
