@@ -69,6 +69,48 @@ const AssessmentResultsV2 = ({
     return 'bg-red-100';
   };
 
+  const handleDownloadReport = () => {
+    if (!dashboardData || !writtenAssessment || !contactInfo) return;
+    
+    // Create downloadable content
+    const reportContent = `
+AI READINESS ASSESSMENT REPORT
+${contactInfo.first_name} ${contactInfo.last_name}
+Generated: ${new Date().toLocaleDateString()}
+
+OVERALL SCORE: ${dashboardData.overall_score}/100
+READINESS LEVEL: ${dashboardData.readiness_level}
+
+DIMENSION SCORES:
+${Object.entries(dashboardData.dimension_scores).map(([key, dimension]) => 
+  `${key.replace(/_/g, ' ').toUpperCase()}: ${dimension.score}/100`
+).join('\n')}
+
+KEY STRENGTHS:
+${dashboardData.key_strengths.map(strength => `• ${strength}`).join('\n')}
+
+PRIORITY OPPORTUNITIES:
+${dashboardData.priority_opportunities.map(opportunity => `• ${opportunity}`).join('\n')}
+
+RECOMMENDED NEXT STEPS:
+${dashboardData.recommended_next_steps.map((step, index) => `${index + 1}. ${step}`).join('\n')}
+
+PERSONALIZED ASSESSMENT:
+${writtenAssessment}
+    `.trim();
+
+    // Create and download file
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `AI-Readiness-Report-${contactInfo.first_name}-${contactInfo.last_name}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   if (isGenerating) {
     return (
       <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
@@ -233,7 +275,7 @@ const AssessmentResultsV2 = ({
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              onClick={onComplete}
+              onClick={handleDownloadReport}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
             >
               <Download className="w-4 h-4 mr-2" />
