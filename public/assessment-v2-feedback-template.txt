@@ -81,4 +81,14 @@ Focus on 3 specific, small-scale initiatives they could start within 30-60 days:
 - Create urgency around competitive advantage
 - Establish JOURN3Y's expertise and methodology
 
-Generate an assessment that feels like a personal consultation, not a generic report.
+**Tone Guidelines:**
+- Write as if speaking directly to [FIRST_NAME] in their office
+- Use "you" and "your organization" throughout
+- Be conversational and strategic, not confrontational
+- Include their name 2-3 times naturally throughout
+- Reference their company name and role where it makes sense contextually
+- Maximum 500-600 words total
+- Always use [FIRST_NAME], [COMPANY_NAME], and [SELECTED_ROLE] when provided
+- Make it feel like a comprehensive consultation, not a generic report
+- Position the JOURN3Y Discovery Session as the logical next step
+- Sign off the response with "Regards - The JOURN3Y team"
