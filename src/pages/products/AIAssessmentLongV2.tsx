@@ -328,6 +328,75 @@ The JOURN3Y Team`;
     navigate('/');
   };
 
+  // Test function to manually test Claude with existing data
+  const testClaudeWithExistingData = async () => {
+    const testData: AssessmentDataV2 = {
+      company_name: "private", 
+      selected_role: "CFO",
+      company_size: "Small Business (11-50 employees)",
+      industry: "Retail & E-commerce",
+      interested_in_conversation: true,
+      responses: {
+        q1_business_priorities: ["Customer experience improvement", "Digital transformation", "Risk management and compliance"],
+        q2_ai_familiarity: "Expert - Deep understanding and experience with AI",
+        q3_competitive_pressure: "Moderate-High - Some competitors are ahead, need to catch up",
+        q4_data_landscape: "Legacy systems with significant technical debt",
+        q5_ai_barriers: ["Budget constraints and unclear ROI", "Executive buy-in and support", "Data quality and accessibility issues"],
+        q6_genai_experience: "Moderate - Regular use of ChatGPT, Copilot, or similar tools",
+        q7_data_quality: "Good - Mostly reliable with some integration challenges",
+        q8_priority_areas: ["Content creation and marketing optimization", "Predictive analytics and forecasting", "Knowledge management and information retrieval"],
+        q9_automation_readiness: "Moderate-High - Several clear opportunities for process improvement",
+        q10_decision_making: "Experience-based - Primarily rely on expertise and past experience",
+        q11_change_readiness: "Moderate-High - Generally receptive to change with proper communication",
+        q12_resource_allocation: "Dedicated budget and team ready for AI initiatives",
+        q13_timeline_expectation: "Short-term (3-6 months) - Plan to start implementation soon",
+        q14_role_specific_1: "Long payback periods and delayed benefits",
+        q15_role_specific_2: "Revenue impact and growth metrics"
+      }
+    };
+
+    const testContact: ContactInfoV2 = {
+      first_name: "Kevin",
+      last_name: "Test",
+      email: "test@example.com",
+      phone_number: null
+    };
+
+    console.log('Testing Claude with existing data...');
+    
+    try {
+      const dashboardTemplate = await fetch('/assessment-v2-dashboard-template.txt').then(r => r.text());
+      const prompt = replacePlaceholders(dashboardTemplate, testData, testContact);
+      
+      console.log('Prompt length:', prompt.length);
+      console.log('First 200 chars:', prompt.substring(0, 200));
+      
+      const { data: aiData, error: aiError } = await supabase.functions.invoke(
+        'generate-ai-assessment',
+        {
+          body: {
+            responseId: 'test-id',
+            prompt,
+            type: 'dashboard'
+          },
+        }
+      );
+
+      if (aiError) {
+        console.error('Claude test error:', aiError);
+      } else {
+        console.log('Claude test success:', aiData);
+      }
+    } catch (error) {
+      console.error('Test failed:', error);
+    }
+  };
+
+  // Expose test function to window for manual testing
+  if (typeof window !== 'undefined') {
+    (window as any).testClaude = testClaudeWithExistingData;
+  }
+
   return (
     <>
       {currentStep === 'hero' && (
