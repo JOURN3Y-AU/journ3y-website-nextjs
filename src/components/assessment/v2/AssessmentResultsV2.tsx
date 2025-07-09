@@ -140,35 +140,79 @@ const AssessmentResultsV2 = ({
       pdf.text(`Readiness Level: ${dashboardData.readiness_level}`, margin + 50, yPosition);
       yPosition += 20;
 
-      // Capture the radar chart
-      const chartElement = document.querySelector('.recharts-wrapper');
+      // Capture the radar chart with improved settings
+      const chartElement = document.getElementById('radar-chart-container');
       if (chartElement) {
         try {
+          // Wait a moment for chart to fully render
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
           const canvas = await html2canvas(chartElement as HTMLElement, {
             backgroundColor: '#ffffff',
-            scale: 2,
-            width: 400,
-            height: 300
+            scale: 3,
+            useCORS: true,
+            allowTaint: false,
+            foreignObjectRendering: false,
+            removeContainer: false,
+            logging: false,
+            width: chartElement.offsetWidth,
+            height: chartElement.offsetHeight
           });
           
-          const chartImgData = canvas.toDataURL('image/png');
-          const chartWidth = 80;
-          const chartHeight = 60;
+          const chartImgData = canvas.toDataURL('image/png', 1.0);
+          const chartWidth = 120;
+          const chartHeight = 90;
           
           // Add chart title
           pdf.setFont('helvetica', 'bold');
           pdf.setFontSize(14);
           pdf.setTextColor(37, 99, 235);
           pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
-          yPosition += 10;
+          yPosition += 15;
           
           // Add the chart image
           pdf.addImage(chartImgData, 'PNG', margin, yPosition, chartWidth, chartHeight);
-          yPosition += chartHeight + 15;
+          yPosition += chartHeight + 20;
         } catch (error) {
-          console.warn('Could not capture chart:', error);
+          console.warn('Could not capture chart, adding dimension scores instead:', error);
+          
+          // Add chart title
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(14);
+          pdf.setTextColor(37, 99, 235);
+          pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
+          yPosition += 15;
+          
+          // Add fallback text representation
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(10);
+          pdf.setTextColor(0, 0, 0);
+          
+          const radarData = getRadarData();
+          radarData.forEach((item) => {
+            pdf.text(`${item.dimension}: ${item.score}/100 (Industry: ${item.industry}/100)`, margin, yPosition);
+            yPosition += 6;
+          });
           yPosition += 10;
         }
+      } else {
+        // Add section title and dimension scores if chart element not found
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(14);
+        pdf.setTextColor(37, 99, 235);
+        pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
+        yPosition += 15;
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        pdf.setTextColor(0, 0, 0);
+        
+        const radarData = getRadarData();
+        radarData.forEach((item) => {
+          pdf.text(`${item.dimension}: ${item.score}/100 (Industry: ${item.industry}/100)`, margin, yPosition);
+          yPosition += 6;
+        });
+        yPosition += 10;
       }
 
       // Check if we need a new page
@@ -472,7 +516,7 @@ const AssessmentResultsV2 = ({
           {/* Spider Chart */}
           <Card className="p-6 mb-8">
             <h2 className="text-xl font-bold text-gray-900 mb-4">AI Readiness Dimensions</h2>
-            <div className="h-96">
+            <div id="radar-chart-container" className="h-96">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={getRadarData()} margin={{ top: 20, right: 80, bottom: 20, left: 80 }}>
                   <PolarGrid />
