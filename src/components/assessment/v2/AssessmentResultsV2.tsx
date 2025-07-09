@@ -149,19 +149,24 @@ const AssessmentResultsV2 = ({
           
           const canvas = await html2canvas(chartElement as HTMLElement, {
             backgroundColor: '#ffffff',
-            scale: 3,
+            scale: 2,
             useCORS: true,
             allowTaint: false,
             foreignObjectRendering: false,
             removeContainer: false,
-            logging: false,
-            width: chartElement.offsetWidth,
-            height: chartElement.offsetHeight
+            logging: false
           });
           
           const chartImgData = canvas.toDataURL('image/png', 1.0);
-          const chartWidth = 140;
-          const chartHeight = 140; // Make it square to maintain aspect ratio
+          
+          // Calculate proper dimensions maintaining aspect ratio
+          const originalWidth = canvas.width;
+          const originalHeight = canvas.height;
+          const aspectRatio = originalWidth / originalHeight;
+          
+          // Set target width and calculate height to maintain aspect ratio
+          const targetWidth = 120;
+          const targetHeight = targetWidth / aspectRatio;
           
           // Add chart title
           pdf.setFont('helvetica', 'bold');
@@ -170,10 +175,10 @@ const AssessmentResultsV2 = ({
           pdf.text('AI READINESS DIMENSIONS', margin, yPosition);
           yPosition += 15;
           
-          // Add the chart image - centered
-          const chartX = (pageWidth - chartWidth) / 2;
-          pdf.addImage(chartImgData, 'PNG', chartX, yPosition, chartWidth, chartHeight);
-          yPosition += chartHeight + 20;
+          // Center the chart horizontally
+          const chartX = (pageWidth - targetWidth) / 2;
+          pdf.addImage(chartImgData, 'PNG', chartX, yPosition, targetWidth, targetHeight);
+          yPosition += targetHeight + 20;
         } catch (error) {
           console.warn('Could not capture chart, adding dimension scores instead:', error);
           
