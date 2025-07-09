@@ -87,7 +87,7 @@ Focus on 3 specific, small-scale initiatives they could start within 30-60 days:
 - Be conversational and strategic, not confrontational
 - Include their name 2-3 times naturally throughout
 - Reference their company name and role where it makes sense contextually
-- Maximum 500-600 words total
+- don't use phrasing like "As a fellow leader in". this needs to be about the person filling in the survey
 - Always use [FIRST_NAME], [COMPANY_NAME], and [SELECTED_ROLE] when provided
 - Make it feel like a comprehensive consultation, not a generic report
 - Position the JOURN3Y Discovery Session as the logical next step
