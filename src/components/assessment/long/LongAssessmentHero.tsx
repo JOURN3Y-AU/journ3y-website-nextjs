@@ -19,14 +19,14 @@ const LongAssessmentHero = ({ onStartAssessment }: LongAssessmentHeroProps) => {
               Complete AI Readiness Assessment
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              Get comprehensive insights into your organization's AI potential. This detailed 15-20 minute assessment provides in-depth analysis comparing your readiness against industry leaders in your sector.
+              Get comprehensive insights into your organization's AI potential. This detailed assessment provides in-depth analysis comparing your readiness against industry leaders in your sector.
             </p>
             
             {/* Time and Value Indicators */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <div className="flex items-center gap-2 text-blue-600">
                 <Clock className="w-5 h-5" />
-                <span className="font-medium">Estimated time: 15-20 minutes</span>
+                <span className="font-medium">Estimated time: 7-10 minutes</span>
               </div>
               <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
               <div className="flex items-center gap-2 text-green-600">
@@ -75,13 +75,6 @@ const LongAssessmentHero = ({ onStartAssessment }: LongAssessmentHeroProps) => {
             </div>
           </Card>
 
-          {/* Important Notice */}
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8">
-            <p className="text-amber-800 text-sm">
-              <strong>Important:</strong> This assessment must be completed in one session. 
-              Please ensure you have 15-20 minutes available before starting.
-            </p>
-          </div>
 
           {/* CTA Button */}
           <Button 
