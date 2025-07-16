@@ -13,6 +13,7 @@ export interface MetaTagsConfig {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
+  structuredData?: object;
 }
 
 const DEFAULT_META = {
@@ -85,6 +86,29 @@ export const useMetaTags = (config: MetaTagsConfig = {}) => {
     updateMetaTag('meta[name="twitter:description"]', metaConfig.twitterDescription);
     updateMetaTag('meta[name="twitter:image"]', metaConfig.twitterImage);
     
+    // Handle structured data (JSON-LD)
+    if (metaConfig.structuredData) {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        existingScript.textContent = JSON.stringify(metaConfig.structuredData);
+      } else {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(metaConfig.structuredData);
+        document.head.appendChild(script);
+      }
+    }
+    
+    // Cleanup function to remove structured data when component unmounts
+    return () => {
+      if (metaConfig.structuredData) {
+        const script = document.querySelector('script[type="application/ld+json"]');
+        if (script) {
+          script.remove();
+        }
+      }
+    };
+    
   }, [config]);
 };
 
@@ -137,7 +161,50 @@ export const META_CONFIGS = {
     canonical: "https://journ3y.com.au/products/glean",
     ogTitle: "Glean Implementation Services | Expert Glean Consultants | JOURN3Y",
     ogDescription: "Professional Glean implementation and optimization services from certified Glean consultants. Transform your enterprise search capabilities.",
-    ogUrl: "https://journ3y.com.au/products/glean"
+    ogUrl: "https://journ3y.com.au/products/glean",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Glean Implementation and Support Services",
+      "description": "Professional Glean enterprise search implementation, training, and ongoing support services for Australian businesses",
+      "provider": {
+        "@type": "Organization",
+        "name": "JOURN3Y",
+        "url": "https://www.journ3y.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "AU"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        {
+          "@type": "City", 
+          "name": "Sydney"
+        },
+        {
+          "@type": "City",
+          "name": "Melbourne"
+        },
+        {
+          "@type": "City",
+          "name": "Brisbane"
+        }
+      ],
+      "serviceType": [
+        "Enterprise Search Implementation",
+        "Glean Installation",
+        "Software Implementation",
+        "AI Workplace Solutions"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Glean implementation and support services"
+      }
+    }
   },
   
   aiAssessment: {
