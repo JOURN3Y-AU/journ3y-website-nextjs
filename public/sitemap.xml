@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://journ3y.ai/</loc>
+    <loc>https://www.journ3y.com.au/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/contact</loc>
+    <loc>https://www.journ3y.com.au/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/team</loc>
+    <loc>https://www.journ3y.com.au/team</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/resources</loc>
+    <loc>https://www.journ3y.com.au/resources</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/blog</loc>
+    <loc>https://www.journ3y.com.au/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/privacy</loc>
+    <loc>https://www.journ3y.com.au/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/ai-assessment</loc>
+    <loc>https://www.journ3y.com.au/products/ai-assessment</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/ai-assessment-long</loc>
+    <loc>https://www.journ3y.com.au/products/ai-assessment-long</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/ai-assessment-v2</loc>
+    <loc>https://www.journ3y.com.au/products/ai-assessment-v2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/brand3y</loc>
+    <loc>https://www.journ3y.com.au/products/brand3y</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/glean</loc>
+    <loc>https://www.journ3y.com.au/products/glean</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/accelerators</loc>
+    <loc>https://www.journ3y.com.au/products/accelerators</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/blueprint</loc>
+    <loc>https://www.journ3y.com.au/products/blueprint</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://journ3y.ai/products/services</loc>
+    <loc>https://www.journ3y.com.au/products/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
