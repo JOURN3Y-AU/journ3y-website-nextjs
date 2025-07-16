@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="refresh" content="0; url=https://ghtqdgkfbfdlnowrowpw.supabase.co/functions/v1/sitemap">
-    <title>Redirecting to Sitemap</title>
-</head>
-<body>
-    <p>Redirecting to sitemap...</p>
-    <script>
-        window.location.href = 'https://ghtqdgkfbfdlnowrowpw.supabase.co/functions/v1/sitemap';
-    </script>
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- This static file is a fallback. The dynamic sitemap is served at /sitemap.xml route -->
+</urlset>
