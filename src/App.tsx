@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import AnnouncementOverlay from '@/components/AnnouncementOverlay';
+import PageSpecificSEO from '@/components/seo/PageSpecificSEO';
 import { useAnnouncement } from '@/hooks/useAnnouncement';
 import useScrollToTop from '@/hooks/useScrollToTop';
 import Index from '@/pages/Index';
@@ -66,6 +67,7 @@ function AppContent() {
         />
       )}
       
+      <PageSpecificSEO />
       <Toaster />
     </>
   );
