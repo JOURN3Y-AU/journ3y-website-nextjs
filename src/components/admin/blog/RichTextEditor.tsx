@@ -28,6 +28,7 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [youtubeUrl, setYoutubeUrl] = useState('');
   const [showYoutubeInput, setShowYoutubeInput] = useState(false);
+  const [videoWidth, setVideoWidth] = useState('640');
   const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   if (!editor) {
@@ -61,12 +62,16 @@ const MenuBar = ({ editor }: MenuBarProps) => {
 
   const addYoutubeVideo = () => {
     if (youtubeUrl) {
+      const width = parseInt(videoWidth) || 640;
+      const height = Math.round(width * 0.5625); // 16:9 aspect ratio
+      
       editor.commands.setYoutubeVideo({
         src: youtubeUrl,
-        width: Math.min(640, 320),
-        height: Math.min(480, 180),
+        width: width,
+        height: height,
       });
       setYoutubeUrl('');
+      setVideoWidth('640');
       setShowYoutubeInput(false);
     }
   };
@@ -201,14 +206,27 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           <YoutubeIcon className="h-4 w-4" />
         </Button>
       ) : (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <input
             type="text"
             placeholder="YouTube URL..."
             value={youtubeUrl}
             onChange={(e) => setYoutubeUrl(e.target.value)}
-            className="border px-2 py-1 text-sm rounded"
+            className="border px-2 py-1 text-sm rounded min-w-[200px]"
           />
+          <div className="flex items-center gap-1">
+            <label className="text-xs text-gray-600">Width:</label>
+            <select
+              value={videoWidth}
+              onChange={(e) => setVideoWidth(e.target.value)}
+              className="border px-2 py-1 text-sm rounded"
+            >
+              <option value="400">Small (400px)</option>
+              <option value="560">Medium (560px)</option>
+              <option value="640">Large (640px)</option>
+              <option value="800">Extra Large (800px)</option>
+            </select>
+          </div>
           <Button type="button" size="sm" onClick={addYoutubeVideo}>
             Add
           </Button>
