@@ -45,8 +45,14 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
 
   const industryData = {
     realestate: {
-      title: 'AI-Powered Productivity for Real Estate Professionals',
-      description: 'Transform your real estate operations with intelligent automation, enhanced client communication, and data-driven insights.',
+      title: "We've built AI that tackles the stuff that actually matters to your real estate business",
+      description: (
+        <div className="space-y-2">
+          <div><strong>Get your time back</strong> - Stop drowning in admin and get back to prospecting</div>
+          <div><strong>Automate the paperwork</strong> - Contracts, listings, compliance, settlements & more</div>
+          <div><strong>Keep deals moving</strong> - No more confusion between buyers, sellers, and solicitors</div>
+        </div>
+      ),
       image: '/small-business/realestate-hero.jpg',
       benefits: [
         {
