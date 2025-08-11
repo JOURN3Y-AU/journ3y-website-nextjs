@@ -2,6 +2,8 @@
 import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
+import Image from '@tiptap/extension-image';
+import Youtube from '@tiptap/extension-youtube';
 import { Button } from '@/components/ui/button';
 import { 
   Bold as BoldIcon, 
@@ -10,9 +12,12 @@ import {
   ListOrdered as ListOrderedIcon,
   Heading1,
   Heading2,
-  Link as LinkIcon
+  Link as LinkIcon,
+  ImageIcon,
+  Youtube as YoutubeIcon
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { uploadImage } from '../ImageUploadService';
 
 interface MenuBarProps {
   editor: Editor | null;
@@ -21,6 +26,9 @@ interface MenuBarProps {
 const MenuBar = ({ editor }: MenuBarProps) => {
   const [linkUrl, setLinkUrl] = useState('');
   const [showLinkInput, setShowLinkInput] = useState(false);
+  const [youtubeUrl, setYoutubeUrl] = useState('');
+  const [showYoutubeInput, setShowYoutubeInput] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   if (!editor) {
     return null;
@@ -31,6 +39,35 @@ const MenuBar = ({ editor }: MenuBarProps) => {
       editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run();
       setLinkUrl('');
       setShowLinkInput(false);
+    }
+  };
+
+  const addImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingImage(true);
+    try {
+      const imageUrl = await uploadImage(file);
+      editor.chain().focus().setImage({ src: imageUrl }).run();
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    } finally {
+      setIsUploadingImage(false);
+      // Reset the input
+      event.target.value = '';
+    }
+  };
+
+  const addYoutubeVideo = () => {
+    if (youtubeUrl) {
+      editor.commands.setYoutubeVideo({
+        src: youtubeUrl,
+        width: Math.min(640, 320),
+        height: Math.min(480, 180),
+      });
+      setYoutubeUrl('');
+      setShowYoutubeInput(false);
     }
   };
 
@@ -134,6 +171,52 @@ const MenuBar = ({ editor }: MenuBarProps) => {
           Unlink
         </Button>
       )}
+
+      <div className="relative">
+        <input
+          type="file"
+          accept="image/*"
+          onChange={addImage}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          disabled={isUploadingImage}
+        />
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          disabled={isUploadingImage}
+        >
+          <ImageIcon className="h-4 w-4" />
+          {isUploadingImage && <span className="ml-1">...</span>}
+        </Button>
+      </div>
+
+      {!showYoutubeInput ? (
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => setShowYoutubeInput(true)}
+        >
+          <YoutubeIcon className="h-4 w-4" />
+        </Button>
+      ) : (
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="YouTube URL..."
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+            className="border px-2 py-1 text-sm rounded"
+          />
+          <Button type="button" size="sm" onClick={addYoutubeVideo}>
+            Add
+          </Button>
+          <Button type="button" variant="outline" size="sm" onClick={() => setShowYoutubeInput(false)}>
+            Cancel
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
@@ -173,6 +256,16 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
       .ProseMirror h2 {
         font-size: 1.25rem;
       }
+      .ProseMirror img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+      }
+      .ProseMirror iframe {
+        border-radius: 8px;
+        margin: 1rem 0;
+      }
     `;
     document.head.appendChild(styleElement);
 
@@ -201,6 +294,18 @@ export default function RichTextEditor({ content, onChange, className }: RichTex
         openOnClick: false,
         HTMLAttributes: {
           class: 'text-journey-purple underline'
+        }
+      }),
+      Image.configure({
+        HTMLAttributes: {
+          class: 'max-w-full h-auto rounded-lg my-4'
+        }
+      }),
+      Youtube.configure({
+        width: 640,
+        height: 480,
+        HTMLAttributes: {
+          class: 'rounded-lg my-4'
         }
       })
     ],
