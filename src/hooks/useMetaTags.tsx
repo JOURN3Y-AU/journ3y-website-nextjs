@@ -259,17 +259,17 @@ export const META_CONFIGS = {
 
   smallBusiness: {
     title: 'AI Solutions for Small Business | Real Estate, Construction, Recruitment | JOURN3Y',
-    description: 'AI-powered productivity solutions for small businesses. Managed ChatGPT for Teams with industry-specific configuration for Real Estate, Construction, and Recruitment.',
-    keywords: 'AI for small business, ChatGPT for Teams, real estate AI, construction AI, recruitment AI, business automation, productivity tools',
+    description: 'AI-powered productivity solutions for small businesses. Managed AI platform for Teams with industry-specific configuration for Real Estate, Construction, and Recruitment.',
+    keywords: 'AI for small business, AI platform for Teams, real estate AI, construction AI, recruitment AI, business automation, productivity tools',
     canonical: 'https://journ3y.com.au/products/small-business',
     ogTitle: 'AI Solutions for Small Business | JOURN3Y',
-    ogDescription: 'Transform your small business with AI-powered productivity solutions. Industry-specific ChatGPT for Teams implementation.',
+    ogDescription: 'Transform your small business with AI-powered productivity solutions. Industry-specific AI platform for Teams implementation.',
     ogUrl: 'https://journ3y.com.au/products/small-business',
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "AI Solutions for Small Business",
-      "description": "Managed ChatGPT for Teams with industry-specific configuration for small businesses",
+      "description": "Managed AI platform for Teams with industry-specific configuration for small businesses",
       "serviceType": ["Real Estate AI", "Construction AI", "Recruitment AI"],
       "provider": {
         "@type": "Organization",

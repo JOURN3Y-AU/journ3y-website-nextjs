@@ -27,7 +27,7 @@ const SmallBusinessHowItWorksSection = () => {
       number: '01',
       icon: <Settings className="w-8 h-8 text-primary" />,
       title: 'Platform Setup',
-      summary: 'Quick deployment of your managed ChatGPT for Teams environment',
+      summary: 'Quick deployment of your managed AI platform for Teams environment',
       details: [
         'Custom domain configuration for your organization',
         'Industry-specific AI model configuration and optimization',

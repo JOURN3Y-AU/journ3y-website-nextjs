@@ -162,7 +162,7 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
             Industry-Specific AI Solutions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose your industry to discover how our managed ChatGPT for Teams can transform your business operations.
+            Choose your industry to discover how your AI platform can transform your business operations.
           </p>
         </div>
 

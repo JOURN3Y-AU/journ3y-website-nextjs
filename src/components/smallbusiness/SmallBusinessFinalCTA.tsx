@@ -114,7 +114,7 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
           <div className="pt-8 border-t border-border">
             <p className="text-xs text-muted-foreground">
               Trusted by small businesses across Australia • Industry-specific solutions • 
-              Managed ChatGPT for Teams • Expert implementation support
+              Managed AI platform for Teams • Expert implementation support
             </p>
           </div>
         </div>
