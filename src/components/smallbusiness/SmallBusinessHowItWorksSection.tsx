@@ -29,10 +29,8 @@ const SmallBusinessHowItWorksSection = () => {
       title: 'Platform Setup',
       summary: 'Quick deployment of your managed AI platform',
       details: [
-        'Custom domain configuration for your organization',
-        'Industry-specific AI model configuration and optimization',
+        'Industry-specific AI model configuration and optimisation',
         'User access controls and permission settings',
-        'Integration with your existing business tools and workflows',
         'Security protocols and data protection measures'
       ]
     },
@@ -43,11 +41,11 @@ const SmallBusinessHowItWorksSection = () => {
       title: 'Data Integration',
       summary: 'Seamless connection with your existing business systems',
       details: [
-        'CRM system integration for client data synchronization',
+        'CRM system integration for client data synchronisation',
         'Document management system connectivity',
         'Email platform integration for communication workflows',
         'Calendar and scheduling system connections',
-        'Custom API integrations for specialized business tools'
+        'Custom API integrations for specialised business tools'
       ]
     },
     {
@@ -72,7 +70,7 @@ const SmallBusinessHowItWorksSection = () => {
       summary: 'Comprehensive training and ongoing support for your team',
       details: [
         'Initial team training sessions and best practices',
-        'Custom workflow development and optimization',
+        'Custom workflow development and optimisation',
         'Ongoing technical support and system updates',
         'Performance monitoring and improvement recommendations',
         'Regular check-ins and strategy refinement sessions'
