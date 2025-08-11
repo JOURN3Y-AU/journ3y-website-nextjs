@@ -53,11 +53,9 @@ const SmallBusinessHowItWorksSection = () => {
       title: 'Custom AI Agents',
       summary: 'Industry-specific AI assistants tailored to your business needs',
       details: [
-        'Property listing and description generation agents',
         'Client communication and follow-up automation',
         'Market analysis and reporting assistants',
-        'Document processing and data extraction tools',
-        'Compliance and regulatory guidance systems'
+        'Document processing and data extraction tools'
       ]
     },
     {
