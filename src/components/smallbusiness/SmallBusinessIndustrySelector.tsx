@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Building2, Users, Zap, CheckCircle, ArrowRight } from 'lucide-react';
+import { Building2, Users, Zap, CheckCircle, ArrowRight, Heart, PhoneOff, Search, TrendingUp, DollarSign } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface SmallBusinessIndustrySelectorProps {
@@ -105,29 +105,44 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
         {
           icon: <Users className="w-6 h-6 text-accent" />,
           title: 'Safety and Compliance',
-          description: 'simply site safety breifings, generate compliance documentation, and simply compliance processes across all projects.'
+          description: 'Simplify site safety briefings, generate compliance documentation, and simply compliance processes across all projects.'
         }
       ]
     },
     recruitment: {
       title: 'Transform Recruitment with AI-Powered Solutions',
-      description: 'Revolutionize your hiring process with intelligent candidate matching, automated screening, and enhanced client relationships.',
+      description: 'Revolutionise your hiring process with intelligent candidate matching, automated screening, and enhanced client relationships.',
       image: '/small-business/recruitment-hero.jpg',
       benefits: [
         {
-          icon: <Users className="w-6 h-6 text-primary" />,
-          title: 'Candidate Screening',
-          description: 'Intelligent resume analysis, automated candidate matching, and streamlined interview scheduling.'
+          icon: <Heart className="w-6 h-6 text-primary" />,
+          title: 'Keep my best candidates warm',
+          description: 'Stop candidates being snapped up by competitors while I\'m dealing with admin.'
         },
         {
-          icon: <Building2 className="w-6 h-6 text-secondary" />,
-          title: 'Job Description Creation',
-          description: 'Generate compelling job descriptions, optimize for search, and attract top talent effectively.'
+          icon: <Zap className="w-6 h-6 text-secondary" />,
+          title: 'Get placements moving faster',
+          description: 'Stop losing deals because compliance paperwork takes too long to sort out.'
         },
         {
-          icon: <Zap className="w-6 h-6 text-accent" />,
-          title: 'Client Relationship Management',
-          description: 'Automate client communication, track placement metrics, and enhance long-term partnerships.'
+          icon: <PhoneOff className="w-6 h-6 text-accent" />,
+          title: 'Stop clients calling me for updates',
+          description: 'Keep them informed automatically so I can focus on finding their next hire.'
+        },
+        {
+          icon: <Search className="w-6 h-6 text-primary" />,
+          title: 'Find the needles in the haystack',
+          description: 'Get through 200 CVs quickly to find the 3 that actually matter.'
+        },
+        {
+          icon: <TrendingUp className="w-6 h-6 text-secondary" />,
+          title: 'Get my consultants back to selling',
+          description: 'Stop them drowning in interview coordination and status updates.'
+        },
+        {
+          icon: <DollarSign className="w-6 h-6 text-accent" />,
+          title: 'Get paid on time',
+          description: 'Chase up contractor timesheets and overdue invoices without it eating my whole Friday.'
         }
       ]
     }
