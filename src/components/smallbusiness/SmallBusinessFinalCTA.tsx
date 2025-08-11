@@ -56,7 +56,7 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
                 Quick Implementation
               </h3>
               <p className="text-muted-foreground text-sm">
-                Up and running in 2-4 weeks with full team training included
+                Up and running in 4 weeks
               </p>
             </CardContent>
           </Card>
