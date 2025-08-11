@@ -29,6 +29,8 @@ const MenuBar = ({ editor }: MenuBarProps) => {
   const [youtubeUrl, setYoutubeUrl] = useState('');
   const [showYoutubeInput, setShowYoutubeInput] = useState(false);
   const [videoWidth, setVideoWidth] = useState('640');
+  const [imageWidth, setImageWidth] = useState('full');
+  const [showImageSizeInput, setShowImageSizeInput] = useState(false);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   if (!editor) {
@@ -50,7 +52,28 @@ const MenuBar = ({ editor }: MenuBarProps) => {
     setIsUploadingImage(true);
     try {
       const imageUrl = await uploadImage(file);
+      
+      // Insert the image first
       editor.chain().focus().setImage({ src: imageUrl }).run();
+      
+      // Then update the image with size styling using a small delay
+      setTimeout(() => {
+        const imgElements = editor.view.dom.querySelectorAll('img[src="' + imageUrl + '"]');
+        const lastImg = imgElements[imgElements.length - 1] as HTMLImageElement;
+        if (lastImg) {
+          // Remove existing width classes
+          lastImg.classList.remove('w-full', 'w-3/4', 'w-1/2', 'w-1/3');
+          
+          // Add the selected width class
+          const widthClass = imageWidth === 'full' ? 'w-full' : 
+                            imageWidth === 'large' ? 'w-3/4' :
+                            imageWidth === 'medium' ? 'w-1/2' : 'w-1/3';
+          lastImg.classList.add(widthClass, 'mx-auto', 'block');
+        }
+      }, 100);
+      
+      setImageWidth('full');
+      setShowImageSizeInput(false);
     } catch (error) {
       console.error('Error uploading image:', error);
     } finally {
@@ -177,23 +200,53 @@ const MenuBar = ({ editor }: MenuBarProps) => {
         </Button>
       )}
 
-      <div className="relative">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={addImage}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-          disabled={isUploadingImage}
-        />
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          disabled={isUploadingImage}
-        >
-          <ImageIcon className="h-4 w-4" />
-          {isUploadingImage && <span className="ml-1">...</span>}
-        </Button>
+      <div className="flex items-center gap-2">
+        <div className="relative">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={addImage}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            disabled={isUploadingImage}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={isUploadingImage}
+          >
+            <ImageIcon className="h-4 w-4" />
+            {isUploadingImage && <span className="ml-1">...</span>}
+          </Button>
+        </div>
+        
+        {!showImageSizeInput ? (
+          <Button
+            type="button"
+            variant="outline" 
+            size="sm"
+            onClick={() => setShowImageSizeInput(true)}
+          >
+            Size
+          </Button>
+        ) : (
+          <div className="flex items-center gap-1">
+            <label className="text-xs text-gray-600">Size:</label>
+            <select
+              value={imageWidth}
+              onChange={(e) => setImageWidth(e.target.value)}
+              className="border px-2 py-1 text-sm rounded"
+            >
+              <option value="small">Small (33%)</option>
+              <option value="medium">Medium (50%)</option>
+              <option value="large">Large (75%)</option>
+              <option value="full">Full Width</option>
+            </select>
+            <Button type="button" variant="outline" size="sm" onClick={() => setShowImageSizeInput(false)}>
+              ✓
+            </Button>
+          </div>
+        )}
       </div>
 
       {!showYoutubeInput ? (
