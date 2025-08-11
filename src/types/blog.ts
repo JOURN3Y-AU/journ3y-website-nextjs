@@ -10,6 +10,7 @@ export interface BlogPost {
   content?: string;
   image_url?: string;
   category_id?: string;
+  hashtags?: string[];
 }
 
 export interface Category {
@@ -24,4 +25,5 @@ export interface BlogPostFormData {
   content: string;
   image_url: string;
   category_id: string;
+  hashtags: string[];
 }

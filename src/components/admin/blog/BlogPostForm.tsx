@@ -16,6 +16,7 @@ interface BlogPostFormProps {
     content: string;
     image_url: string;
     category_id: string;
+    hashtags: string[];
   };
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleContentChange: (html: string) => void;
@@ -26,6 +27,7 @@ interface BlogPostFormProps {
   isSaving: boolean;
   onSubmit: (e: React.FormEvent) => void;
   onImageRemove: () => void;
+  onHashtagsChange: (hashtags: string[]) => void;
 }
 
 export default function BlogPostForm({
@@ -38,8 +40,14 @@ export default function BlogPostForm({
   isNew,
   isSaving,
   onSubmit,
-  onImageRemove
+  onImageRemove,
+  onHashtagsChange
 }: BlogPostFormProps) {
+  const handleHashtagsInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const hashtags = value.split(',').map(tag => tag.trim()).filter(tag => tag);
+    onHashtagsChange(hashtags);
+  };
   return (
     <form onSubmit={onSubmit} className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -96,6 +104,20 @@ export default function BlogPostForm({
               rows={3}
               required
             />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="hashtags">Hashtags (SEO)</Label>
+            <Input
+              id="hashtags"
+              name="hashtags"
+              value={blogPost.hashtags.join(', ')}
+              onChange={handleHashtagsInputChange}
+              placeholder="ai, technology, glean, productivity (comma separated)"
+            />
+            <p className="text-xs text-muted-foreground">
+              Enter hashtags separated by commas. These help with SEO and content discovery.
+            </p>
           </div>
           
           <ImageUpload 

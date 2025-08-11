@@ -371,6 +371,7 @@ export type Database = {
           created_at: string
           excerpt: string
           featured_on_homepage: boolean | null
+          hashtags: string[] | null
           id: string
           image_url: string
           published_at: string
@@ -384,6 +385,7 @@ export type Database = {
           created_at?: string
           excerpt: string
           featured_on_homepage?: boolean | null
+          hashtags?: string[] | null
           id?: string
           image_url: string
           published_at?: string
@@ -397,6 +399,7 @@ export type Database = {
           created_at?: string
           excerpt?: string
           featured_on_homepage?: boolean | null
+          hashtags?: string[] | null
           id?: string
           image_url?: string
           published_at?: string

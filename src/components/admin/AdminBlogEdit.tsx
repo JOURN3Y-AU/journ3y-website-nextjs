@@ -23,6 +23,7 @@ export default function AdminBlogEdit({ onLogout, isNew = false }: AdminBlogEdit
     handleContentChange,
     handleImageChange,
     handleImageRemove,
+    handleHashtagsChange,
     handleSubmit
   } = useBlogPostEditor(slug, isNew);
   
@@ -57,6 +58,7 @@ export default function AdminBlogEdit({ onLogout, isNew = false }: AdminBlogEdit
         isSaving={isSaving}
         onSubmit={handleSubmit}
         onImageRemove={handleImageRemove}
+        onHashtagsChange={handleHashtagsChange}
       />
     </div>
   );

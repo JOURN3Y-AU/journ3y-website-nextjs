@@ -11,6 +11,7 @@ export type BlogPostFormState = {
   content: string;
   image_url: string;
   category_id: string;
+  hashtags: string[];
 };
 
 export function useBlogPostForm(initialSlug?: string, isNew = false) {
@@ -23,7 +24,8 @@ export function useBlogPostForm(initialSlug?: string, isNew = false) {
     excerpt: '',
     content: '',
     image_url: '',
-    category_id: ''
+    category_id: '',
+    hashtags: []
   });
 
   const loadBlogPost = async () => {
@@ -47,7 +49,8 @@ export function useBlogPostForm(initialSlug?: string, isNew = false) {
           excerpt: data.excerpt,
           content: data.content,
           image_url: data.image_url,
-          category_id: data.category_id
+          category_id: data.category_id,
+          hashtags: data.hashtags || []
         });
       }
       return true;
@@ -102,7 +105,8 @@ export function useBlogPostForm(initialSlug?: string, isNew = false) {
         excerpt: blogPost.excerpt,
         content: blogPost.content,
         image_url: imageUrl,
-        category_id: blogPost.category_id
+        category_id: blogPost.category_id,
+        hashtags: blogPost.hashtags
       };
       
       let error;

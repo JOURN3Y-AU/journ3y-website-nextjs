@@ -40,6 +40,10 @@ export function useBlogPostEditor(slug?: string, isNew = false) {
     }
   }, [categoriesLoading]);
 
+  const handleHashtagsChange = (hashtags: string[]) => {
+    setBlogPost(prev => ({ ...prev, hashtags }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -62,6 +66,7 @@ export function useBlogPostEditor(slug?: string, isNew = false) {
     handleContentChange,
     handleImageChange,
     handleImageRemove,
+    handleHashtagsChange,
     handleSubmit
   };
 }
