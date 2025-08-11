@@ -220,14 +220,6 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Link>
                     </Button>
-                    <Button variant="outline" size="lg" asChild>
-                      <Link 
-                        to={`/contact?service=small-business&industry=${key}&inquiry=consultation&utm_source=${utmParams?.utm_source || 'page'}`}
-                        onClick={() => handleCTAClick('learn_more')}
-                      >
-                        Learn More
-                      </Link>
-                    </Button>
                   </div>
                 </div>
                 <div className="lg:order-last">
