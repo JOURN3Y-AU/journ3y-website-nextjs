@@ -17,6 +17,7 @@ interface BlogPost {
   published_at: string;
   image_url: string;
   category: string;
+  hashtags?: string[];
 }
 
 const BlogPost = () => {
@@ -30,7 +31,7 @@ const BlogPost = () => {
   useMetaTags(post ? {
     title: `${post.title} | JOURN3Y AI Consulting & Glean Experts Blog`,
     description: `${post.content.replace(/<[^>]*>/g, '').substring(0, 155)}... Expert insights on AI consulting and Glean implementation from JOURN3Y.`,
-    keywords: `${post.category}, AI consulting, Glean implementation, ${post.title.toLowerCase().split(' ').join(', ')}, enterprise search, AI strategy`,
+    keywords: `${post.category}, AI consulting, Glean implementation, ${post.hashtags?.join(', ') || ''}, ${post.title.toLowerCase().split(' ').join(', ')}, enterprise search, AI strategy`,
     ogTitle: `${post.title} | JOURN3Y AI Consulting Blog`,
     ogDescription: `${post.content.replace(/<[^>]*>/g, '').substring(0, 155)}...`,
     ogImage: post.image_url,
@@ -58,7 +59,7 @@ const BlogPost = () => {
         // Using type casting to properly type the query result
         const { data, error } = await supabase
           .from('blog_posts')
-          .select('id, slug, title, content, published_at, image_url, category_id, blog_categories(name)')
+          .select('id, slug, title, content, published_at, image_url, category_id, hashtags, blog_categories(name)')
           .eq('slug', slug)
           .single();
 
@@ -87,7 +88,8 @@ const BlogPost = () => {
               day: 'numeric'
             }),
             image_url: data.image_url,
-            category: categoryName
+            category: categoryName,
+            hashtags: data.hashtags || []
           });
         }
       } catch (error) {
@@ -167,16 +169,40 @@ const BlogPost = () => {
             />
           </div>
 
-          {/* Related Tags */}
+          {/* Tags and Category */}
           <div className="mt-12 pt-8 border-t">
-            <div className="flex items-center gap-2">
-              <Tag className="text-journey-purple" />
-              <Link 
-                to={`/blog?category=${post.category}`} 
-                className="inline-flex px-3 py-1 rounded-full bg-gray-100 text-sm hover:bg-journey-purple/10 transition-colors"
-              >
-                {post.category}
-              </Link>
+            <div className="space-y-4">
+              {/* Category */}
+              <div className="flex items-center gap-2">
+                <Tag className="text-journey-purple" />
+                <span className="text-sm text-gray-600 mr-2">Category:</span>
+                <Link 
+                  to={`/blog?category=${post.category}`} 
+                  className="inline-flex px-3 py-1 rounded-full bg-gray-100 text-sm hover:bg-journey-purple/10 transition-colors"
+                >
+                  {post.category}
+                </Link>
+              </div>
+              
+              {/* Hashtags */}
+              {post.hashtags && post.hashtags.length > 0 && (
+                <div className="flex items-start gap-2">
+                  <Tag className="text-journey-purple mt-1" />
+                  <div>
+                    <span className="text-sm text-gray-600 mr-2">Tags:</span>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {post.hashtags.map((hashtag, index) => (
+                        <span 
+                          key={index}
+                          className="inline-flex px-2 py-1 rounded-full bg-journey-purple/10 text-sm text-journey-purple hover:bg-journey-purple/20 transition-colors"
+                        >
+                          #{hashtag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
