@@ -33,7 +33,7 @@ const SmallBusinessHeroSection = ({
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">Fully managed AI configured for your industry. Streamline your operations, enhance productivity, and scale your business with AI.</p>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">Fully managed AI service configured for your industry. Streamline your operations, enhance productivity, and scale your business with AI.</p>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto pt-8">
             <div className="flex flex-col items-center space-y-2">
