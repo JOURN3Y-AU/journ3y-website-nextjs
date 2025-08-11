@@ -70,7 +70,7 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
                 Ongoing Support
               </h3>
               <p className="text-muted-foreground text-sm">
-                Dedicated support team and regular optimization sessions
+                Dedicated support team and regular optimisation sessions
               </p>
             </CardContent>
           </Card>
