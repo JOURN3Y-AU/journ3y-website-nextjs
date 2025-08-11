@@ -30,8 +30,7 @@ const HeroSection = () => {
             </Button>
             <Button asChild className="bg-lime-400 hover:bg-lime-500 text-blue-600 py-6 px-8 text-lg border border-lime-400 flex items-center gap-1 font-semibold">
               <Link to="/products/glean">
-                <span>get</span>
-                <span>glean</span>
+                Get Glean
               </Link>
             </Button>
           </div>
