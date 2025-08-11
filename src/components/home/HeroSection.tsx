@@ -28,8 +28,11 @@ const HeroSection = () => {
             <Button asChild className="bg-gradient-to-r from-journey-purple to-journey-blue text-white py-6 px-8 text-lg">
               <Link to="/contact">Get Started</Link>
             </Button>
-            <Button asChild variant="outline" className="border-journey-purple text-journey-purple py-6 px-8 text-lg">
-              <Link to="/products/blueprint">Learn More</Link>
+            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white py-6 px-8 text-lg border border-blue-600 flex items-center gap-2">
+              <Link to="/products/glean">
+                <img src="/Glean-logo.png" alt="Glean" className="w-5 h-5" />
+                Get Glean
+              </Link>
             </Button>
           </div>
         </div>
