@@ -94,7 +94,16 @@ const NorthernBeachesLanding = () => {
       {/* Logo Header */}
       <header className="py-6 px-4 bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="container mx-auto max-w-6xl">
-          <img src="/JOURN3Y-logo.svg" alt="JOURN3Y" className="h-12 w-auto" />
+          <div className="flex items-center space-x-2">
+            <img 
+              src="/JOURN3Y-logo.svg" 
+              alt="JOURN3Y Logo" 
+              className="h-10 w-10"
+            />
+            <span className="text-2xl font-bold font-heading tracking-tight text-foreground">
+              JOURN3Y
+            </span>
+          </div>
         </div>
       </header>
 
