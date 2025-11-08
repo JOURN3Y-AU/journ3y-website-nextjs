@@ -119,7 +119,7 @@ const NorthernBeachesLanding = () => {
             <div className="space-y-6 animate-fade-in opacity-0" style={{
             animationDelay: '0.2s'
           }}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for Your Business{' '}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for{' '}
                 <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Your Business</span>
               </h1>
               
