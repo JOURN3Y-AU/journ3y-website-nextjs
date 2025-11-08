@@ -16,17 +16,6 @@ const NorthernBeachesLanding = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     // Set page title and meta description
@@ -105,13 +94,7 @@ const NorthernBeachesLanding = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        className="relative py-16 md:py-24 px-4 overflow-hidden"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
-      >
+      <section className="relative py-16 md:py-24 px-4 overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 animate-gradient-shift" />
         
@@ -152,13 +135,7 @@ const NorthernBeachesLanding = () => {
               </div>
             </div>
             
-            <div 
-              className="relative animate-fade-in opacity-0" 
-              style={{ 
-                animationDelay: '0.4s',
-                transform: `translateY(${scrollY * -0.1}px)`,
-              }}
-            >
+            <div className="relative animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
               <div className="rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 hover:scale-[1.02] transform transition-transform">
                 <img 
                   src="/northern-beaches-hero.jpg" 
