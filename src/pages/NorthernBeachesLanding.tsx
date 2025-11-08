@@ -149,9 +149,7 @@ const NorthernBeachesLanding = () => {
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground">Stop Repetitive Writing</h3>
-                <p className="text-muted-foreground">
-                  Auto-generate property descriptions, client emails, and follow-ups in seconds
-                </p>
+                <p className="text-muted-foreground">Auto-generate marketing material, clients emails and follow-ups in seconds</p>
               </div>
             </Card>
 
@@ -161,9 +159,7 @@ const NorthernBeachesLanding = () => {
                   <FileText className="w-8 h-8 text-secondary" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground">Instant Reports & Quotes</h3>
-                <p className="text-muted-foreground">
-                  Create market analyses, proposals, and quotes while you're with clients
-                </p>
+                <p className="text-muted-foreground">Stop spending hours building quotes from scratch. Get instant insights into your business and clients</p>
               </div>
             </Card>
 
@@ -172,10 +168,8 @@ const NorthernBeachesLanding = () => {
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
                   <Clock className="w-8 h-8 text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Get Your Time Back</h3>
-                <p className="text-muted-foreground">
-                  Spend time building relationships, not stuck behind a keyboard
-                </p>
+                <h3 className="text-2xl font-bold text-foreground">Get Your weekends Back</h3>
+                <p className="text-muted-foreground">Make the most of your work dy so you can do more of what you want on the weekend</p>
               </div>
             </Card>
           </div>
