@@ -118,7 +118,7 @@ const NorthernBeachesLanding = () => {
               <div className="pt-4">
                 <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
                   <a href="https://calendly.com/kevin-morrell-journ3y/30min" target="_blank" rel="noopener noreferrer">
-                    Book Your Free 15-Minute Discovery Call
+                    Book Your Free 30-Minute Discovery Call
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
@@ -209,7 +209,7 @@ const NorthernBeachesLanding = () => {
               <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto text-3xl font-bold text-primary">
                 1
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Book a 15-minute discovery call</h3>
+              <h3 className="text-xl font-semibold text-foreground">Book a 30-minute discovery call</h3>
               <p className="text-muted-foreground">Quick chat to understand your business needs</p>
             </div>
 
