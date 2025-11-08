@@ -108,9 +108,7 @@ const NorthernBeachesLanding = () => {
             animationDelay: '0.2s'
           }}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">Find 5-10 Hours Per Week for Your Business{' '}
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">
-                  Real Estate Business
-                </span>
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Your Business</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-muted-foreground">
