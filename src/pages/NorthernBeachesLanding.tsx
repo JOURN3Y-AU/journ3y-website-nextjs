@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { Mail, FileText, Clock, CheckCircle, Users, Zap, ArrowRight } from 'lucide-react';
+import { Mail, FileText, Clock, CheckCircle, Zap, ArrowRight } from 'lucide-react';
 
 const NorthernBeachesLanding = () => {
   const { toast } = useToast();
@@ -129,8 +129,12 @@ const NorthernBeachesLanding = () => {
             </div>
             
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center">
-                <Users className="w-32 h-32 text-primary opacity-50" />
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/northern-beaches-hero.jpg" 
+                  alt="Professional business owner working productively in modern coastal office"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
