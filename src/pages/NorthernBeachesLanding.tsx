@@ -123,9 +123,7 @@ const NorthernBeachesLanding = () => {
                 <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Your Business</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground">
-                See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff
-              </p>
+              <p className="text-xl md:text-2xl text-muted-foreground">Find 5-10 Hours Per Week for Your Business</p>
               
               <div className="pt-4">
                 <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 hover:scale-105 transition-all shadow-lg hover:shadow-xl group" asChild onClick={() => handleCTAClick('hero')}>
