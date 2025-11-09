@@ -300,7 +300,7 @@ const NorthernBeachesLanding = () => {
             
             <div className="flex flex-col items-center space-y-2">
               <CheckCircle className="w-10 h-10 text-accent" />
-              <p className="text-lg font-semibold text-foreground">✓ No lock-in contracts</p>
+              <p className="text-lg font-semibold text-foreground">✓ Short term contracts</p>
             </div>
           </div>
         </div>
