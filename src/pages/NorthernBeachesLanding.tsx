@@ -24,6 +24,12 @@ const NorthernBeachesLanding = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', 'See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff. Book your free 15-minute discovery call.');
     }
+    
+    // Check if Meta Pixel is loaded
+    console.log('Meta Pixel available:', typeof (window as any).fbq !== 'undefined');
+    if (typeof (window as any).fbq !== 'undefined') {
+      console.log('Meta Pixel PageView tracked on mount');
+    }
   }, []);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -59,8 +65,11 @@ const NorthernBeachesLanding = () => {
       }
       
       // Meta Pixel conversion tracking
-      if (typeof window !== 'undefined' && 'fbq' in window) {
+      if (typeof window !== 'undefined' && typeof (window as any).fbq !== 'undefined') {
+        console.log('Tracking CompleteRegistration event');
         (window as any).fbq('track', 'CompleteRegistration');
+      } else {
+        console.warn('Meta Pixel not available for CompleteRegistration tracking');
       }
 
       setFormData({
@@ -89,8 +98,11 @@ const NorthernBeachesLanding = () => {
     }
     
     // Meta Pixel Lead event tracking
-    if (typeof window !== 'undefined' && 'fbq' in window) {
+    if (typeof window !== 'undefined' && typeof (window as any).fbq !== 'undefined') {
+      console.log('Tracking Lead event from:', location);
       (window as any).fbq('track', 'Lead');
+    } else {
+      console.warn('Meta Pixel not available for Lead tracking');
     }
   };
   return <div className="min-h-screen bg-background">
