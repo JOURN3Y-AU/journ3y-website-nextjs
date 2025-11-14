@@ -24,9 +24,6 @@ const NorthernBeachesLanding = () => {
     if (metaDescription) {
       metaDescription.setAttribute('content', 'See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff. Book your free 15-minute discovery call.');
     }
-
-    // Placeholder for Meta Pixel - Add your pixel ID here
-    // window.fbq('track', 'PageView');
   }, []);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -60,8 +57,11 @@ const NorthernBeachesLanding = () => {
           form_type: 'contact_form'
         });
       }
-      // Placeholder for Meta Pixel conversion tracking
-      // window.fbq('track', 'Lead');
+      
+      // Meta Pixel conversion tracking
+      if (typeof window !== 'undefined' && 'fbq' in window) {
+        (window as any).fbq('track', 'CompleteRegistration');
+      }
 
       setFormData({
         name: '',
@@ -87,8 +87,11 @@ const NorthernBeachesLanding = () => {
         page: 'northern_beaches_landing'
       });
     }
-    // Placeholder for Meta Pixel event tracking
-    // window.fbq('track', 'InitiateCheckout');
+    
+    // Meta Pixel Lead event tracking
+    if (typeof window !== 'undefined' && 'fbq' in window) {
+      (window as any).fbq('track', 'Lead');
+    }
   };
   return <div className="min-h-screen bg-background">
       {/* Logo Header */}
