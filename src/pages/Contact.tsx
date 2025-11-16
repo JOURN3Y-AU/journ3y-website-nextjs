@@ -2,14 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { 
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -17,32 +10,27 @@ import { toast } from '@/components/ui/use-toast';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { supabase } from "@/integrations/supabase/client";
 import { useMetaTags, META_CONFIGS } from '@/hooks/useMetaTags';
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Please enter your name' }),
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
-  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'], {
-    required_error: 'Please select a service',
+  name: z.string().min(2, {
+    message: 'Please enter your name'
   }),
+  email: z.string().email({
+    message: 'Please enter a valid email address'
+  }),
+  message: z.string().min(10, {
+    message: 'Message must be at least 10 characters'
+  }),
+  service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'], {
+    required_error: 'Please select a service'
+  })
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const Contact = () => {
   useMetaTags(META_CONFIGS.contact);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formInteracted, setFormInteracted] = useState(false);
-  
   const headerRef = useScrollReveal();
   const formRef = useScrollReveal();
   const infoRef = useScrollReveal();
@@ -82,19 +70,17 @@ const Contact = () => {
         }
       }
     };
-
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [formInteracted, isSuccess]);
-  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',
       message: '',
-      service: 'small-business',
-    },
+      service: 'small-business'
+    }
   });
 
   // Pre-populate form based on URL parameters
@@ -102,21 +88,17 @@ const Contact = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const service = urlParams.get('service');
     const industry = urlParams.get('industry');
-    
     if (service && ['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'].includes(service)) {
       form.setValue('service', service as any);
     }
-    
     if (industry) {
       const currentMessage = form.getValues('message') || '';
       const industryMessage = `Interested in ${industry} industry solutions. ${currentMessage}`;
       form.setValue('message', industryMessage.trim());
     }
   }, [form]);
-
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
     try {
       // Capture UTM parameters and additional data for campaign tracking
       const urlParams = new URLSearchParams(window.location.search);
@@ -128,14 +110,18 @@ const Contact = () => {
         selected_industry: urlParams.get('industry'),
         page_section: urlParams.get('inquiry') || 'contact_form'
       };
-      
+
       // Call the Supabase Edge Function
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: { ...data, campaignData },
+      const {
+        error
+      } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          ...data,
+          campaignData
+        }
       });
-      
       if (error) throw new Error(error.message);
-      
+
       // Track form submission with Meta Pixel
       if (typeof (window as any).fbq !== 'undefined') {
         (window as any).fbq('track', 'Lead', {
@@ -145,17 +131,15 @@ const Contact = () => {
           currency: 'AUD'
         });
       }
-      
       setIsSuccess(true);
       toast({
         title: 'Message sent!',
-        description: "We've received your inquiry and will get back to you soon.",
+        description: "We've received your inquiry and will get back to you soon."
       });
-      
       form.reset();
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      
+
       // Track submission error
       if (typeof (window as any).fbq !== 'undefined') {
         (window as any).fbq('trackCustom', 'FormError', {
@@ -163,27 +147,22 @@ const Contact = () => {
           error_message: error instanceof Error ? error.message : 'Unknown error'
         });
       }
-      
       toast({
         title: 'Something went wrong',
         description: 'Failed to send your message. Please try again.',
-        variant: 'destructive',
+        variant: 'destructive'
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <>
+  return <>
       {/* Header */}
       <section className="pt-32 pb-12 bg-gradient-to-r from-journey-purple/5 to-journey-blue/5">
         <div className="container mx-auto px-4">
           <div ref={headerRef} className="max-w-3xl reveal transition-all duration-700 ease-out">
-            <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl text-gray-700 mb-8">
-              Have questions or ready to start your AI journey? Reach out to our team of experts.
-            </p>
+            <h1 className="text-5xl font-bold mb-6">Ready to save your team 10+ hours a week?</h1>
+            <p className="text-xl text-gray-700 mb-8">See exactly how AI can remove admin tasks from your business. Book a free 30-minute discovery call with our team.</p>
           </div>
         </div>
       </section>
@@ -197,8 +176,7 @@ const Contact = () => {
               <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8">
                 <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
                 
-                {isSuccess ? (
-                  <div className="text-center py-8">
+                {isSuccess ? <div className="text-center py-8">
                     <div className="mb-4 text-journey-purple">
                       <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -209,59 +187,36 @@ const Contact = () => {
                       Your message has been sent successfully. Our team will get back to you shortly.
                     </p>
                     <Button onClick={() => setIsSuccess(false)}>Send Another Message</Button>
-                  </div>
-                ) : (
-                  <Form {...form}>
+                  </div> : <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="name" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Your Name*</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="John Doe" 
-                                {...field}
-                                onFocus={trackFormInteraction}
-                              />
+                              <Input placeholder="John Doe" {...field} onFocus={trackFormInteraction} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="email" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Email Address*</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="john@example.com" 
-                                {...field}
-                                onFocus={trackFormInteraction}
-                              />
+                              <Input placeholder="john@example.com" {...field} onFocus={trackFormInteraction} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <FormField
-                        control={form.control}
-                        name="service"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="service" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>I'm Interested In</FormLabel>
-                            <Select
-                              value={field.value}
-                              onValueChange={(value) => {
-                                trackFormInteraction();
-                                field.onChange(value);
-                              }}
-                            >
+                            <Select value={field.value} onValueChange={value => {
+                      trackFormInteraction();
+                      field.onChange(value);
+                    }}>
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a service" />
                               </SelectTrigger>
@@ -275,39 +230,23 @@ const Contact = () => {
                               </SelectContent>
                             </Select>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="message" render={({
+                    field
+                  }) => <FormItem>
                             <FormLabel>Your Message*</FormLabel>
                             <FormControl>
-                              <Textarea 
-                                placeholder="How can we help you?" 
-                                className="min-h-32"
-                                {...field}
-                                onFocus={trackFormInteraction}
-                              />
+                              <Textarea placeholder="How can we help you?" className="min-h-32" {...field} onFocus={trackFormInteraction} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-gradient-to-r from-journey-purple to-journey-blue text-white"
-                        disabled={isSubmitting}
-                      >
+                      <Button type="submit" className="w-full bg-gradient-to-r from-journey-purple to-journey-blue text-white" disabled={isSubmitting}>
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </Button>
                     </form>
-                  </Form>
-                )}
+                  </Form>}
               </div>
             </div>
             
@@ -347,12 +286,7 @@ const Contact = () => {
                 <div className="mt-12">
                   <h3 className="text-lg font-medium mb-4">Follow Us</h3>
                   <div className="flex space-x-4">
-                    <a 
-                      href="https://www.linkedin.com/company/journ3y-au" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-journey-purple hover:text-white transition-colors"
-                    >
+                    <a href="https://www.linkedin.com/company/journ3y-au" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-journey-purple hover:text-white transition-colors">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
                       </svg>
@@ -364,8 +298,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default Contact;
