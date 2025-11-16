@@ -138,7 +138,7 @@ const Contact = () => {
   };
   return <>
       {/* Header */}
-      <section className="pt-32 pb-12 bg-gradient-to-r from-journey-purple/5 to-journey-blue/5">
+      <section className="pt-24 pb-8 bg-gradient-to-r from-journey-purple/5 to-journey-blue/5">
         <div className="container mx-auto px-4">
           <div ref={headerRef} className="max-w-3xl reveal transition-all duration-700 ease-out">
             <h1 className="text-5xl font-bold mb-6">Time is your most precious resource... let AI give it back        </h1>
