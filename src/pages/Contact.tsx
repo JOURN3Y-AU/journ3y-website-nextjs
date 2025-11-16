@@ -28,8 +28,6 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Please enter your name' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),
-  company: z.string().optional(),
-  phone: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
   service: z.enum(['general', 'blueprint', 'glean', 'databricks', 'ai-resources', 'small-business'], {
     required_error: 'Please select a service',
@@ -53,10 +51,8 @@ const Contact = () => {
     defaultValues: {
       name: '',
       email: '',
-      company: '',
-      phone: '',
       message: '',
-      service: 'general',
+      service: 'small-business',
     },
   });
 
@@ -184,36 +180,6 @@ const Contact = () => {
                           </FormItem>
                         )}
                       />
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="company"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Company</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your company" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your phone number" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
                       
                       <FormField
                         control={form.control}
