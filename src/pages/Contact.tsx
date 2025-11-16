@@ -95,6 +95,14 @@ const Contact = () => {
       
       if (error) throw new Error(error.message);
       
+      // Track form submission with Meta Pixel
+      if (typeof (window as any).fbq !== 'undefined') {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Contact Form',
+          content_category: data.service,
+        });
+      }
+      
       setIsSuccess(true);
       toast({
         title: 'Message sent!',
