@@ -41,10 +41,51 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [formInteracted, setFormInteracted] = useState(false);
   
   const headerRef = useScrollReveal();
   const formRef = useScrollReveal();
   const infoRef = useScrollReveal();
+
+  // Track form view
+  useEffect(() => {
+    if (typeof (window as any).fbq !== 'undefined') {
+      (window as any).fbq('track', 'ViewContent', {
+        content_name: 'Contact Form Page',
+        content_category: 'contact'
+      });
+    }
+  }, []);
+
+  // Track form interaction start
+  const trackFormInteraction = () => {
+    if (!formInteracted) {
+      setFormInteracted(true);
+      if (typeof (window as any).fbq !== 'undefined') {
+        (window as any).fbq('track', 'InitiateCheckout', {
+          content_name: 'Contact Form Started',
+          content_category: 'form_interaction'
+        });
+      }
+    }
+  };
+
+  // Track form abandonment on page unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (formInteracted && !isSuccess) {
+        if (typeof (window as any).fbq !== 'undefined') {
+          (window as any).fbq('track', 'CustomizeProduct', {
+            content_name: 'Contact Form Abandoned',
+            content_category: 'form_abandonment'
+          });
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [formInteracted, isSuccess]);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -98,8 +139,10 @@ const Contact = () => {
       // Track form submission with Meta Pixel
       if (typeof (window as any).fbq !== 'undefined') {
         (window as any).fbq('track', 'Lead', {
-          content_name: 'Contact Form',
+          content_name: 'Contact Form Submitted',
           content_category: data.service,
+          value: 1.00,
+          currency: 'AUD'
         });
       }
       
@@ -112,6 +155,15 @@ const Contact = () => {
       form.reset();
     } catch (error) {
       console.error('Error submitting contact form:', error);
+      
+      // Track submission error
+      if (typeof (window as any).fbq !== 'undefined') {
+        (window as any).fbq('trackCustom', 'FormError', {
+          content_name: 'Contact Form Submission Error',
+          error_message: error instanceof Error ? error.message : 'Unknown error'
+        });
+      }
+      
       toast({
         title: 'Something went wrong',
         description: 'Failed to send your message. Please try again.',
@@ -168,7 +220,11 @@ const Contact = () => {
                           <FormItem>
                             <FormLabel>Your Name*</FormLabel>
                             <FormControl>
-                              <Input placeholder="John Doe" {...field} />
+                              <Input 
+                                placeholder="John Doe" 
+                                {...field}
+                                onFocus={trackFormInteraction}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -182,7 +238,11 @@ const Contact = () => {
                           <FormItem>
                             <FormLabel>Email Address*</FormLabel>
                             <FormControl>
-                              <Input placeholder="john@example.com" {...field} />
+                              <Input 
+                                placeholder="john@example.com" 
+                                {...field}
+                                onFocus={trackFormInteraction}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -197,7 +257,10 @@ const Contact = () => {
                             <FormLabel>I'm Interested In</FormLabel>
                             <Select
                               value={field.value}
-                              onValueChange={field.onChange}
+                              onValueChange={(value) => {
+                                trackFormInteraction();
+                                field.onChange(value);
+                              }}
                             >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a service" />
@@ -226,7 +289,8 @@ const Contact = () => {
                               <Textarea 
                                 placeholder="How can we help you?" 
                                 className="min-h-32"
-                                {...field} 
+                                {...field}
+                                onFocus={trackFormInteraction}
                               />
                             </FormControl>
                             <FormMessage />
