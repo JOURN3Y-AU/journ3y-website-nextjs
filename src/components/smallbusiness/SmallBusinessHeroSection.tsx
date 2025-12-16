@@ -1,11 +1,9 @@
+'use client'
+
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Building2, Users, Zap } from 'lucide-react';
-interface SmallBusinessHeroSectionProps {
-  utmParams?: Record<string, string>;
-}
-const SmallBusinessHeroSection = ({
-  utmParams
-}: SmallBusinessHeroSectionProps) => {
+
+const SmallBusinessHeroSection = () => {
   const scrollToIndustrySelector = () => {
     const element = document.getElementById('industry-selector');
     if (element) {
@@ -18,8 +16,7 @@ const SmallBusinessHeroSection = ({
     if (typeof window !== 'undefined' && 'gtag' in window) {
       (window as any).gtag('event', 'cta_click', {
         section: 'hero',
-        action: 'scroll_to_industries',
-        campaign: utmParams?.utm_campaign || 'direct'
+        action: 'scroll_to_industries'
       });
     }
   };

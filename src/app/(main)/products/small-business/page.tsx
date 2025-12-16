@@ -1,5 +1,10 @@
 import { Metadata } from 'next'
-import SmallBusinessPageClient from './SmallBusinessPageClient'
+import { Suspense } from 'react'
+import SmallBusinessHeroSection from '@/components/smallbusiness/SmallBusinessHeroSection'
+import SmallBusinessIndustrySelector from '@/components/smallbusiness/SmallBusinessIndustrySelector'
+import SmallBusinessHowItWorksSection from '@/components/smallbusiness/SmallBusinessHowItWorksSection'
+import SmallBusinessFinalCTA from '@/components/smallbusiness/SmallBusinessFinalCTA'
+import SmallBusinessAnalytics from './SmallBusinessAnalytics'
 
 export const metadata: Metadata = {
   title: 'AI Solutions for Small Business Australia | JOURN3Y-SMB',
@@ -28,5 +33,15 @@ export const metadata: Metadata = {
 }
 
 export default function SmallBusinessPage() {
-  return <SmallBusinessPageClient />
+  return (
+    <>
+      <Suspense fallback={null}>
+        <SmallBusinessAnalytics />
+      </Suspense>
+      <SmallBusinessHeroSection />
+      <SmallBusinessIndustrySelector />
+      <SmallBusinessHowItWorksSection />
+      <SmallBusinessFinalCTA />
+    </>
+  )
 }

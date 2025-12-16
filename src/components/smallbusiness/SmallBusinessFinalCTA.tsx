@@ -1,20 +1,21 @@
+'use client'
+
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, Calendar, MessageCircle, Star } from 'lucide-react'
 
-interface SmallBusinessFinalCTAProps {
-  utmParams?: Record<string, string>;
-}
+const SmallBusinessFinalCTA = () => {
+  const searchParams = useSearchParams()
 
-const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
   const handleCTAClick = (action: string) => {
     // Track CTA click with Google Analytics
     if (typeof window !== 'undefined' && 'gtag' in window) {
       (window as any).gtag('event', 'cta_click', {
         section: 'final',
         action,
-        campaign: utmParams?.utm_campaign || 'direct'
+        campaign: searchParams.get('utm_campaign') || 'direct'
       });
     }
   };
@@ -84,7 +85,7 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
               className="bg-gradient-to-r from-primary to-secondary text-white text-lg px-8"
             >
               <Link
-                href={`/contact?service=small-business&inquiry=demo&utm_source=${utmParams?.utm_source || 'page'}`}
+                href={`/contact?service=small-business&inquiry=demo&utm_source=${searchParams.get('utm_source') || 'page'}`}
                 onClick={() => handleCTAClick('request_demo')}
               >
                 Get Your Free Demo

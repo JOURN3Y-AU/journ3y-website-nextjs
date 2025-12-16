@@ -2,33 +2,32 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Building2, Users, Zap, CheckCircle, ArrowRight, Heart, PhoneOff, Search, TrendingUp, DollarSign } from 'lucide-react'
 
-interface SmallBusinessIndustrySelectorProps {
-  utmParams?: Record<string, string>;
-}
-
-const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelectorProps) => {
+const SmallBusinessIndustrySelector = () => {
+  const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState('recruitment');
 
   // Set default tab based on URL parameter
   useEffect(() => {
-    if (utmParams?.industry) {
-      setActiveTab(utmParams.industry);
+    const industry = searchParams.get('industry')
+    if (industry) {
+      setActiveTab(industry);
     }
-  }, [utmParams]);
+  }, [searchParams]);
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    
+
     // Track tab click with Google Analytics
     if (typeof window !== 'undefined' && 'gtag' in window) {
       (window as any).gtag('event', 'tab_click', {
         industry: value,
-        campaign: utmParams?.utm_campaign || 'direct'
+        campaign: searchParams.get('utm_campaign') || 'direct'
       });
     }
   };
@@ -40,7 +39,7 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
         section: 'industry_selector',
         action,
         industry: activeTab,
-        campaign: utmParams?.utm_campaign || 'direct'
+        campaign: searchParams.get('utm_campaign') || 'direct'
       });
     }
   };
@@ -215,7 +214,7 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary text-white">
                       <Link
-                        href={`/contact?service=small-business&industry=${key}&utm_source=${utmParams?.utm_source || 'page'}`}
+                        href={`/contact?service=small-business&industry=${key}&utm_source=${searchParams.get('utm_source') || 'page'}`}
                         onClick={() => handleCTAClick('request_demo')}
                       >
                         Request Demo
