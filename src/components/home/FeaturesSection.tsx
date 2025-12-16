@@ -1,3 +1,4 @@
+'use client'
 
 import { Lightbulb, Rocket, Target } from 'lucide-react';
 import useScrollReveal from '@/hooks/useScrollReveal';

@@ -1,3 +1,4 @@
+'use client'
 
 import { Database, Brain, Shield } from 'lucide-react';
 import useScrollReveal from '@/hooks/useScrollReveal';

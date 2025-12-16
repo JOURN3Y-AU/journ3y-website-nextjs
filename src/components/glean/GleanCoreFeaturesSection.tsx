@@ -1,3 +1,4 @@
+'use client'
 
 import { Search, SquarePen, Workflow } from 'lucide-react';
 import useScrollReveal from '@/hooks/useScrollReveal';

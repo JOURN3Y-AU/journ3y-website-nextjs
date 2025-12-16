@@ -1,6 +1,8 @@
 
+'use client'
+
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 
 const ANNOUNCEMENT_STORAGE_KEY = 'journ3y_announcement_dismissed';
 const ANNOUNCEMENT_VERSION = 'glean_partnership_2024';

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle, Download, Mail, Calendar } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from 'recharts';
-import { DashboardData, ContactInfo } from '@/pages/products/AIAssessmentLong';
+import { DashboardData, ContactInfo } from '@/types/assessment';
 
 interface LongAssessmentResultsProps {
   dashboardData: DashboardData | null;

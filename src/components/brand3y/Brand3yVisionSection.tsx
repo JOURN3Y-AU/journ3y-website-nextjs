@@ -1,3 +1,4 @@
+'use client'
 
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { Zap, Activity, Brain, TrendingUp, FileText } from 'lucide-react';

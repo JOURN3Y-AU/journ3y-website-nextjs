@@ -1,21 +1,22 @@
+'use client'
 
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import TeamPageSettings from './team/TeamPageSettings';
-import AnnouncementSettings from './AnnouncementSettings';
-import TeamMembersList from './team/TeamMembersList';
-import { useTeamMembers } from '@/hooks/useTeamMembers';
-import { useSiteSettings } from '@/hooks/useSiteSettings';
-import { useAnnouncement } from '@/hooks/useAnnouncement';
-import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import TeamPageSettings from './team/TeamPageSettings'
+import AnnouncementSettings from './AnnouncementSettings'
+import TeamMembersList from './team/TeamMembersList'
+import { useTeamMembers } from '@/hooks/useTeamMembers'
+import { useSiteSettings } from '@/hooks/useSiteSettings'
+import { useAnnouncement } from '@/hooks/useAnnouncement'
+import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase/client'
 
 interface AdminTeamManagementProps {
   onLogout: () => void;
 }
 
 export default function AdminTeamManagement({ onLogout }: AdminTeamManagementProps) {
-  const navigate = useNavigate();
+  const router = useRouter()
   const { teamMembers, loading: loadingTeamMembers, refetchTeamMembers } = useTeamMembers();
   const { showTeamPage, loading: loadingSettings } = useSiteSettings();
   const { resetAnnouncement, refetchSettings } = useAnnouncement();
@@ -72,7 +73,7 @@ export default function AdminTeamManagement({ onLogout }: AdminTeamManagementPro
         <h1 className="text-3xl font-bold">Team Management</h1>
         
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => navigate('/admin')} variant="outline">
+          <Button onClick={() => router.push('/admin')} variant="outline">
             Back to Dashboard
           </Button>
           

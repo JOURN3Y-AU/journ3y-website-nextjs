@@ -1,3 +1,4 @@
+'use client'
 
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { ArrowRight, Target, Crown } from 'lucide-react';

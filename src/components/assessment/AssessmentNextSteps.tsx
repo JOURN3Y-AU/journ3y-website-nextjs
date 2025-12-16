@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Calendar, Mail, Loader2 } from 'lucide-react';
-import { ContactInfo } from '@/pages/products/AIAssessment';
+import { ContactInfo } from '@/types/assessment';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 

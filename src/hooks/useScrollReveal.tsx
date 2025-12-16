@@ -1,5 +1,6 @@
+'use client'
 
-import { useEffect, useRef, RefObject } from 'react';
+import { useEffect, useRef, RefObject } from 'react'
 
 interface ScrollRevealOptions {
   threshold?: number;

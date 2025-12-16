@@ -1,7 +1,7 @@
 
 import { CheckCircle } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { ContactInfo } from '@/pages/products/AIAssessment';
+import { ContactInfo } from '@/types/assessment';
 
 interface AssessmentEmailConfirmationProps {
   contactInfo: ContactInfo | null;

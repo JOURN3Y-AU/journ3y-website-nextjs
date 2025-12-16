@@ -1,8 +1,9 @@
+'use client'
 
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import AINetwork from '@/components/animations/AINetwork';
-import useScrollReveal from '@/hooks/useScrollReveal';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import AINetwork from '@/components/animations/AINetwork'
+import useScrollReveal from '@/hooks/useScrollReveal'
 
 const HeroSection = () => {
   const heroRef = useScrollReveal();
@@ -26,10 +27,10 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild className="bg-gradient-to-r from-journey-purple to-journey-blue text-white py-6 px-8 text-lg flex-1 sm:flex-none">
-              <Link to="/contact">Get Started</Link>
+              <Link href="/contact">Get Started</Link>
             </Button>
             <Button asChild className="bg-gradient-to-r from-lime-400 to-lime-300 hover:from-lime-500 hover:to-lime-400 text-blue-600 py-6 px-8 text-lg border border-lime-400 flex items-center justify-center font-semibold flex-1 sm:flex-none">
-              <Link to="/products/glean">
+              <Link href="/products/glean">
                 Get Glean
               </Link>
             </Button>

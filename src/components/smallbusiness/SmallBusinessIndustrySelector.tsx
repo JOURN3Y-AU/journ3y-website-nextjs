@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Building2, Users, Zap, CheckCircle, ArrowRight, Heart, PhoneOff, Search, TrendingUp, DollarSign } from 'lucide-react';
-import { Link } from 'react-router-dom';
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Building2, Users, Zap, CheckCircle, ArrowRight, Heart, PhoneOff, Search, TrendingUp, DollarSign } from 'lucide-react'
 
 interface SmallBusinessIndustrySelectorProps {
   utmParams?: Record<string, string>;
@@ -212,8 +214,8 @@ const SmallBusinessIndustrySelector = ({ utmParams }: SmallBusinessIndustrySelec
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary text-white">
-                      <Link 
-                        to={`/contact?service=small-business&industry=${key}&utm_source=${utmParams?.utm_source || 'page'}`}
+                      <Link
+                        href={`/contact?service=small-business&industry=${key}&utm_source=${utmParams?.utm_source || 'page'}`}
                         onClick={() => handleCTAClick('request_demo')}
                       >
                         Request Demo

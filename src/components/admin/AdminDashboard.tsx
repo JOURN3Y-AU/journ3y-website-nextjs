@@ -1,9 +1,10 @@
+'use client'
 
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import BlogPostsTable from './blog/BlogPostsTable';
-import { supabase } from '@/integrations/supabase/client';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import BlogPostsTable from './blog/BlogPostsTable'
+import { supabase } from '@/lib/supabase/client'
 import { User, Edit, Users, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { BlogPost } from '@/types/blog';
@@ -13,7 +14,7 @@ interface AdminDashboardProps {
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const navigate = useNavigate();
+  const router = useRouter()
   const [currentUserEmail, setCurrentUserEmail] = useState<string | null>(null);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -137,23 +138,23 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           )}
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button onClick={() => navigate('/admin/users')} variant="outline" className="flex items-center">
+          <Button onClick={() => router.push('/admin/users')} variant="outline" className="flex items-center">
             <User className="mr-2 h-4 w-4" />
             Manage Users
           </Button>
-          <Button onClick={() => navigate('/admin/team')} variant="outline" className="flex items-center">
+          <Button onClick={() => router.push('/admin/team')} variant="outline" className="flex items-center">
             <Users className="mr-2 h-4 w-4" />
             Manage Team
           </Button>
-          <Button onClick={() => navigate('/admin/pages')} variant="outline" className="flex items-center">
+          <Button onClick={() => router.push('/admin/pages')} variant="outline" className="flex items-center">
             <FileText className="mr-2 h-4 w-4" />
             Manage Pages
           </Button>
-          <Button onClick={() => navigate('/admin/documents')} variant="outline" className="flex items-center">
+          <Button onClick={() => router.push('/admin/documents')} variant="outline" className="flex items-center">
             <FileText className="mr-2 h-4 w-4" />
             Documents
           </Button>
-          <Button onClick={() => navigate('/admin/new')} variant="default" className="flex items-center">
+          <Button onClick={() => router.push('/admin/new')} variant="default" className="flex items-center">
             <Edit className="mr-2 h-4 w-4" />
             New Post
           </Button>

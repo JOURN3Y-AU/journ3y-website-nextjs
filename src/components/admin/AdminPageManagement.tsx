@@ -1,4 +1,6 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+'use client'
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { usePages } from "@/hooks/usePages";
 import { PagesTable } from "./pages/PagesTable";
 import { Loader2 } from "lucide-react";

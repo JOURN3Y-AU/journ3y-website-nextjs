@@ -1,3 +1,4 @@
+'use client'
 
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { Building2, Users, TrendingUp } from 'lucide-react';

@@ -1,9 +1,10 @@
+'use client'
 
-import { Link } from 'react-router-dom';
-import { FileText, Users } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import useScrollReveal from '@/hooks/useScrollReveal';
+import Link from 'next/link'
+import { FileText, Users } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import useScrollReveal from '@/hooks/useScrollReveal'
 
 interface ProductCardProps {
   title: string;
@@ -30,7 +31,7 @@ const ProductCard = ({ title, description, icon, gradient, link, buttonColor }: 
           variant="outline" 
           className={`w-full justify-center mt-auto border-${buttonColor} text-${buttonColor} hover:bg-${buttonColor}/10`}
         >
-          <Link to={link}>Learn More</Link>
+          <Link href={link}>Learn More</Link>
         </Button>
       </CardContent>
     </Card>

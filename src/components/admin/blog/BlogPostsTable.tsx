@@ -1,7 +1,6 @@
-
-import { Link } from 'react-router-dom';
-import { Pencil, Star, StarOff } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link'
+import { Pencil, Star, StarOff } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import DeletePostButton from './DeletePostButton';
 import FeaturePostButton from './FeaturePostButton';
 import { BlogPost } from '@/types/blog';
@@ -67,7 +66,7 @@ export default function BlogPostsTable({
                     variant="outline"
                     asChild
                   >
-                    <Link to={`/admin/edit/${post.slug}`}>
+                    <Link href={`/admin/edit/${post.slug}`}>
                       <Pencil className="h-4 w-4" />
                     </Link>
                   </Button>

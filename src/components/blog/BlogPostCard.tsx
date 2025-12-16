@@ -1,6 +1,5 @@
-
-import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link'
+import { Card, CardContent } from '@/components/ui/card'
 
 interface BlogPostCardProps {
   post: {
@@ -28,12 +27,12 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           <span className="text-sm text-gray-500">{post.published_at}</span>
         </div>
         <h3 className="text-xl font-semibold mb-3 hover:text-journey-purple transition-colors">
-          <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
         <p className="text-gray-600 mb-4 flex-grow">
           {post.excerpt}
         </p>
-        <Link to={`/blog/${post.slug}`} className="text-journey-purple font-medium hover:underline mt-auto inline-block">
+        <Link href={`/blog/${post.slug}`} className="text-journey-purple font-medium hover:underline mt-auto inline-block">
           Read More →
         </Link>
       </CardContent>

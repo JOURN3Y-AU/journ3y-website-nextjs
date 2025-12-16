@@ -1,5 +1,6 @@
+'use client'
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
 const AINetwork = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

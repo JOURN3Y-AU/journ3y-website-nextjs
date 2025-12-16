@@ -1,3 +1,4 @@
+'use client'
 
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { AlertCircle, Clock, TrendingDown, HelpCircle } from 'lucide-react';

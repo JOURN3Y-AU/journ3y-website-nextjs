@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
-import { AssessmentAnswers, ContactInfo } from '@/pages/products/AIAssessment';
+import { AssessmentAnswers, ContactInfo } from '@/types/assessment';
 
 interface AssessmentFormProps {
   isContactStep?: boolean;

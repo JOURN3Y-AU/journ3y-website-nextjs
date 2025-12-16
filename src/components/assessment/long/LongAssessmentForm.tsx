@@ -10,7 +10,7 @@ import KnowledgeManagementSection from './sections/KnowledgeManagementSection';
 import DataAIReadinessSection from './sections/DataAIReadinessSection';
 import RoleSpecificSection from './sections/RoleSpecificSection';
 import ContactSection from './sections/ContactSection';
-import { LongAssessmentAnswers, ContactInfo } from '@/pages/products/AIAssessmentLong';
+import { LongAssessmentAnswers, ContactInfo } from '@/types/assessment';
 
 interface LongAssessmentFormProps {
   onComplete: (answers: LongAssessmentAnswers, contact: ContactInfo) => void;

@@ -1,12 +1,13 @@
+'use client'
 
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label'; 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { supabase } from '@/integrations/supabase/client';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { supabase } from '@/lib/supabase/client'
 import { useToast } from '@/hooks/use-toast';
 import { User, UserPlus, Trash2, AlertCircle, InfoIcon } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -23,7 +24,7 @@ type AdminUser = {
 };
 
 export default function AdminUserManagement({ onLogout }: AdminUserManagementProps) {
-  const navigate = useNavigate();
+  const router = useRouter()
   const { toast } = useToast();
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -150,7 +151,7 @@ export default function AdminUserManagement({ onLogout }: AdminUserManagementPro
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <Button variant="outline" onClick={() => navigate('/admin')}>
+          <Button variant="outline" onClick={() => router.push('/admin')}>
             Back
           </Button>
           <Button variant="outline" onClick={onLogout}>

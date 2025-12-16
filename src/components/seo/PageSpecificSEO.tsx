@@ -1,8 +1,10 @@
+'use client'
+
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 const PageSpecificSEO = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Remove any existing page-specific SEO content
@@ -17,7 +19,7 @@ const PageSpecificSEO = () => {
     }
 
     // Add Glean-specific SEO content only for the Glean page
-    if (location.pathname === '/products/glean') {
+    if (pathname === '/products/glean') {
       // Add noscript content for search engines
       const noscriptElement = document.createElement('noscript');
       noscriptElement.id = 'page-specific-noscript';
@@ -149,7 +151,7 @@ const PageSpecificSEO = () => {
         structuredDataToRemove.remove();
       }
     };
-  }, [location.pathname]);
+  }, [pathname]);
 
   return null;
 };

@@ -1,3 +1,5 @@
+'use client'
+
 import { CheckCircle, Award, Users, Headphones, Target } from 'lucide-react';
 import useScrollReveal from '@/hooks/useScrollReveal';
 

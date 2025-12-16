@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { ContactInfo } from '@/pages/products/AIAssessment';
+import { ContactInfo } from '@/types/assessment';
 import AssessmentGenerating from './AssessmentGenerating';
 import AssessmentSuccessHeader from './AssessmentSuccessHeader';
 import AssessmentResultsDisplay from './AssessmentResultsDisplay';

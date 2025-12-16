@@ -1,8 +1,10 @@
 
+'use client'
+
 import { useState } from 'react';
 import { X, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   Drawer,
@@ -19,7 +21,7 @@ interface AnnouncementOverlayProps {
 }
 
 const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [isClosing, setIsClosing] = useState(false);
   const isMobile = useIsMobile();
 
@@ -35,7 +37,7 @@ const AnnouncementOverlay = ({ isOpen, onClose }: AnnouncementOverlayProps) => {
 
   const handleLearnMore = () => {
     onClose();
-    navigate('/products/glean');
+    router.push('/products/glean');
   };
 
   const benefits = [

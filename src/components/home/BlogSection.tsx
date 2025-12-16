@@ -1,10 +1,11 @@
+'use client'
 
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import useScrollReveal from '@/hooks/useScrollReveal';
-import { supabase } from '@/integrations/supabase/client';
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import useScrollReveal from '@/hooks/useScrollReveal'
+import { supabase } from '@/lib/supabase/client'
 
 interface FeaturedPost {
   id: string;
@@ -80,7 +81,7 @@ const BlogSection = () => {
             <div className="col-span-3 text-center py-10">
               <p className="text-lg text-gray-600">No featured blog posts available.</p>
               <Button asChild className="mt-4">
-                <Link to="/blog">Browse All Articles</Link>
+                <Link href="/blog">Browse All Articles</Link>
               </Button>
             </div>
           ) : (
@@ -94,12 +95,12 @@ const BlogSection = () => {
                 <CardContent className="p-6">
                   <div className="text-sm text-gray-500 mb-2">{post.published_at}</div>
                   <h3 className="text-xl font-semibold mb-2 hover:text-journey-purple transition-colors tracking-tight">
-                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   <p className="text-gray-600 mb-4">
                     {post.excerpt}
                   </p>
-                  <Link to={`/blog/${post.slug}`} className="text-journey-purple font-medium hover:underline">
+                  <Link href={`/blog/${post.slug}`} className="text-journey-purple font-medium hover:underline">
                     Read More →
                   </Link>
                 </CardContent>
@@ -110,7 +111,7 @@ const BlogSection = () => {
         
         <div className="text-center mt-12">
           <Button asChild variant="outline" className="border-journey-purple text-journey-purple hover:bg-journey-purple/10">
-            <Link to="/blog">View All Articles</Link>
+            <Link href="/blog">View All Articles</Link>
           </Button>
         </div>
       </div>

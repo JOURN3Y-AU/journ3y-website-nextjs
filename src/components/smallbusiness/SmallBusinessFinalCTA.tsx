@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Calendar, MessageCircle, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { ArrowRight, Calendar, MessageCircle, Star } from 'lucide-react'
 
 interface SmallBusinessFinalCTAProps {
   utmParams?: Record<string, string>;
@@ -83,8 +83,8 @@ const SmallBusinessFinalCTA = ({ utmParams }: SmallBusinessFinalCTAProps) => {
               size="lg" 
               className="bg-gradient-to-r from-primary to-secondary text-white text-lg px-8"
             >
-              <Link 
-                to={`/contact?service=small-business&inquiry=demo&utm_source=${utmParams?.utm_source || 'page'}`}
+              <Link
+                href={`/contact?service=small-business&inquiry=demo&utm_source=${utmParams?.utm_source || 'page'}`}
                 onClick={() => handleCTAClick('request_demo')}
               >
                 Get Your Free Demo

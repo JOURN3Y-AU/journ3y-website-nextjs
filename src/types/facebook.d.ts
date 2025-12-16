@@ -6,6 +6,7 @@ declare global {
       data?: Record<string, any>
     ) => void;
     _fbq?: any;
+    gtag?: (command: string, action: string, params?: object) => void;
   }
 }
 

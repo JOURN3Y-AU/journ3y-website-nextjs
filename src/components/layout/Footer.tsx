@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl font-bold bg-gradient-to-r from-journey-purple to-journey-blue bg-clip-text text-transparent">
                 JOURN3Y
               </span>
@@ -21,17 +21,17 @@ const Footer = () => {
             <h4 className="font-heading font-medium text-lg mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/products/blueprint" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/products/blueprint" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Blueprint
                 </Link>
               </li>
               <li>
-                <Link to="/products/glean" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/products/glean" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Glean
                 </Link>
               </li>
               <li>
-                <Link to="/products/services" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/products/services" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Services
                 </Link>
               </li>
@@ -42,12 +42,12 @@ const Footer = () => {
             <h4 className="font-heading font-medium text-lg mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/blog" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/blog" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/resources" className="text-gray-600 hover:text-journey-purple transition-colors">
                   White Papers
                 </Link>
               </li>
@@ -58,12 +58,12 @@ const Footer = () => {
             <h4 className="font-heading font-medium text-lg mb-4">Contact</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/contact" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/contact" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-600 hover:text-journey-purple transition-colors">
+                <Link href="/privacy" className="text-gray-600 hover:text-journey-purple transition-colors">
                   Privacy Policy
                 </Link>
               </li>

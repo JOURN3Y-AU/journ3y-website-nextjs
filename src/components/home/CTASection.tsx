@@ -1,6 +1,5 @@
-
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const CTASection = () => {
   return (
@@ -11,7 +10,7 @@ const CTASection = () => {
           Contact us today to schedule a consultation and discover how our AI solutions can drive growth for your business.
         </p>
         <Button asChild variant="secondary" size="lg" className="px-8 py-6 text-lg bg-white text-journey-purple hover:bg-gray-100">
-          <Link to="/contact">Get Started</Link>
+          <Link href="/contact">Get Started</Link>
         </Button>
       </div>
     </section>
