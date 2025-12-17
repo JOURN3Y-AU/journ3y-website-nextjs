@@ -16,21 +16,21 @@ interface DemoItem {
 // Reference as: /demos/your-file.gif or /demos/your-file.mp4
 const demoItems: DemoItem[] = [
   {
-    title: 'AI-Powered Quoting',
-    description: 'Watch a quote get generated in seconds, not hours. Our AI pulls from your price lists, understands the job scope, and creates professional quotes instantly.',
-    mediaUrl: '/demos/quoting-demo.gif', // Save your file as public/demos/quoting-demo.gif
+    title: 'Ask Anything, Get Real Answers',
+    description: 'Ask questions in plain English and get real-time answers. Check exchange rates, search for information, or get help with any business question - your AI assistant knows how to find what you need.',
+    mediaUrl: '/demos/chat-demo.gif', // Save your file as public/demos/chat-demo.gif
     mediaType: 'gif',
   },
   {
-    title: 'Smart Document Processing',
-    description: 'Invoices, receipts, and forms are processed automatically. No more manual data entry - the AI reads, extracts, and organises everything.',
-    mediaUrl: '/demos/document-processing.gif', // Save your file as public/demos/document-processing.gif
+    title: 'Contract Risk Review',
+    description: 'Upload any contract and get an instant risk analysis. Key terms highlighted, obligations summarised, and potential issues flagged - so you know exactly what you\'re signing.',
+    mediaUrl: '/demos/contract-review.gif', // Save your file as public/demos/contract-review.gif
     mediaType: 'gif',
   },
   {
-    title: 'Instant Customer Responses',
-    description: 'AI handles enquiries 24/7 in your voice. Whether it\'s a quote request at 2am or a follow-up question, your customers get instant, accurate responses.',
-    mediaUrl: '/demos/customer-responses.gif', // Save your file as public/demos/customer-responses.gif
+    title: 'From Document to Done',
+    description: 'Read a document, understand it, then take action. Watch the AI summarise an invoice and draft a follow-up email to the client - ready to send in seconds.',
+    mediaUrl: '/demos/document-to-email.gif', // Save your file as public/demos/document-to-email.gif
     mediaType: 'gif',
   },
 ]
