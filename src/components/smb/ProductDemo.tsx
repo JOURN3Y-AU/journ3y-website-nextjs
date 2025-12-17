@@ -16,8 +16,8 @@ interface DemoItem {
 // Reference as: /demos/your-file.gif or /demos/your-file.mp4
 const demoItems: DemoItem[] = [
   {
-    title: 'Ask Anything, Get Real Answers',
-    description: 'Ask questions in plain English and get real-time answers. Check exchange rates, search for information, or get help with any business question - your AI assistant knows how to find what you need.',
+    title: 'Your Business Assistant',
+    description: 'Like ChatGPT, but it actually knows your industry. Ask about pricing benchmarks, compliance requirements, or market research - and get answers that make sense for Australian small business.',
     mediaUrl: '/demos/chat-demo.gif', // Save your file as public/demos/chat-demo.gif
     mediaType: 'gif',
   },
