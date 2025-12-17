@@ -615,6 +615,201 @@ export type Database = {
         }
         Relationships: []
       }
+      smb_industries: {
+        Row: {
+          id: string
+          slug: string
+          name: string
+          tagline: string
+          icon_name: string
+          hero_headline: string
+          hero_subhead: string
+          hero_image_url: string | null
+          results_statement: string | null
+          related_industries: string[]
+          metadata_title: string | null
+          metadata_description: string | null
+          metadata_keywords: string[]
+          display_order: number
+          is_active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          name: string
+          tagline: string
+          icon_name?: string
+          hero_headline: string
+          hero_subhead: string
+          hero_image_url?: string | null
+          results_statement?: string | null
+          related_industries?: string[]
+          metadata_title?: string | null
+          metadata_description?: string | null
+          metadata_keywords?: string[]
+          display_order?: number
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          name?: string
+          tagline?: string
+          icon_name?: string
+          hero_headline?: string
+          hero_subhead?: string
+          hero_image_url?: string | null
+          results_statement?: string | null
+          related_industries?: string[]
+          metadata_title?: string | null
+          metadata_description?: string | null
+          metadata_keywords?: string[]
+          display_order?: number
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      smb_pain_points: {
+        Row: {
+          id: string
+          industry_id: string
+          title: string
+          description: string
+          display_order: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          industry_id: string
+          title: string
+          description: string
+          display_order?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          industry_id?: string
+          title?: string
+          description?: string
+          display_order?: number
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "smb_pain_points_industry_id_fkey"
+            columns: ["industry_id"]
+            isOneToOne: false
+            referencedRelation: "smb_industries"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      smb_use_cases: {
+        Row: {
+          id: string
+          industry_id: string
+          title: string
+          description: string
+          benefit: string | null
+          icon_name: string
+          image_url: string | null
+          display_order: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          industry_id: string
+          title: string
+          description: string
+          benefit?: string | null
+          icon_name?: string
+          image_url?: string | null
+          display_order?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          industry_id?: string
+          title?: string
+          description?: string
+          benefit?: string | null
+          icon_name?: string
+          image_url?: string | null
+          display_order?: number
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "smb_use_cases_industry_id_fkey"
+            columns: ["industry_id"]
+            isOneToOne: false
+            referencedRelation: "smb_industries"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      smb_faqs: {
+        Row: {
+          id: string
+          industry_id: string
+          question: string
+          answer: string
+          display_order: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          industry_id: string
+          question: string
+          answer: string
+          display_order?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          industry_id?: string
+          question?: string
+          answer?: string
+          display_order?: number
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "smb_faqs_industry_id_fkey"
+            columns: ["industry_id"]
+            isOneToOne: false
+            referencedRelation: "smb_industries"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      smb_admin_users: {
+        Row: {
+          id: string
+          email: string
+          name: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          name?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          name?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
