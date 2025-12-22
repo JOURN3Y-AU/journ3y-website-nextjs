@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Play, Maximize2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface DemoItem {
@@ -18,25 +18,26 @@ const demoItems: DemoItem[] = [
   {
     title: 'Your Business Assistant',
     description: 'Like ChatGPT, but it actually knows your industry. Ask about pricing benchmarks, compliance requirements, or market research - and get answers that make sense for Australian small business.',
-    mediaUrl: '/demos/chat-demo.gif', // Save your file as public/demos/chat-demo.gif
-    mediaType: 'gif',
+    mediaUrl: '/demos/chat-demo.mp4',
+    mediaType: 'video',
   },
   {
     title: 'Contract Risk Review',
     description: 'Upload any contract and get an instant risk analysis. Key terms highlighted, obligations summarised, and potential issues flagged - so you know exactly what you\'re signing.',
-    mediaUrl: '/demos/contract-review.gif', // Save your file as public/demos/contract-review.gif
-    mediaType: 'gif',
+    mediaUrl: '/demos/contract-review.mp4',
+    mediaType: 'video',
   },
   {
     title: 'From Document to Done',
     description: 'Read a document, understand it, then take action. Watch the AI summarise an invoice and draft a follow-up email to the client - ready to send in seconds.',
-    mediaUrl: '/demos/document-to-email.gif', // Save your file as public/demos/document-to-email.gif
-    mediaType: 'gif',
+    mediaUrl: '/demos/document-to-email.mp4',
+    mediaType: 'video',
   },
 ]
 
 export default function ProductDemo() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isExpanded, setIsExpanded] = useState(false)
   const currentItem = demoItems[currentIndex]
   const hasMedia = currentItem.mediaUrl && currentItem.mediaUrl.length > 0
 
@@ -61,26 +62,36 @@ export default function ProductDemo() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Media Side */}
           <div className="relative order-1 md:order-1">
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-muted shadow-xl border">
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-muted shadow-xl border group">
               {hasMedia ? (
-                currentItem.mediaType === 'video' ? (
-                  <video
-                    key={currentItem.mediaUrl}
-                    src={currentItem.mediaUrl}
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                ) : (
-                  <img
-                    key={currentItem.mediaUrl}
-                    src={currentItem.mediaUrl}
-                    alt={currentItem.title}
-                    className="w-full h-full object-cover"
-                  />
-                )
+                <>
+                  {currentItem.mediaType === 'video' ? (
+                    <video
+                      key={currentItem.mediaUrl}
+                      src={currentItem.mediaUrl}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      key={currentItem.mediaUrl}
+                      src={currentItem.mediaUrl}
+                      alt={currentItem.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                  {/* Expand button */}
+                  <button
+                    onClick={() => setIsExpanded(true)}
+                    className="absolute bottom-3 right-3 bg-black/60 hover:bg-black/80 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Expand video"
+                  >
+                    <Maximize2 className="w-5 h-5" />
+                  </button>
+                </>
               ) : (
                 // Placeholder when no media is set
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
@@ -149,6 +160,44 @@ export default function ProductDemo() {
           </div>
         </div>
       </div>
+
+      {/* Expanded Modal */}
+      {isExpanded && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setIsExpanded(false)}
+        >
+          <button
+            onClick={() => setIsExpanded(false)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            aria-label="Close expanded view"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <div
+            className="relative w-full max-w-6xl aspect-video"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {currentItem.mediaType === 'video' ? (
+              <video
+                src={currentItem.mediaUrl}
+                className="w-full h-full object-contain rounded-lg"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <img
+                src={currentItem.mediaUrl}
+                alt={currentItem.title}
+                className="w-full h-full object-contain rounded-lg"
+              />
+            )}
+          </div>
+        </div>
+      )}
     </section>
   )
 }

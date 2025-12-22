@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice INV-2024-0847 - Spark & Wire Electrical</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+
+    .invoice {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 48px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 3px solid #1a56db;
+    }
+
+    .company-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #1a56db 0%, #3b82f6 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .company-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a56db;
+    }
+
+    .company-tagline {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .invoice-title {
+      text-align: right;
+    }
+
+    .invoice-title h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a56db;
+      margin-bottom: 4px;
+    }
+
+    .invoice-number {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .details-box {
+      flex: 1;
+    }
+
+    .details-box h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .details-box p {
+      margin-bottom: 2px;
+    }
+
+    .details-box .name {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .invoice-meta {
+      text-align: right;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .meta-label {
+      color: #666;
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .meta-value {
+      font-weight: 600;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    .meta-value.due {
+      color: #dc2626;
+    }
+
+    .project-ref {
+      background: #f0f7ff;
+      border-left: 4px solid #1a56db;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+    }
+
+    .project-ref span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .project-ref p {
+      font-weight: 600;
+      color: #1a56db;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+
+    thead {
+      background: #f8fafc;
+    }
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4) {
+      text-align: right;
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4) {
+      text-align: right;
+    }
+
+    .item-desc {
+      font-weight: 500;
+    }
+
+    .item-detail {
+      font-size: 12px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .totals {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 32px;
+    }
+
+    .totals-box {
+      width: 280px;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .totals-row.total {
+      border-bottom: none;
+      border-top: 2px solid #1a56db;
+      margin-top: 8px;
+      padding-top: 12px;
+    }
+
+    .totals-row.total .label,
+    .totals-row.total .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a56db;
+    }
+
+    .payment-details {
+      display: flex;
+      gap: 40px;
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .payment-box h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .bank-details p {
+      margin-bottom: 4px;
+    }
+
+    .bank-details .label {
+      display: inline-block;
+      width: 100px;
+      color: #666;
+    }
+
+    .bank-details .value {
+      font-weight: 600;
+      font-family: 'SF Mono', 'Menlo', monospace;
+    }
+
+    .terms p {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .footer a {
+      color: #1a56db;
+      text-decoration: none;
+    }
+
+    .overdue-stamp {
+      position: absolute;
+      top: 120px;
+      right: 80px;
+      transform: rotate(-15deg);
+      border: 4px solid #dc2626;
+      color: #dc2626;
+      padding: 8px 24px;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.7;
+      border-radius: 4px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .invoice {
+        box-shadow: none;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <div class="header">
+      <div class="company-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="company-name">Spark & Wire Electrical</div>
+          <div class="company-tagline">Licensed Electrical Contractors</div>
+        </div>
+      </div>
+      <div class="invoice-title">
+        <h1>TAX INVOICE</h1>
+        <div class="invoice-number">INV-2024-0847</div>
+      </div>
+    </div>
+
+    <div class="details-row">
+      <div class="details-box">
+        <h3>From</h3>
+        <p class="name">Spark & Wire Electrical Pty Ltd</p>
+        <p>ABN: 98 765 432 109</p>
+        <p>42 Trade Street</p>
+        <p>Moorabbin VIC 3189</p>
+        <p>03 9555 1234</p>
+        <p>accounts@sparkwire.com.au</p>
+      </div>
+
+      <div class="details-box">
+        <h3>Bill To</h3>
+        <p class="name">Bayside Developments Pty Ltd</p>
+        <p>Attn: Sarah Chen, Accounts Payable</p>
+        <p>15 Harbour Road</p>
+        <p>Brighton VIC 3186</p>
+      </div>
+
+      <div class="details-box invoice-meta">
+        <div class="meta-row">
+          <span class="meta-label">Invoice Date:</span>
+          <span class="meta-value">18 Nov 2024</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Due Date:</span>
+          <span class="meta-value due">2 Dec 2024</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Terms:</span>
+          <span class="meta-value">14 Days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-ref">
+      <span>Project Reference</span>
+      <p>Graham Street Residence - 47 Graham Street, Brighton VIC 3186</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Qty</th>
+          <th>Unit Price</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-desc">Electrical rough-in - Ground floor</div>
+            <div class="item-detail">Power and lighting circuits as per plan E-101</div>
+          </td>
+          <td>1</td>
+          <td>$4,200.00</td>
+          <td>$4,200.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">Electrical rough-in - First floor</div>
+            <div class="item-detail">Power and lighting circuits as per plan E-102</div>
+          </td>
+          <td>1</td>
+          <td>$3,800.00</td>
+          <td>$3,800.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">Switchboard supply & installation</div>
+            <div class="item-detail">32-pole board with RCD protection, surge arrestor</div>
+          </td>
+          <td>1</td>
+          <td>$2,450.00</td>
+          <td>$2,450.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">LED downlight - supply & install</div>
+            <div class="item-detail">Warm white 10W dimmable, IP44 rated</div>
+          </td>
+          <td>24</td>
+          <td>$85.00</td>
+          <td>$2,040.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">Double power point - supply & install</div>
+            <div class="item-detail">Clipsal Iconic series, vivid white</div>
+          </td>
+          <td>18</td>
+          <td>$95.00</td>
+          <td>$1,710.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">Structured data cabling - Cat6A</div>
+            <div class="item-detail">Home run to comms cabinet, terminated & tested</div>
+          </td>
+          <td>8</td>
+          <td>$120.00</td>
+          <td>$960.00</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-desc">Labour - Saturday overtime</div>
+            <div class="item-detail">Pre-approved by site supervisor (J. Mitchell) 16/11</div>
+          </td>
+          <td>6 hrs</td>
+          <td>$95.00</td>
+          <td>$570.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="totals-box">
+        <div class="totals-row">
+          <span class="label">Subtotal</span>
+          <span class="value">$15,730.00</span>
+        </div>
+        <div class="totals-row">
+          <span class="label">GST (10%)</span>
+          <span class="value">$1,573.00</span>
+        </div>
+        <div class="totals-row total">
+          <span class="label">Total Due</span>
+          <span class="value">$17,303.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-details">
+      <div class="payment-box bank-details">
+        <h3>Payment Details</h3>
+        <p><span class="label">Bank:</span> <span class="value">Commonwealth Bank</span></p>
+        <p><span class="label">Account:</span> <span class="value">Spark & Wire Electrical Pty Ltd</span></p>
+        <p><span class="label">BSB:</span> <span class="value">063-123</span></p>
+        <p><span class="label">Account No:</span> <span class="value">1098 7654</span></p>
+        <p><span class="label">Reference:</span> <span class="value">INV-2024-0847</span></p>
+      </div>
+      <div class="payment-box terms">
+        <h3>Payment Terms</h3>
+        <p>Payment is due within 14 days of invoice date.</p>
+        <p>Please use the invoice number as your payment reference.</p>
+        <p>For queries, contact accounts@sparkwire.com.au</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Thank you for your business</p>
+      <p>Spark & Wire Electrical Pty Ltd | Lic. No. 29847 | <a href="mailto:accounts@sparkwire.com.au">accounts@sparkwire.com.au</a></p>
+    </div>
+  </div>
+</body>
+</html>
