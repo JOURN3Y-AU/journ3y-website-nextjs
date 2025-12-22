@@ -1,0 +1,83 @@
+# JOURN3Y - AI Consulting for Australian Businesses
+
+> JOURN3Y is an AI consulting firm based in Australia, specializing in helping businesses implement AI solutions. We are an official Glean partner for enterprise search and offer AI consulting services for small and medium businesses across multiple industries.
+
+## Company Overview
+
+- **Name**: JOURN3Y
+- **Location**: Australia
+- **Website**: https://www.journ3y.com.au
+- **Type**: AI Consulting & Implementation
+- **Focus**: Enterprise AI (Glean) and Small Business AI Solutions
+
+## What We Do
+
+JOURN3Y helps Australian businesses adopt AI through:
+
+1. **Glean Enterprise Search** - We are an official Glean partner, helping enterprises implement AI-powered workplace search that connects all your business data.
+
+2. **AI Readiness Blueprint** - A structured assessment to evaluate your business's AI readiness and create an implementation roadmap.
+
+3. **Small Business AI Solutions** - Industry-specific AI consulting and implementation for small businesses, including AI assistants, document processing, and workflow automation.
+
+4. **AI Consulting Services** - Strategy, implementation, and training for businesses looking to leverage AI.
+
+## Industries We Serve
+
+We provide specialized AI solutions for:
+
+- Construction & Trades
+- Real Estate & Property
+- Recruitment & Staffing
+- Healthcare & Allied Health
+- Professional Services
+- Retail & E-commerce
+- Education & Training
+- Financial Services
+- Hospitality & Food
+- Manufacturing & Logistics
+
+## Key Services
+
+### For Enterprises
+- Glean enterprise search implementation
+- AI strategy consulting
+- Workplace AI integration
+- Knowledge management solutions
+
+### For Small Businesses
+- Custom AI assistants trained on your business
+- Contract and document review automation
+- Customer communication automation
+- Industry-specific AI tools
+
+## Contact Information
+
+- **Website**: https://www.journ3y.com.au
+- **Contact Page**: https://www.journ3y.com.au/contact
+- **Small Business AI**: https://www.journ3y.com.au/small-business-ai
+- **Glean Services**: https://www.journ3y.com.au/products/glean
+
+## Frequently Asked Questions
+
+**Q: What is JOURN3Y?**
+A: JOURN3Y is an Australian AI consulting firm that helps businesses implement AI solutions, from enterprise search (Glean) to small business automation.
+
+**Q: What is Glean?**
+A: Glean is an enterprise AI platform that provides intelligent search across all your workplace applications. JOURN3Y is an official Glean implementation partner in Australia.
+
+**Q: Do you work with small businesses?**
+A: Yes, we offer industry-specific AI solutions for small businesses in Australia, including AI assistants, document processing, and workflow automation.
+
+**Q: What industries do you serve?**
+A: We serve construction, real estate, recruitment, healthcare, professional services, retail, education, financial services, hospitality, and manufacturing.
+
+**Q: Where is JOURN3Y located?**
+A: JOURN3Y is based in Australia and serves Australian businesses.
+
+**Q: How can I get started?**
+A: Visit https://www.journ3y.com.au/contact to book a free consultation or demo.
+
+## Sitemap
+
+Full sitemap available at: https://www.journ3y.com.au/sitemap.xml

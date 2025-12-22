@@ -345,4 +345,48 @@ npm run lint     # ESLint
 
 Deployed on Vercel. Push to main branch triggers automatic deployment.
 
-Live site: https://journ3y.com.au
+Live site: https://www.journ3y.com.au
+
+## Site Structure
+
+### Navigation Pages
+- `/` - Homepage
+- `/products/blueprint` - AI Readiness Blueprint
+- `/products/glean` - Glean Enterprise Search
+- `/products/services` - Consulting Services
+- `/small-business-ai` - Small Business AI Landing Page
+- `/small-business-ai/[industry]` - Industry-specific pages (10 industries)
+- `/blog` - Blog listing
+- `/blog/[slug]` - Individual blog posts
+- `/contact` - Contact form
+- `/team` - Team page (conditionally shown via Supabase setting)
+
+### Small Business AI Industries (Database-driven)
+Content stored in Supabase tables: `smb_industries`, `smb_pain_points`, `smb_use_cases`, `smb_faqs`
+
+Industries:
+- construction, real-estate, recruitment, healthcare, professional-services
+- retail, education, financial-services, hospitality, manufacturing
+
+### Sitemap
+Static sitemap at `/public/sitemap.xml` - 25 pages total
+Update manually when adding/removing pages
+
+### SEO & Schema Markup
+- All pages have Next.js Metadata exports
+- Industry pages include FAQ, Service, and Breadcrumb schema (see `src/lib/schemas.ts`)
+- Canonical URLs use `https://www.journ3y.com.au`
+
+## Database (Supabase)
+
+### Key Tables
+- `site_settings` - Feature flags (e.g., show_team_page)
+- `smb_industries` - Industry landing page content
+- `smb_pain_points` - Pain points per industry
+- `smb_use_cases` - Solutions/use cases per industry
+- `smb_faqs` - FAQs per industry
+- `blog_posts` - Blog content
+- `contact_submissions` - Form submissions
+
+### Admin
+Protected admin pages at `/admin/*` for managing SMB content
