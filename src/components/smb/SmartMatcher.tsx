@@ -90,7 +90,7 @@ export default function SmartMatcher() {
                   {result.reasoning}
                 </p>
 
-                <Link href={`/smb/${result.matchedIndustry.slug}`}>
+                <Link href={`/small-business-ai/${result.matchedIndustry.slug}`}>
                   <Card className="hover:shadow-md transition-shadow cursor-pointer border-primary/30 bg-primary/5">
                     <CardContent className="p-4 flex items-center gap-4">
                       {(() => {
@@ -117,7 +117,7 @@ export default function SmartMatcher() {
                       {result.alternateIndustries.map((alt) => (
                         <Link
                           key={alt.slug}
-                          href={`/smb/${alt.slug}`}
+                          href={`/small-business-ai/${alt.slug}`}
                           className="text-sm px-3 py-1 rounded-full bg-muted hover:bg-muted/80 transition-colors"
                         >
                           {alt.name}

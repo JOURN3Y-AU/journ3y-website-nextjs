@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Solutions for Small Business Australia | JOURN3Y',
     description: 'Industry-specific AI solutions for Australian small businesses. Transform your operations with AI built for your industry.',
-    url: 'https://www.journ3y.com.au/smb',
+    url: 'https://www.journ3y.com.au/small-business-ai',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: 'Industry-specific AI solutions for Australian small businesses.',
   },
   alternates: {
-    canonical: 'https://www.journ3y.com.au/smb',
+    canonical: 'https://www.journ3y.com.au/small-business-ai',
   },
   robots: {
     index: true,
@@ -108,7 +108,7 @@ export default async function SMBLandingPage() {
             Book a free 30-minute demo and see AI in action for your industry
           </p>
           <Button size="lg" asChild>
-            <Link href="/contact?utm_source=smb&utm_medium=footer_cta">
+            <Link href="/contact?utm_source=small-business-ai&utm_medium=footer_cta">
               Get Your Free Demo
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -125,7 +125,7 @@ export default async function SMBLandingPage() {
             "@type": "WebPage",
             "name": "AI Solutions for Small Business Australia",
             "description": "Industry-specific AI solutions for Australian small businesses",
-            "url": "https://www.journ3y.com.au/smb",
+            "url": "https://www.journ3y.com.au/small-business-ai",
             "provider": {
               "@type": "Organization",
               "name": "JOURN3Y",

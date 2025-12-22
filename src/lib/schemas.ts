@@ -62,13 +62,13 @@ export function generateBreadcrumbSchema(industry: SMBIndustryWithDetails) {
         "@type": "ListItem",
         "position": 2,
         "name": "Small Business",
-        "item": "https://www.journ3y.com.au/smb"
+        "item": "https://www.journ3y.com.au/small-business-ai"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": industry.name,
-        "item": `https://www.journ3y.com.au/smb/${industry.slug}`
+        "item": `https://www.journ3y.com.au/small-business-ai/${industry.slug}`
       }
     ]
   }

@@ -380,7 +380,7 @@ export default function AdminSMBEditClient({ slug }: AdminSMBEditClientProps) {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" asChild>
-            <Link href={`/smb/${formData.slug}`} target="_blank">
+            <Link href={`/small-business-ai/${formData.slug}`} target="_blank">
               <Eye className="mr-2 h-4 w-4" />
               Preview
             </Link>
@@ -801,7 +801,7 @@ export default function AdminSMBEditClient({ slug }: AdminSMBEditClientProps) {
                   {formData.metadata_title || `AI for ${formData.name} Australia | JOURN3Y`}
                 </p>
                 <p className="text-green-700 text-sm">
-                  journ3y.com.au/smb/{formData.slug}
+                  journ3y.com.au/small-business-ai/{formData.slug}
                 </p>
                 <p className="text-gray-600 text-sm mt-1">
                   {formData.metadata_description || `AI consulting and automation for ${formData.name} businesses in Australia.`}

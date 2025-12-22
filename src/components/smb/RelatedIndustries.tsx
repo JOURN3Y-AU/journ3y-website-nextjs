@@ -34,7 +34,7 @@ export default function RelatedIndustries({ industries }: RelatedIndustriesProps
           {industries.map((industry) => {
             const Icon = getIconComponent(industry.icon_name)
             return (
-              <Link key={industry.slug} href={`/smb/${industry.slug}`}>
+              <Link key={industry.slug} href={`/small-business-ai/${industry.slug}`}>
                 <Card className="h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-pointer group">
                   <CardContent className="p-5 flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">

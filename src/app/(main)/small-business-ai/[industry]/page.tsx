@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
     openGraph: {
       title: industry.metadata_title || `AI for ${industry.name} Australia | JOURN3Y`,
       description: industry.metadata_description || `AI solutions for ${industry.name} businesses in Australia.`,
-      url: `https://www.journ3y.com.au/smb/${industry.slug}`,
+      url: `https://www.journ3y.com.au/small-business-ai/${industry.slug}`,
       siteName: 'JOURN3Y',
       locale: 'en_AU',
       type: 'website',
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
       description: industry.metadata_description || `AI solutions for ${industry.name} businesses.`,
     },
     alternates: {
-      canonical: `https://www.journ3y.com.au/smb/${industry.slug}`,
+      canonical: `https://www.journ3y.com.au/small-business-ai/${industry.slug}`,
     },
     robots: {
       index: true,
@@ -87,8 +87,8 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
             <ChevronRight className="w-4 h-4 mx-2" />
           </li>
           <li className="flex items-center">
-            <Link href="/smb" className="hover:text-foreground transition-colors">
-              Small Business
+            <Link href="/small-business-ai" className="hover:text-foreground transition-colors">
+              Small Business AI
             </Link>
             <ChevronRight className="w-4 h-4 mx-2" />
           </li>
@@ -139,7 +139,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
             Book a free 30-minute demo and see exactly how we can help
           </p>
           <Button size="lg" asChild>
-            <Link href={`/contact?industry=${encodeURIComponent(industry.name)}&utm_source=smb&utm_medium=footer_cta`}>
+            <Link href={`/contact?industry=${encodeURIComponent(industry.name)}&utm_source=small-business-ai&utm_medium=footer_cta`}>
               Book Your Free Demo - 30 Minutes, No Commitment
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>

@@ -191,7 +191,7 @@ export default function AdminSMBClient() {
                         size="icon"
                         asChild
                       >
-                        <Link href={`/smb/${industry.slug}`} target="_blank">
+                        <Link href={`/small-business-ai/${industry.slug}`} target="_blank">
                           <Eye className="h-4 w-4" />
                         </Link>
                       </Button>
@@ -214,9 +214,9 @@ export default function AdminSMBClient() {
       <div className="mt-8 p-4 rounded-lg bg-muted/50 text-sm text-muted-foreground">
         <p className="font-medium mb-2">Quick Links:</p>
         <div className="flex flex-wrap gap-4">
-          <Link href="/smb" className="flex items-center gap-1 hover:text-foreground">
+          <Link href="/small-business-ai" className="flex items-center gap-1 hover:text-foreground">
             <ExternalLink className="w-3 h-3" />
-            SMB Landing Page
+            Small Business AI Landing Page
           </Link>
           <Link href="/contact" className="flex items-center gap-1 hover:text-foreground">
             <ExternalLink className="w-3 h-3" />
