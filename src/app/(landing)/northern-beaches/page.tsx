@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Find 5-10 Hours Per Week for Your Business | JOURN3Y AI - Northern Beaches',
     description: 'See how Northern Beaches businesses are using AI to cut admin time in half - without hiring more staff.',
-    url: 'https://journ3y.com.au/northern-beaches',
+    url: 'https://www.journ3y.com.au/northern-beaches',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',

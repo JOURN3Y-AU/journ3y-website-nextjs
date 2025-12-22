@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free AI Consultation | Get Your AI Transformation Roadmap | JOURN3Y',
     description: 'Book a free 1-hour AI strategy session. Get personalized AI strategy assessment and expert guidance.',
-    url: 'https://journ3y.com.au/linkedin-campaign',
+    url: 'https://www.journ3y.com.au/linkedin-campaign',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',

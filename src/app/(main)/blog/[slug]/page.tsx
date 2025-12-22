@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     openGraph: {
       title: `${post.title} | JOURN3Y AI Consulting Blog`,
       description,
-      url: `https://journ3y.com.au/blog/${slug}`,
+      url: `https://www.journ3y.com.au/blog/${slug}`,
       siteName: 'JOURN3Y',
       locale: 'en_AU',
       type: 'article',
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       images: post.image_url ? [post.image_url] : undefined,
     },
     alternates: {
-      canonical: `https://journ3y.com.au/blog/${slug}`,
+      canonical: `https://www.journ3y.com.au/blog/${slug}`,
     },
     robots: {
       index: true,
@@ -82,6 +82,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const categoryName = post.blog_categories?.name || ''
+  const plainContent = post.content.replace(/<[^>]*>/g, '')
+  const description = plainContent.substring(0, 155) + '...'
+
+  // Article schema for SEO and AI discoverability
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": description,
+    "image": post.image_url || "https://www.journ3y.com.au/JOURN3Y-logo.png",
+    "author": {
+      "@type": "Organization",
+      "name": "JOURN3Y",
+      "url": "https://www.journ3y.com.au"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "JOURN3Y",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.journ3y.com.au/JOURN3Y-logo.png"
+      }
+    },
+    "datePublished": post.published_at,
+    "dateModified": post.published_at,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.journ3y.com.au/blog/${slug}`
+    },
+    "keywords": [categoryName, ...(post.hashtags || [])].filter(Boolean).join(", ")
+  }
 
   const formattedPost = {
     id: post.id,
@@ -98,5 +129,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     hashtags: post.hashtags || []
   }
 
-  return <BlogPostPageClient post={formattedPost} />
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <BlogPostPageClient post={formattedPost} />
+    </>
+  )
 }

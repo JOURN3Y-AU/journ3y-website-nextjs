@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Resources & Case Studies | JOURN3Y',
     description: 'Access AI case studies, research papers, and resources from JOURN3Y.',
-    url: 'https://journ3y.com.au/resources',
+    url: 'https://www.journ3y.com.au/resources',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Access AI case studies, research papers, and resources from JOURN3Y.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/resources',
+    canonical: 'https://www.journ3y.com.au/resources',
   },
   robots: {
     index: true,

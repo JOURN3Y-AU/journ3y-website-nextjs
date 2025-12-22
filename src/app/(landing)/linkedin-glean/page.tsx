@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Glean Implementation Services | Expert Glean Consultants | JOURN3Y',
     description: 'Professional Glean implementation services. Transform your enterprise search with expert Glean deployment.',
-    url: 'https://journ3y.com.au/linkedin-glean',
+    url: 'https://www.journ3y.com.au/linkedin-glean',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/products/glean',
+    canonical: 'https://www.journ3y.com.au/products/glean',
   },
   robots: {
     index: false,

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Privacy Policy | JOURN3Y',
     description: 'JOURN3Y Privacy Policy. Learn how we collect, use, and protect your personal information.',
-    url: 'https://journ3y.com.au/privacy',
+    url: 'https://www.journ3y.com.au/privacy',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'JOURN3Y Privacy Policy. Learn how we collect, use, and protect your personal information.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/privacy',
+    canonical: 'https://www.journ3y.com.au/privacy',
   },
   robots: {
     index: true,

@@ -6,24 +6,24 @@ import BlogSection from '@/components/home/BlogSection'
 import CTASection from '@/components/home/CTASection'
 
 export const metadata: Metadata = {
-  title: 'JOURN3Y - AI Consulting & Glean Implementation Experts',
-  description: 'Leading AI consulting firm specializing in Glean enterprise search implementation, AI strategy development, and business transformation. Expert Glean consultants delivering AI readiness assessments and strategic AI solutions.',
-  keywords: ['AI consulting', 'Glean implementation', 'Glean consultant', 'enterprise search', 'AI strategy', 'business transformation', 'AI readiness assessment', 'Glean experts', 'AI transformation services'],
+  title: 'AI Consulting Australia | Small Business & Enterprise AI Solutions | JOURN3Y',
+  description: 'Australia\'s AI consulting experts for small business and enterprise. Practical AI solutions that save 10+ hours per week. Official Glean implementation partner. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide & Hobart.',
+  keywords: ['AI consulting Australia', 'small business AI', 'Glean implementation', 'enterprise AI search', 'AI strategy', 'business automation', 'AI consultants Sydney', 'AI consultants Melbourne'],
   openGraph: {
-    title: 'JOURN3Y - AI Consulting & Glean Implementation Experts',
-    description: 'Leading AI consulting firm specializing in Glean enterprise search implementation, AI strategy development, and business transformation.',
-    url: 'https://journ3y.com.au/',
+    title: 'AI Consulting Australia | Small Business & Enterprise AI | JOURN3Y',
+    description: 'Australia\'s AI consulting experts. Practical AI solutions for small business and enterprise. Official Glean partner.',
+    url: 'https://www.journ3y.com.au/',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'JOURN3Y - AI Consulting & Glean Implementation Experts',
-    description: 'Leading AI consulting firm specializing in Glean enterprise search implementation.',
+    title: 'AI Consulting Australia | Small Business & Enterprise AI | JOURN3Y',
+    description: 'Australia\'s AI consulting experts. Practical AI solutions for small business and enterprise.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/',
+    canonical: 'https://www.journ3y.com.au/',
   },
   robots: {
     index: true,

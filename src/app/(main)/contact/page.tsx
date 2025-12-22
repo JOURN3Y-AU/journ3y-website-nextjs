@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Us | AI Consulting & Glean Implementation | JOURN3Y',
     description: 'Get in touch with JOURN3Y for AI consulting, Glean implementation, and enterprise search solutions.',
-    url: 'https://journ3y.com.au/contact',
+    url: 'https://www.journ3y.com.au/contact',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Get in touch with JOURN3Y for AI consulting and Glean implementation.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/contact',
+    canonical: 'https://www.journ3y.com.au/contact',
   },
   robots: {
     index: true,

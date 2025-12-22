@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Brand3y AI Platform | Next-Gen AI Solutions | JOURN3Y',
     description: 'Cutting-edge AI platform for enterprise transformation with advanced AI capabilities and Glean integration.',
-    url: 'https://journ3y.com.au/products/brand3y',
+    url: 'https://www.journ3y.com.au/products/brand3y',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Cutting-edge AI platform for enterprise transformation.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/products/brand3y',
+    canonical: 'https://www.journ3y.com.au/products/brand3y',
   },
   robots: {
     index: true,

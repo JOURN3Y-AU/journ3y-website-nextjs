@@ -105,8 +105,8 @@ const PageSpecificSEO = () => {
         "@type": "Organization",
         "name": "JOURN3Y",
         "description": "Australia's certified Glean implementation partner providing enterprise search solutions",
-        "url": "https://journ3y.com.au/products/glean",
-        "logo": "https://journ3y.com.au/JOURN3Y-logo.png",
+        "url": "https://www.journ3y.com.au/products/glean",
+        "logo": "https://www.journ3y.com.au/JOURN3Y-logo.png",
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+61-2-1234-5678",

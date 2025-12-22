@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Our Team | AI Consulting Experts | JOURN3Y',
     description: 'Meet the JOURN3Y team. Experienced AI consultants and Glean implementation specialists.',
-    url: 'https://journ3y.com.au/team',
+    url: 'https://www.journ3y.com.au/team',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: 'Meet the JOURN3Y team. Experienced AI consultants and Glean implementation specialists.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/team',
+    canonical: 'https://www.journ3y.com.au/team',
   },
   robots: {
     index: true,

@@ -2,24 +2,24 @@ import { Metadata } from 'next'
 import ServicesPageClient from './ServicesPageClient'
 
 export const metadata: Metadata = {
-  title: 'AI Consulting Services | Glean Implementation',
-  description: 'Comprehensive AI consulting services including Glean implementation, AI strategy development, enterprise search optimization, and AI transformation consulting from certified experts.',
-  keywords: ['AI consulting services', 'Glean implementation services', 'AI strategy consulting', 'enterprise search consulting', 'AI transformation services', 'Glean consultant services'],
+  title: 'AI Consulting Services Australia | Implementation & Support',
+  description: 'Professional AI consulting services in Australia. Implementation, training, and managed AI services. From strategy to execution, we help Australian businesses succeed with AI.',
+  keywords: ['AI consulting services Australia', 'AI implementation', 'AI training', 'managed AI services', 'enterprise AI consulting', 'Glean consultant services'],
   openGraph: {
-    title: 'AI Consulting Services | Glean Implementation | JOURN3Y',
-    description: 'Comprehensive AI consulting services including Glean implementation, AI strategy development, and enterprise search optimization.',
-    url: 'https://journ3y.com.au/products/services',
+    title: 'AI Consulting Services Australia | Implementation & Support | JOURN3Y',
+    description: 'Professional AI consulting services in Australia. Implementation, training, and managed AI services.',
+    url: 'https://www.journ3y.com.au/products/services',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Consulting Services | Glean Implementation | JOURN3Y',
-    description: 'Comprehensive AI consulting services including Glean implementation.',
+    title: 'AI Consulting Services Australia | JOURN3Y',
+    description: 'Professional AI consulting services in Australia. Implementation, training, and managed AI services.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/products/services',
+    canonical: 'https://www.journ3y.com.au/products/services',
   },
   robots: {
     index: true,

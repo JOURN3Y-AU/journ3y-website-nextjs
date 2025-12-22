@@ -52,7 +52,7 @@ const FeaturesSection = () => {
           />
           
           <FeatureCard 
-            title="Focus on relavance"
+            title="Focus on relevance"
             description="How do you ensure AI solutions actually address your specific business context instead of forcing generic approaches that miss the mark?"
             icon={<Target className="w-8 h-8 text-journey-dark-purple" />}
             delay={4}

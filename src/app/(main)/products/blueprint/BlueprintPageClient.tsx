@@ -18,7 +18,7 @@ export default function BlueprintPageClient() {
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">Blueprint</h1>
             <p className="text-xl text-gray-700 mb-8">
-              Transform your AI ambition into action with JOURN3Y Blueprint. Our accelerated process delivers a prioiritised, practical plan to get your business implementing AI faster
+              Transform your AI ambition into action with JOURN3Y Blueprint. Our accelerated process delivers a prioritised, practical plan to get your business implementing AI faster
             </p>
             <Button className="bg-gradient-to-r from-journey-purple to-journey-blue text-white">
               <Link href="/contact">Book a Consultation</Link>

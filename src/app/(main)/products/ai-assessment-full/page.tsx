@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Comprehensive AI Readiness Assessment | JOURN3Y',
     description: 'Comprehensive AI readiness assessment with expert insights and personalized recommendations for AI transformation.',
-    url: 'https://journ3y.com.au/products/ai-assessment-full',
+    url: 'https://www.journ3y.com.au/products/ai-assessment-full',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Comprehensive AI readiness assessment with expert insights.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/products/ai-assessment-full',
+    canonical: 'https://www.journ3y.com.au/products/ai-assessment-full',
   },
   robots: {
     index: true,

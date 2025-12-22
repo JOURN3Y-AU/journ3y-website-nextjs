@@ -6,24 +6,24 @@ import BlogFilters from './BlogFilters'
 import NewsletterSignup from '@/components/blog/NewsletterSignup'
 
 export const metadata: Metadata = {
-  title: 'AI & Glean Insights Blog | JOURN3Y AI Consulting',
-  description: 'Expert insights on AI consulting, Glean implementation best practices, enterprise search optimization, and AI transformation strategies from leading AI consultants and Glean specialists.',
-  keywords: ['AI blog', 'Glean insights', 'AI consulting tips', 'enterprise search best practices', 'Glean implementation guide', 'AI transformation insights', 'Glean consultant advice'],
+  title: 'AI Insights Blog | Small Business AI Tips | JOURN3Y Australia',
+  description: 'Practical AI insights for Australian businesses. Learn about AI implementation, automation, and digital transformation from JOURN3Y\'s consulting experts.',
+  keywords: ['AI blog Australia', 'small business AI tips', 'AI consulting insights', 'Glean implementation guide', 'AI transformation insights', 'business automation'],
   openGraph: {
-    title: 'AI & Glean Insights Blog | JOURN3Y AI Consulting',
-    description: 'Expert insights on AI consulting, Glean implementation, and enterprise search optimization from leading AI consultants.',
-    url: 'https://journ3y.com.au/blog',
+    title: 'AI Insights Blog | Small Business AI Tips | JOURN3Y Australia',
+    description: 'Practical AI insights for Australian businesses. Learn about AI implementation and automation.',
+    url: 'https://www.journ3y.com.au/blog',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI & Glean Insights Blog | JOURN3Y AI Consulting',
-    description: 'Expert insights on AI consulting, Glean implementation, and enterprise search optimization.',
+    title: 'AI Insights Blog | JOURN3Y Australia',
+    description: 'Practical AI insights for Australian businesses. AI implementation and automation tips.',
   },
   alternates: {
-    canonical: 'https://journ3y.com.au/blog',
+    canonical: 'https://www.journ3y.com.au/blog',
   },
   robots: {
     index: true,

@@ -11,20 +11,20 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://journ3y.com.au'),
+  metadataBase: new URL('https://www.journ3y.com.au'),
   title: {
-    default: 'JOURN3Y - AI Consulting & Glean Implementation Experts',
+    default: 'AI Consulting Australia | Small Business & Enterprise AI Solutions | JOURN3Y',
     template: '%s | JOURN3Y',
   },
-  description: 'Leading AI consulting firm specializing in Glean enterprise search implementation, AI strategy development, and business transformation. Expert Glean consultants delivering AI readiness assessments and strategic AI solutions.',
-  keywords: ['AI consulting', 'Glean implementation', 'Glean consultant', 'enterprise search', 'AI strategy', 'business transformation', 'AI readiness assessment', 'Glean experts', 'AI transformation services'],
-  authors: [{ name: 'Journey AI' }],
+  description: 'Australia\'s AI consulting experts for small business and enterprise. Practical AI solutions that save 10+ hours per week. Official Glean implementation partner. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide & Hobart.',
+  keywords: ['AI consulting Australia', 'small business AI', 'Glean implementation', 'enterprise AI search', 'AI strategy', 'business automation', 'AI consultants Sydney', 'AI consultants Melbourne'],
+  authors: [{ name: 'JOURN3Y' }],
   openGraph: {
-    title: 'JOURN3Y - Transforming Business with AI Solutions',
-    description: 'AI-powered solutions to accelerate your business transformation',
+    title: 'AI Consulting Australia | Small Business & Enterprise AI | JOURN3Y',
+    description: 'Australia\'s AI consulting experts. Practical AI solutions for small business and enterprise. Official Glean partner.',
     type: 'website',
     locale: 'en_AU',
-    url: 'https://journ3y.com.au',
+    url: 'https://www.journ3y.com.au',
     siteName: 'JOURN3Y',
     images: [
       {
@@ -116,33 +116,89 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "JOURN3Y",
-              "description": "Australia's certified Glean implementation partner providing enterprise search solutions",
-              "url": "https://journ3y.com.au",
-              "logo": "https://journ3y.com.au/JOURN3Y-logo.png",
+              "alternateName": "Journey AI",
+              "description": "AI consulting and implementation for Australian businesses. Official Glean partner. Small business AI solutions and enterprise search.",
+              "url": "https://www.journ3y.com.au",
+              "logo": "https://www.journ3y.com.au/JOURN3Y-logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+61-2-1234-5678",
                 "contactType": "sales",
-                "areaServed": "AU",
-                "availableLanguage": "English"
+                "email": "info@journ3y.com.au",
+                "availableLanguage": ["English"]
               },
               "address": {
                 "@type": "PostalAddress",
-                "addressCountry": "AU",
-                "addressRegion": "NSW"
+                "addressCountry": "AU"
               },
-              "sameAs": [
-                "https://www.linkedin.com/company/journ3y"
-              ],
-              "offers": {
-                "@type": "Service",
-                "name": "Glean Implementation Services",
-                "description": "Professional Glean enterprise search implementation, consulting, and support services",
-                "provider": {
-                  "@type": "Organization",
-                  "name": "JOURN3Y"
+              "areaServed": [
+                {
+                  "@type": "Country",
+                  "name": "Australia"
                 },
-                "areaServed": "Australia"
+                {
+                  "@type": "City",
+                  "name": "Sydney"
+                },
+                {
+                  "@type": "City",
+                  "name": "Melbourne"
+                },
+                {
+                  "@type": "City",
+                  "name": "Brisbane"
+                },
+                {
+                  "@type": "City",
+                  "name": "Perth"
+                },
+                {
+                  "@type": "City",
+                  "name": "Adelaide"
+                },
+                {
+                  "@type": "City",
+                  "name": "Hobart"
+                },
+                {
+                  "@type": "Country",
+                  "name": "United States"
+                },
+                {
+                  "@type": "Country",
+                  "name": "Israel"
+                }
+              ],
+              "sameAs": [
+                "https://www.linkedin.com/company/journ3y-au"
+              ],
+              "knowsAbout": [
+                "Artificial Intelligence",
+                "Enterprise Search",
+                "Glean",
+                "Small Business AI",
+                "AI Consulting",
+                "Business Automation"
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "AI Consulting Services",
+                "itemListElement": [
+                  {
+                    "@type": "Service",
+                    "name": "Glean Implementation",
+                    "description": "Enterprise AI search implementation with Glean platform"
+                  },
+                  {
+                    "@type": "Service",
+                    "name": "Small Business AI Solutions",
+                    "description": "Industry-specific AI tools for Australian small businesses"
+                  },
+                  {
+                    "@type": "Service",
+                    "name": "AI Strategy Blueprint",
+                    "description": "AI readiness assessment and implementation roadmap"
+                  }
+                ]
               }
             })
           }}

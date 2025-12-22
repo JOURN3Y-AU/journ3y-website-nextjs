@@ -72,7 +72,7 @@ const ProductsSection = () => {
           
           <ProductCard 
             title="Services"
-            description="The people, expertise and platforms to delivery AI into your organisation"
+            description="The people, expertise and platforms to deliver AI into your organisation"
             icon={<Users className="w-20 h-20 text-white" strokeWidth={1.5} />}
             gradient="bg-gradient-to-br from-journey-dark-purple/90 to-journey-purple/90"
             link="/products/services"
