@@ -25,14 +25,62 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.journ3y.com.au/products/ai-assessment</loc>
-    <lastmod>2025-12-16</lastmod>
+    <loc>https://www.journ3y.com.au/small-business-ai/construction</loc>
+    <lastmod>2025-12-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.journ3y.com.au/products/ai-assessment-full</loc>
-    <lastmod>2025-12-16</lastmod>
+    <loc>https://www.journ3y.com.au/small-business-ai/real-estate</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/recruitment</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/healthcare</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/professional-services</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/retail</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/education</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/financial-services</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/hospitality</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.journ3y.com.au/small-business-ai/manufacturing</loc>
+    <lastmod>2025-12-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -49,12 +97,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.journ3y.com.au/products/brand3y</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.journ3y.com.au/contact</loc>
     <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -64,12 +106,6 @@
     <loc>https://www.journ3y.com.au/team</loc>
     <lastmod>2025-12-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.journ3y.com.au/resources</loc>
-    <lastmod>2025-12-16</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
