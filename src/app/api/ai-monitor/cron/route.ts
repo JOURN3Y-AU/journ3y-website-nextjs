@@ -170,14 +170,15 @@ export async function GET(request: Request) {
     const { data: run, error: runError } = await supabase
       .from('ai_monitor_runs')
       .insert({
-        triggered_by: 'scheduled',
+        triggered_by: 'cron',
         status: 'running'
       })
       .select()
       .single()
 
     if (runError || !run) {
-      return NextResponse.json({ error: 'Failed to create run' }, { status: 500 })
+      console.error('Error creating run:', runError)
+      return NextResponse.json({ error: 'Failed to create run', details: runError?.message }, { status: 500 })
     }
 
     // Process all questions
@@ -260,6 +261,10 @@ export async function GET(request: Request) {
     })
   } catch (error) {
     console.error('AI Monitor cron error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({
+      error: 'Internal server error',
+      details: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    }, { status: 500 })
   }
 }
