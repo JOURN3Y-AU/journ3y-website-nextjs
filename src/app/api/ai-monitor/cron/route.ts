@@ -143,7 +143,13 @@ export async function GET(request: Request) {
 
     // Use service role client for cron jobs (bypasses RLS since no user session)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createServiceClient() as any
+    let supabase
+    try {
+      supabase = createServiceClient() as any
+    } catch (e) {
+      console.error('Failed to create Supabase client:', e)
+      return NextResponse.json({ error: 'Failed to create database client', details: String(e) }, { status: 500 })
+    }
 
     // Get active questions
     const { data: questions, error: questionsError } = await supabase
@@ -151,7 +157,12 @@ export async function GET(request: Request) {
       .select('id, question')
       .eq('is_active', true)
 
-    if (questionsError || !questions || questions.length === 0) {
+    if (questionsError) {
+      console.error('Error fetching questions:', questionsError)
+      return NextResponse.json({ error: 'Database error fetching questions', details: questionsError.message }, { status: 500 })
+    }
+
+    if (!questions || questions.length === 0) {
       return NextResponse.json({ error: 'No active questions found' }, { status: 400 })
     }
 
