@@ -82,6 +82,7 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
   const [activeTab, setActiveTab] = useState('overview')
   const [chartGroupFilter, setChartGroupFilter] = useState<string>('all')
   const [chartTopN, setChartTopN] = useState<number>(5)
+  const [chartViewMode, setChartViewMode] = useState<'daily' | 'all'>('daily')
 
   // Form states
   const [newGroupName, setNewGroupName] = useState('')
@@ -120,10 +121,9 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
     // Get top N competitors
     const topCompetitors = allCompetitorsRanked.slice(0, chartTopN).map(c => c.name)
 
-    // Build data points for each run
-    return sortedRuns.map(run => {
+    // Helper to process a run's responses
+    const processResponses = (responses: typeof sortedRuns[0]['responses']) => {
       // Filter responses by group if needed
-      let responses = run.responses
       if (chartGroupFilter !== 'all') {
         responses = responses.filter(r => r.question?.group?.id === chartGroupFilter)
       }
@@ -145,16 +145,55 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
         }
       })
 
-      return {
-        date: new Date(run.started_at).toLocaleDateString('en-AU', {
+      return { journ3yMentions, competitorMentions }
+    }
+
+    if (chartViewMode === 'daily') {
+      // Group runs by date and take max mentions per brand per day
+      const dailyData: Record<string, { JOURN3Y: number; [key: string]: number }> = {}
+
+      sortedRuns.forEach(run => {
+        const dateKey = new Date(run.started_at).toLocaleDateString('en-AU', {
           day: 'numeric',
           month: 'short'
-        }),
-        JOURN3Y: journ3yMentions,
-        ...competitorMentions
-      }
-    })
-  }, [runs, chartGroupFilter, chartTopN, allCompetitorsRanked])
+        })
+
+        const { journ3yMentions, competitorMentions } = processResponses(run.responses)
+
+        if (!dailyData[dateKey]) {
+          dailyData[dateKey] = { JOURN3Y: 0 }
+          topCompetitors.forEach(name => { dailyData[dateKey][name] = 0 })
+        }
+
+        // Take max value for each brand
+        dailyData[dateKey].JOURN3Y = Math.max(dailyData[dateKey].JOURN3Y, journ3yMentions)
+        topCompetitors.forEach(name => {
+          dailyData[dateKey][name] = Math.max(dailyData[dateKey][name], competitorMentions[name] || 0)
+        })
+      })
+
+      return Object.entries(dailyData).map(([date, data]) => ({
+        date,
+        ...data
+      }))
+    } else {
+      // Show all runs individually
+      return sortedRuns.map(run => {
+        const { journ3yMentions, competitorMentions } = processResponses(run.responses)
+
+        return {
+          date: new Date(run.started_at).toLocaleDateString('en-AU', {
+            day: 'numeric',
+            month: 'short',
+            hour: '2-digit',
+            minute: '2-digit'
+          }),
+          JOURN3Y: journ3yMentions,
+          ...competitorMentions
+        }
+      })
+    }
+  }, [runs, chartGroupFilter, chartTopN, allCompetitorsRanked, chartViewMode])
 
   // Get unique competitor names for chart lines
   const chartCompetitors = useMemo(() => {
@@ -312,6 +351,24 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
                     <CardDescription>JOURN3Y vs competitors over time</CardDescription>
                   </div>
                   <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+                      <Button
+                        variant={chartViewMode === 'daily' ? 'default' : 'ghost'}
+                        size="sm"
+                        className={chartViewMode === 'daily' ? 'bg-white shadow-sm' : ''}
+                        onClick={() => setChartViewMode('daily')}
+                      >
+                        Daily
+                      </Button>
+                      <Button
+                        variant={chartViewMode === 'all' ? 'default' : 'ghost'}
+                        size="sm"
+                        className={chartViewMode === 'all' ? 'bg-white shadow-sm' : ''}
+                        onClick={() => setChartViewMode('all')}
+                      >
+                        All Runs
+                      </Button>
+                    </div>
                     <Select value={chartTopN.toString()} onValueChange={(val) => setChartTopN(val === 'all' ? allCompetitorsRanked.length : parseInt(val))}>
                       <SelectTrigger className="w-32">
                         <SelectValue placeholder="Top brands" />
