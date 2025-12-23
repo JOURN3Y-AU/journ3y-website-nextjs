@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useAIMonitor } from '@/hooks/useAIMonitor'
 import { Button } from '@/components/ui/button'
@@ -38,18 +38,24 @@ import {
   Play,
   Plus,
   Trash2,
-  Edit,
   CheckCircle,
   XCircle,
   Clock,
-  TrendingUp,
-  Users,
-  BarChart3,
   RefreshCw,
   Eye,
   LogOut
 } from 'lucide-react'
-import type { AIMonitorQuestionGroup, AIMonitorQuestion, AIMonitorRunWithResponses } from '@/types/aiMonitor'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts'
+import type { AIMonitorRunWithResponses } from '@/types/aiMonitor'
 
 interface AIMonitorDashboardProps {
   onLogout: () => void
@@ -74,6 +80,8 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
   } = useAIMonitor()
 
   const [activeTab, setActiveTab] = useState('overview')
+  const [chartGroupFilter, setChartGroupFilter] = useState<string>('all')
+  const [chartTopN, setChartTopN] = useState<number>(5)
 
   // Form states
   const [newGroupName, setNewGroupName] = useState('')
@@ -82,7 +90,95 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
   const [selectedGroupId, setSelectedGroupId] = useState('')
   const [isAddGroupOpen, setIsAddGroupOpen] = useState(false)
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
-  const [selectedRun, setSelectedRun] = useState<AIMonitorRunWithResponses | null>(null)
+
+  // Get all competitors with counts (for the dropdown and chart)
+  const allCompetitorsRanked = useMemo(() => {
+    const competitorCounts: Record<string, number> = {}
+    runs.forEach(run => {
+      run.responses.forEach(r => {
+        if (r.competitors_mentioned && Array.isArray(r.competitors_mentioned)) {
+          r.competitors_mentioned.forEach(c => {
+            competitorCounts[c.name] = (competitorCounts[c.name] || 0) + 1
+          })
+        }
+      })
+    })
+    return Object.entries(competitorCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, count]) => ({ name, count }))
+  }, [runs])
+
+  // Build trend chart data from runs
+  const trendChartData = useMemo(() => {
+    if (runs.length === 0) return []
+
+    // Sort runs by date (oldest first for chart)
+    const sortedRuns = [...runs].sort((a, b) =>
+      new Date(a.started_at).getTime() - new Date(b.started_at).getTime()
+    )
+
+    // Get top N competitors
+    const topCompetitors = allCompetitorsRanked.slice(0, chartTopN).map(c => c.name)
+
+    // Build data points for each run
+    return sortedRuns.map(run => {
+      // Filter responses by group if needed
+      let responses = run.responses
+      if (chartGroupFilter !== 'all') {
+        responses = responses.filter(r => r.question?.group?.id === chartGroupFilter)
+      }
+
+      // Count JOURN3Y mentions
+      const journ3yMentions = responses.filter(r => r.journ3y_mentioned).length
+
+      // Count competitor mentions
+      const competitorMentions: Record<string, number> = {}
+      topCompetitors.forEach(name => { competitorMentions[name] = 0 })
+
+      responses.forEach(r => {
+        if (r.competitors_mentioned && Array.isArray(r.competitors_mentioned)) {
+          r.competitors_mentioned.forEach(c => {
+            if (topCompetitors.includes(c.name)) {
+              competitorMentions[c.name] = (competitorMentions[c.name] || 0) + 1
+            }
+          })
+        }
+      })
+
+      return {
+        date: new Date(run.started_at).toLocaleDateString('en-AU', {
+          day: 'numeric',
+          month: 'short'
+        }),
+        JOURN3Y: journ3yMentions,
+        ...competitorMentions
+      }
+    })
+  }, [runs, chartGroupFilter, chartTopN, allCompetitorsRanked])
+
+  // Get unique competitor names for chart lines
+  const chartCompetitors = useMemo(() => {
+    if (trendChartData.length === 0) return []
+    const firstDataPoint = trendChartData[0]
+    return Object.keys(firstDataPoint).filter(key => key !== 'date' && key !== 'JOURN3Y')
+  }, [trendChartData])
+
+  // Generate colors dynamically for any competitor
+  const generateColor = (index: number): string => {
+    const colors = [
+      '#ef4444', '#22c55e', '#f97316', '#3b82f6', '#eab308',
+      '#06b6d4', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981',
+      '#6366f1', '#14b8a6', '#f43f5e', '#84cc16', '#a855f7',
+      '#0ea5e9', '#d946ef', '#fb923c', '#4ade80', '#facc15'
+    ]
+    return colors[index % colors.length]
+  }
+
+  // Chart colors - JOURN3Y is always purple, competitors get dynamic colors
+  const getChartColor = (name: string, index: number): string => {
+    if (name === 'JOURN3Y') return '#9b87f5'
+    return generateColor(index)
+  }
 
   const handleAddGroup = async () => {
     if (!newGroupName.trim()) return
@@ -206,6 +302,87 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
                 </CardHeader>
               </Card>
             </div>
+
+            {/* Trend Chart */}
+            <Card className="mb-8">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Mention Trends</CardTitle>
+                    <CardDescription>JOURN3Y vs competitors over time</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Select value={chartTopN.toString()} onValueChange={(val) => setChartTopN(val === 'all' ? allCompetitorsRanked.length : parseInt(val))}>
+                      <SelectTrigger className="w-32">
+                        <SelectValue placeholder="Top brands" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="5">Top 5</SelectItem>
+                        <SelectItem value="10">Top 10</SelectItem>
+                        <SelectItem value="15">Top 15</SelectItem>
+                        <SelectItem value="all">All ({allCompetitorsRanked.length})</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select value={chartGroupFilter} onValueChange={setChartGroupFilter}>
+                      <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Filter by group" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Groups</SelectItem>
+                        {questionGroups.map((group) => (
+                          <SelectItem key={group.id} value={group.id}>
+                            {group.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {trendChartData.length > 0 ? (
+                  <ResponsiveContainer width="100%" height={350}>
+                    <LineChart data={trendChartData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                      <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                      <YAxis tick={{ fontSize: 12 }} allowDecimals={false} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'white',
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                        }}
+                      />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="JOURN3Y"
+                        stroke={getChartColor('JOURN3Y', 0)}
+                        strokeWidth={3}
+                        dot={{ fill: getChartColor('JOURN3Y', 0), strokeWidth: 2, r: 4 }}
+                        activeDot={{ r: 6 }}
+                      />
+                      {chartCompetitors.map((competitor, index) => (
+                        <Line
+                          key={competitor}
+                          type="monotone"
+                          dataKey={competitor}
+                          stroke={getChartColor(competitor, index)}
+                          strokeWidth={2}
+                          dot={{ fill: getChartColor(competitor, index), strokeWidth: 1, r: 3 }}
+                          strokeDasharray="5 5"
+                        />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="h-[350px] flex items-center justify-center text-gray-500">
+                    <p>Run the monitor multiple times to see trends</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
             {/* Mention by Group */}
             <Card className="mb-8">
