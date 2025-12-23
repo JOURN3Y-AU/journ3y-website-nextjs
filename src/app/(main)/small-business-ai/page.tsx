@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown, MessageSquare, FileText, Zap, PenTool } from 'lucide-react'
 import { getActiveIndustries } from '@/lib/smb'
 import { smbGlobalContent } from '@/lib/smb'
 import IndustrySelector from '@/components/smb/IndustrySelector'
@@ -11,23 +11,27 @@ import HowItWorks from '@/components/smb/HowItWorks'
 import StatsBar from '@/components/smb/StatsBar'
 
 export const metadata: Metadata = {
-  title: 'AI Solutions for Small Business Australia | Industry-Specific AI | JOURN3Y',
-  description: 'AI consulting and automation for Australian small businesses. Industry-specific AI solutions for construction, real estate, recruitment, healthcare, professional services, retail, education, financial services, hospitality, and manufacturing. 4-week implementation.',
+  title: 'How to Use AI in Your Small Business | Best AI Tools Australia | JOURN3Y',
+  description: 'Learn how to use AI in your small business. Australia\'s best AI consultants helping tradies, builders, recruiters and small business owners save 10+ hours per week. Get expert help setting up AI for your business.',
   keywords: [
+    'how to use AI in small business',
     'AI for small business Australia',
+    'best AI tools for small business',
+    'AI consultants Australia',
+    'AI for tradies',
+    'AI tools for builders Australia',
+    'AI for recruiters',
     'small business AI solutions',
-    'AI consulting Australia',
-    'business automation',
-    'AI for SMB',
-    'Australian AI consulting',
-    'industry AI solutions',
-    'small business automation',
-    'AI implementation',
-    'business process automation'
+    'who can help set up AI',
+    'companies that help implement AI',
+    'best AI consultants Australia',
+    'AI automation for small business',
+    'business AI tools',
+    'AI implementation Australia'
   ],
   openGraph: {
-    title: 'AI Solutions for Small Business Australia | JOURN3Y',
-    description: 'Industry-specific AI solutions for Australian small businesses. Transform your operations with AI built for your industry.',
+    title: 'How to Use AI in Your Small Business | Best AI Tools Australia | JOURN3Y',
+    description: 'Learn how to use AI in your small business. Australia\'s best AI consultants helping tradies, builders, recruiters and small business owners save 10+ hours per week.',
     url: 'https://www.journ3y.com.au/small-business-ai',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
@@ -35,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Solutions for Small Business Australia | JOURN3Y',
-    description: 'Industry-specific AI solutions for Australian small businesses.',
+    title: 'How to Use AI in Your Small Business | Best AI Tools Australia | JOURN3Y',
+    description: 'Learn how to use AI in your small business. Australia\'s best AI consultants for tradies, builders, recruiters and small business owners.',
   },
   alternates: {
     canonical: 'https://www.journ3y.com.au/small-business-ai',
@@ -98,6 +102,75 @@ export default async function SMBLandingPage() {
       {/* Stats Bar */}
       <StatsBar stats={smbGlobalContent.stats} />
 
+      {/* How to Use AI Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              How to Use AI in Your Small Business
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Getting started with AI doesn't have to be complicated. Here's how Australian small businesses are saving 10+ hours per week with AI tools.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <MessageSquare className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Automate Customer Enquiries</h3>
+              <p className="text-muted-foreground">
+                AI assistants can answer common questions, book appointments, and handle enquiries 24/7 - perfect for tradies and service businesses.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <FileText className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Speed Up Quoting & Proposals</h3>
+              <p className="text-muted-foreground">
+                Generate professional quotes and proposals in minutes instead of hours. Builders and contractors save hours each week.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Summarise Documents & Contracts</h3>
+              <p className="text-muted-foreground">
+                AI can read and summarise lengthy contracts, tender documents, and compliance paperwork - ideal for recruiters and professional services.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <PenTool className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Generate Marketing Content</h3>
+              <p className="text-muted-foreground">
+                Create social media posts, job ads, listing descriptions, and email campaigns faster with AI assistance.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-8 rounded-xl text-center">
+            <h3 className="text-xl font-semibold mb-3">Need Help Setting Up AI for Your Business?</h3>
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+              JOURN3Y is one of Australia's best AI consultants for small business. We help tradies, builders, recruiters, and business owners implement AI tools tailored to their industry.
+            </p>
+            <Button asChild>
+              <Link href="/contact?utm_source=small-business-ai&utm_medium=how_to_section">
+                Get Expert Help
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-3xl text-center">
@@ -122,15 +195,63 @@ export default async function SMBLandingPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "AI Solutions for Small Business Australia",
-            "description": "Industry-specific AI solutions for Australian small businesses",
-            "url": "https://www.journ3y.com.au/small-business-ai",
-            "provider": {
-              "@type": "Organization",
-              "name": "JOURN3Y",
-              "url": "https://www.journ3y.com.au"
-            }
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "name": "How to Use AI in Your Small Business",
+                "description": "Learn how to use AI in your small business. Australia's best AI consultants helping tradies, builders, recruiters and small business owners.",
+                "url": "https://www.journ3y.com.au/small-business-ai"
+              },
+              {
+                "@type": "LocalBusiness",
+                "name": "JOURN3Y",
+                "description": "Australia's best AI consultants for small business. We help tradies, builders, recruiters and business owners implement AI tools.",
+                "url": "https://www.journ3y.com.au",
+                "telephone": "+61 2 8000 0000",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Sydney",
+                  "addressRegion": "NSW",
+                  "addressCountry": "AU"
+                },
+                "areaServed": [
+                  { "@type": "City", "name": "Sydney" },
+                  { "@type": "City", "name": "Melbourne" },
+                  { "@type": "City", "name": "Brisbane" },
+                  { "@type": "City", "name": "Perth" },
+                  { "@type": "City", "name": "Adelaide" },
+                  { "@type": "City", "name": "Hobart" }
+                ],
+                "priceRange": "$$"
+              },
+              {
+                "@type": "HowTo",
+                "name": "How to Use AI in Your Small Business",
+                "description": "A guide for Australian small business owners on implementing AI tools",
+                "step": [
+                  {
+                    "@type": "HowToStep",
+                    "name": "Automate Customer Enquiries",
+                    "text": "Set up AI assistants to answer common questions, book appointments, and handle enquiries 24/7"
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "name": "Speed Up Quoting & Proposals",
+                    "text": "Use AI to generate professional quotes and proposals in minutes instead of hours"
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "name": "Summarise Documents & Contracts",
+                    "text": "Let AI read and summarise lengthy contracts, tender documents, and compliance paperwork"
+                  },
+                  {
+                    "@type": "HowToStep",
+                    "name": "Generate Marketing Content",
+                    "text": "Create social media posts, job ads, and email campaigns faster with AI assistance"
+                  }
+                ]
+              }
+            ]
           })
         }}
       />
