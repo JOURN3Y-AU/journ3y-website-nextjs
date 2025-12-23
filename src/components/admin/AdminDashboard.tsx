@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import BlogPostsTable from './blog/BlogPostsTable'
 import { supabase } from '@/lib/supabase/client'
-import { User, Edit, Users, FileText, Building } from 'lucide-react';
+import { User, Edit, Users, FileText, Building, Bot } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { BlogPost } from '@/types/blog';
 
@@ -157,6 +157,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           <Button onClick={() => router.push('/admin/smb')} variant="outline" className="flex items-center">
             <Building className="mr-2 h-4 w-4" />
             SMB Industries
+          </Button>
+          <Button onClick={() => router.push('/admin/ai-monitor')} variant="outline" className="flex items-center">
+            <Bot className="mr-2 h-4 w-4" />
+            AI Monitor
           </Button>
           <Button onClick={() => router.push('/admin/new')} variant="default" className="flex items-center">
             <Edit className="mr-2 h-4 w-4" />
