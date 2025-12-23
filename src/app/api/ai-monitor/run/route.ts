@@ -151,13 +151,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to create run' }, { status: 500 })
     }
 
-    // Process questions (don't await - let it run in background)
-    processQuestions(supabase, run.id, questions)
+    // Process questions synchronously (required for serverless)
+    await processQuestions(supabase, run.id, questions)
 
     return NextResponse.json({
       success: true,
       runId: run.id,
-      message: `Started monitoring ${questions.length} questions across ChatGPT and Claude`
+      message: `Completed monitoring ${questions.length} questions across ChatGPT and Claude`
     })
   } catch (error) {
     console.error('AI Monitor error:', error)
