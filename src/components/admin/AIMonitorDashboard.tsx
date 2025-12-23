@@ -83,6 +83,7 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
   const [chartGroupFilter, setChartGroupFilter] = useState<string>('all')
   const [chartTopN, setChartTopN] = useState<number>(5)
   const [chartViewMode, setChartViewMode] = useState<'daily' | 'all'>('daily')
+  const [competitorsGroupFilter, setCompetitorsGroupFilter] = useState<string>('all')
 
   // Form states
   const [newGroupName, setNewGroupName] = useState('')
@@ -201,6 +202,30 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
     const firstDataPoint = trendChartData[0]
     return Object.keys(firstDataPoint).filter(key => key !== 'date' && key !== 'JOURN3Y')
   }, [trendChartData])
+
+  // Filtered competitors for the Competitors tab (with group filter)
+  const filteredCompetitors = useMemo(() => {
+    const competitorCounts: Record<string, number> = {}
+
+    runs.forEach(run => {
+      run.responses.forEach(r => {
+        // Apply group filter
+        if (competitorsGroupFilter !== 'all' && r.question?.group?.id !== competitorsGroupFilter) {
+          return
+        }
+
+        if (r.competitors_mentioned && Array.isArray(r.competitors_mentioned)) {
+          r.competitors_mentioned.forEach(c => {
+            competitorCounts[c.name] = (competitorCounts[c.name] || 0) + 1
+          })
+        }
+      })
+    })
+
+    return Object.entries(competitorCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, count]) => ({ name, count }))
+  }, [runs, competitorsGroupFilter])
 
   // Generate colors dynamically for any competitor
   const generateColor = (index: number): string => {
@@ -816,15 +841,32 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
           <TabsContent value="competitors">
             <Card>
               <CardHeader>
-                <CardTitle>Competitor Mentions</CardTitle>
-                <CardDescription>
-                  Companies mentioned alongside queries about your services
-                </CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Competitor Mentions</CardTitle>
+                    <CardDescription>
+                      Companies mentioned alongside queries about your services
+                    </CardDescription>
+                  </div>
+                  <Select value={competitorsGroupFilter} onValueChange={setCompetitorsGroupFilter}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Filter by group" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Groups</SelectItem>
+                      {questionGroups.map((group) => (
+                        <SelectItem key={group.id} value={group.id}>
+                          {group.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </CardHeader>
               <CardContent>
-                {stats?.topCompetitors && stats.topCompetitors.length > 0 ? (
+                {filteredCompetitors.length > 0 ? (
                   <div className="space-y-4">
-                    {stats.topCompetitors.map((competitor, index) => (
+                    {filteredCompetitors.map((competitor, index) => (
                       <div key={competitor.name} className="flex items-center gap-4">
                         <div className="w-8 text-center font-bold text-gray-400">
                           {index + 1}
@@ -834,7 +876,7 @@ export default function AIMonitorDashboard({ onLogout }: AIMonitorDashboardProps
                           <div
                             className="bg-gray-500 h-full rounded-full"
                             style={{
-                              width: `${(competitor.count / stats.topCompetitors[0].count) * 100}%`
+                              width: `${(competitor.count / filteredCompetitors[0].count) * 100}%`
                             }}
                           />
                         </div>
