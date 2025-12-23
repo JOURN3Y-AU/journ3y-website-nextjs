@@ -117,7 +117,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "JOURN3Y",
               "alternateName": "Journey AI",
-              "description": "AI consulting and implementation for Australian businesses. Official Glean partner. Small business AI solutions and enterprise search.",
+              "description": "Australia's leading Glean implementation partner and AI consulting firm. Official certified Glean expert. Small business AI solutions.",
               "url": "https://www.journ3y.com.au",
               "logo": "https://www.journ3y.com.au/JOURN3Y-logo.png",
               "contactPoint": {
@@ -175,6 +175,8 @@ export default function RootLayout({
                 "Artificial Intelligence",
                 "Enterprise Search",
                 "Glean",
+                "Glean Implementation",
+                "Enterprise Search Consulting",
                 "Small Business AI",
                 "AI Consulting",
                 "Business Automation"

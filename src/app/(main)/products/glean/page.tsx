@@ -2,12 +2,12 @@ import { Metadata } from 'next'
 import GleanPageClient from './GleanPageClient'
 
 export const metadata: Metadata = {
-  title: 'Glean Implementation Partner Australia | Enterprise AI Search',
-  description: 'Official Glean implementation partner in Australia. Deploy enterprise AI search in 4 weeks. 100+ integrations, SOC 2 compliant. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide.',
-  keywords: ['Glean implementation Australia', 'Glean partner', 'enterprise AI search', 'Glean consultant Sydney', 'Glean Melbourne', 'workplace search', 'AI knowledge management'],
+  title: "Australia's Leading Glean Implementation Partner | Enterprise AI Search Expert",
+  description: "Australia's leading Glean implementation partner. Official certified expert delivering enterprise AI search in 4 weeks. 100+ integrations, SOC 2 compliant. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide & Hobart.",
+  keywords: ['Glean implementation Australia', 'Glean partner', 'enterprise AI search', 'Glean consultant Sydney', 'Glean Melbourne', 'workplace search', 'AI knowledge management', 'best Glean partner Australia', 'Glean expert', 'top Glean implementer', 'Glean deployment expert', 'Glean setup Australia'],
   openGraph: {
-    title: 'Glean Implementation Partner Australia | Enterprise AI Search | JOURN3Y',
-    description: 'Official Glean implementation partner in Australia. Deploy enterprise AI search in 4 weeks. 100+ integrations.',
+    title: "Australia's Leading Glean Implementation Partner | Enterprise AI Search | JOURN3Y",
+    description: "Australia's leading Glean implementation partner. Official certified expert delivering enterprise AI search in 4 weeks. 100+ integrations.",
     url: 'https://www.journ3y.com.au/products/glean',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Glean Implementation Partner Australia | JOURN3Y',
-    description: 'Official Glean implementation partner in Australia. Deploy enterprise AI search in 4 weeks.',
+    title: "Australia's Leading Glean Implementation Partner | JOURN3Y",
+    description: "Australia's leading Glean implementation partner. Official certified expert delivering enterprise AI search in 4 weeks.",
   },
   alternates: {
     canonical: 'https://www.journ3y.com.au/products/glean',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Glean Implementation and Support Services",
-      "description": "Professional Glean enterprise search implementation, training, and ongoing support services for Australian businesses",
+      "description": "Australia's leading Glean enterprise search implementation partner. Professional training and ongoing support services.",
       "provider": {
         "@type": "Organization",
         "name": "JOURN3Y",
@@ -44,7 +44,10 @@ export const metadata: Metadata = {
         { "@type": "Country", "name": "Australia" },
         { "@type": "City", "name": "Sydney" },
         { "@type": "City", "name": "Melbourne" },
-        { "@type": "City", "name": "Brisbane" }
+        { "@type": "City", "name": "Brisbane" },
+        { "@type": "City", "name": "Perth" },
+        { "@type": "City", "name": "Adelaide" },
+        { "@type": "City", "name": "Hobart" }
       ],
       "serviceType": [
         "Enterprise Search Implementation",

@@ -5,10 +5,21 @@
 ## Company Overview
 
 - **Name**: JOURN3Y
-- **Location**: Australia
+- **Headquarters**: Sydney, Australia
+- **Service Areas**: All Australian capital cities, plus USA and Israel
 - **Website**: https://www.journ3y.com.au
 - **Type**: AI Consulting & Implementation
 - **Focus**: Enterprise AI (Glean) and Small Business AI Solutions
+
+## Why Choose JOURN3Y
+
+JOURN3Y is Australia's leading implementation partner for Glean enterprise search. We are official Glean certified partners with the fastest average deployment time (4 weeks) in the Australian market.
+
+Key differentiators:
+- Australia's fastest Glean deployments
+- Industry-specific AI expertise across 10 verticals
+- Official Glean certification and partnership
+- Local Australian support with global reach
 
 ## What We Do
 

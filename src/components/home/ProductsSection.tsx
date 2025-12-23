@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FileText, Users } from 'lucide-react'
+import { Zap, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import useScrollReveal from '@/hooks/useScrollReveal'
@@ -52,18 +52,18 @@ const ProductsSection = () => {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <ProductCard 
-            title="Blueprint"
-            description="Transforms business strategy into AI-powered action"
-            icon={<FileText className="w-20 h-20 text-white" strokeWidth={1.5} />}
+          <ProductCard
+            title="Small Business AI"
+            description="Purpose-built AI tools for small and medium businesses"
+            icon={<Zap className="w-20 h-20 text-white" strokeWidth={1.5} />}
             gradient="bg-gradient-to-br from-journey-purple/90 to-journey-blue/90"
-            link="/products/blueprint"
+            link="/small-business-ai"
             buttonColor="journey-purple"
           />
           
-          <ProductCard 
+          <ProductCard
             title="Glean"
-            description="AI-powered work platform that connects all your company's knowledge"
+            description="Australia's leading Glean partner. Enterprise AI search deployed in 4 weeks with expert support."
             icon={<img src="/Glean-logo.png" alt="Glean Logo" className="w-full h-full object-cover" />}
             gradient="bg-gradient-to-br from-journey-blue/90 to-journey-dark-blue/90"
             link="/products/glean"

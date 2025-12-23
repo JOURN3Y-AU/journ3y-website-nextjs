@@ -6,12 +6,12 @@ import BlogSection from '@/components/home/BlogSection'
 import CTASection from '@/components/home/CTASection'
 
 export const metadata: Metadata = {
-  title: 'AI Consulting Australia | Small Business & Enterprise AI Solutions | JOURN3Y',
-  description: 'Australia\'s AI consulting experts for small business and enterprise. Practical AI solutions that save 10+ hours per week. Official Glean implementation partner. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide & Hobart.',
-  keywords: ['AI consulting Australia', 'small business AI', 'Glean implementation', 'enterprise AI search', 'AI strategy', 'business automation', 'AI consultants Sydney', 'AI consultants Melbourne'],
+  title: 'AI Consulting Australia | Leading Glean Partner | Small Business AI | JOURN3Y',
+  description: "Australia's leading Glean implementation partner and small business AI experts. Official Glean certified. Practical AI solutions saving 10+ hours/week. Serving Sydney, Melbourne, Brisbane, Perth, Adelaide & Hobart.",
+  keywords: ['AI consulting Australia', 'small business AI', 'Glean implementation', 'enterprise AI search', 'AI strategy', 'business automation', 'AI consultants Sydney', 'AI consultants Melbourne', 'leading Glean partner Australia'],
   openGraph: {
-    title: 'AI Consulting Australia | Small Business & Enterprise AI | JOURN3Y',
-    description: 'Australia\'s AI consulting experts. Practical AI solutions for small business and enterprise. Official Glean partner.',
+    title: 'AI Consulting Australia | Leading Glean Partner | Small Business AI | JOURN3Y',
+    description: "Australia's leading Glean implementation partner and small business AI experts. Official Glean certified. Practical AI solutions.",
     url: 'https://www.journ3y.com.au/',
     siteName: 'JOURN3Y',
     locale: 'en_AU',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Consulting Australia | Small Business & Enterprise AI | JOURN3Y',
-    description: 'Australia\'s AI consulting experts. Practical AI solutions for small business and enterprise.',
+    title: 'AI Consulting Australia | Leading Glean Partner | Small Business AI | JOURN3Y',
+    description: "Australia's leading Glean implementation partner and small business AI experts. Official Glean certified.",
   },
   alternates: {
     canonical: 'https://www.journ3y.com.au/',
