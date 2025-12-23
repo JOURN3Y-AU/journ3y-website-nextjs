@@ -1,7 +1,19 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import OpenAI from 'openai'
 import Anthropic from '@anthropic-ai/sdk'
+
+// Create a Supabase client with service role key for cron jobs (bypasses RLS)
+function createServiceClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
+
+  if (!serviceRoleKey) {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY is not configured')
+  }
+
+  return createSupabaseClient(supabaseUrl, serviceRoleKey)
+}
 
 // Verify cron secret to prevent unauthorized access
 const CRON_SECRET = process.env.CRON_SECRET
@@ -129,8 +141,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    // Use service role client for cron jobs (bypasses RLS since no user session)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = await createClient() as any
+    const supabase = createServiceClient() as any
 
     // Get active questions
     const { data: questions, error: questionsError } = await supabase
