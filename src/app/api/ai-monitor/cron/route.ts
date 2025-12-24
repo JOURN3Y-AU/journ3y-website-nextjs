@@ -3,6 +3,9 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import OpenAI from 'openai'
 import Anthropic from '@anthropic-ai/sdk'
 
+// Allow up to 5 minutes for cron job to process all questions
+export const maxDuration = 300
+
 // Create a Supabase client with service role key for cron jobs (bypasses RLS)
 function createServiceClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!

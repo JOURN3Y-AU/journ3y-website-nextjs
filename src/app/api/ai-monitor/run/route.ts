@@ -3,6 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import OpenAI from 'openai'
 import Anthropic from '@anthropic-ai/sdk'
 
+// Allow up to 5 minutes for manual run to process all questions
+export const maxDuration = 300
+
 // Known competitors to look for in responses
 const KNOWN_COMPETITORS = [
   'Accenture', 'Deloitte', 'PwC', 'KPMG', 'EY',
