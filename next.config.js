@@ -18,6 +18,16 @@ const nextConfig = {
   },
   // Ensure trailing slashes are handled consistently
   trailingSlash: false,
+  // Redirects for old/alternative URLs
+  async redirects() {
+    return [
+      {
+        source: '/products/small-business',
+        destination: '/small-business-ai',
+        permanent: true, // 301 redirect for SEO
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
