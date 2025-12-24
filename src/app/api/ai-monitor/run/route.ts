@@ -187,8 +187,13 @@ async function processQuestions(
   }> = []
 
   for (const q of questions) {
-    // Query ChatGPT
-    const chatgptResult = await queryOpenAI(q.question)
+    // Query ChatGPT and Claude in parallel for faster processing
+    const [chatgptResult, claudeResult] = await Promise.all([
+      queryOpenAI(q.question),
+      queryClaude(q.question)
+    ])
+
+    // Process ChatGPT result
     const chatgptMention = checkJourn3yMention(chatgptResult.response)
     const chatgptCompetitors = extractCompetitors(chatgptResult.response)
 
@@ -204,8 +209,7 @@ async function processQuestions(
       error_message: chatgptResult.error || null
     })
 
-    // Query Claude
-    const claudeResult = await queryClaude(q.question)
+    // Process Claude result
     const claudeMention = checkJourn3yMention(claudeResult.response)
     const claudeCompetitors = extractCompetitors(claudeResult.response)
 
@@ -222,7 +226,7 @@ async function processQuestions(
     })
 
     // Small delay between questions to avoid rate limits
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 500))
   }
 
   // Insert all responses
