@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ChevronDown, MessageSquare, FileText, Zap, PenTool } from 'lucide-react'
+import { ArrowRight, ChevronDown, MessageSquare, FileText, Zap, PenTool, MapPin } from 'lucide-react'
 import { getActiveIndustries } from '@/lib/smb'
 import { smbGlobalContent } from '@/lib/smb'
 import IndustrySelector from '@/components/smb/IndustrySelector'
@@ -27,7 +27,14 @@ export const metadata: Metadata = {
     'best AI consultants Australia',
     'AI automation for small business',
     'business AI tools',
-    'AI implementation Australia'
+    'AI implementation Australia',
+    'AI specialist Sydney',
+    'AI consultant Northern Beaches Sydney',
+    'AI specialist Shire Sydney',
+    'AI consultant North Shore Sydney',
+    'AI specialist Western Sydney',
+    'AI consultant Gold Coast',
+    'small business AI Sydney'
   ],
   openGraph: {
     title: 'How to Use AI in Your Small Business | Best AI Tools Australia | JOURN3Y',
@@ -171,16 +178,75 @@ export default async function SMBLandingPage() {
         </div>
       </section>
 
+      {/* Service Areas Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              AI Specialists Serving Your Area
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              JOURN3Y provides AI consulting for small businesses across Sydney, Melbourne, Gold Coast, Brisbane and all of Australia.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">Northern Beaches, Sydney</p>
+                <p className="text-sm text-muted-foreground">Manly, Dee Why, Mona Vale</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">North Shore, Sydney</p>
+                <p className="text-sm text-muted-foreground">Chatswood, St Leonards, Lane Cove</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">The Shire, Sydney</p>
+                <p className="text-sm text-muted-foreground">Cronulla, Sutherland, Miranda</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">Western Sydney</p>
+                <p className="text-sm text-muted-foreground">Parramatta, Penrith, Blacktown</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">Gold Coast, Queensland</p>
+                <p className="text-sm text-muted-foreground">Surfers Paradise, Broadbeach, Burleigh</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="font-medium">All of Australia</p>
+                <p className="text-sm text-muted-foreground">Remote consulting available nationwide</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to See How AI Can Transform Your Business?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg opacity-90 mb-8">
             Book a free 30-minute demo and see AI in action for your industry
           </p>
-          <Button size="lg" asChild>
+          <Button size="lg" variant="secondary" asChild>
             <Link href="/contact?utm_source=small-business-ai&utm_medium=footer_cta">
               Get Your Free Demo
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -216,6 +282,11 @@ export default async function SMBLandingPage() {
                 },
                 "areaServed": [
                   { "@type": "City", "name": "Sydney" },
+                  { "@type": "AdministrativeArea", "name": "Northern Beaches, Sydney" },
+                  { "@type": "AdministrativeArea", "name": "North Shore, Sydney" },
+                  { "@type": "AdministrativeArea", "name": "Sutherland Shire, Sydney" },
+                  { "@type": "AdministrativeArea", "name": "Western Sydney" },
+                  { "@type": "City", "name": "Gold Coast" },
                   { "@type": "City", "name": "Melbourne" },
                   { "@type": "City", "name": "Brisbane" },
                   { "@type": "City", "name": "Perth" },
