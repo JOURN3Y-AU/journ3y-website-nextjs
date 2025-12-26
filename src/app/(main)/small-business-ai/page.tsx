@@ -293,7 +293,6 @@ export default async function SMBLandingPage() {
                   { "@type": "City", "name": "Adelaide" },
                   { "@type": "City", "name": "Hobart" }
                 ],
-                "priceRange": "$$"
               },
               {
                 "@type": "HowTo",
